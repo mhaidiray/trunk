@@ -7,9 +7,9 @@
 
         <title>Interface d'administration</title>
 
-        <link rel="stylesheet" href="../css_images/Admin Home page/cssadminhome/normalize.css">
+        <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/normalize.css">
 
-        <link rel="stylesheet" href="../css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
 
     </head>
 
