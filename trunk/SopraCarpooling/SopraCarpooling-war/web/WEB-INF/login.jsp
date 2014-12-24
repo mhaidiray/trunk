@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="utf-8">
-        <link href="../css_images/Log in/csslogin/style.css" rel='stylesheet' type='text/css' />
+        <link href="css_images/Log in/csslogin/style.css" rel='stylesheet' type='text/css' />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--webfonts-->
