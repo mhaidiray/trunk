@@ -22,13 +22,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-----start-main---->
         <div class="login-form">
             <h1>Connexion</h1>
-            <h2><a href="#">Nouveau compte</a></h2>
-            <form>
+            <h2><a href="newcpt">Nouveau compte</a></h2>
+            <form method="post">
+                <span class="erreur">${erreurs['mail']}</span>
                 <li>
-                    <input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
+                    <input type="text" name="mail" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Email';
                             }" ><a href="#" class=" icon user"></a>
                 </li>
+                
                 <li>
                     <input type="password" value="Mot de passe" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Mot de passe';
@@ -36,8 +38,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 
                 <div class ="forgot">
-                    <h3><a href="#">Mot de passe oubliÃ© ?</a></h3>
-                    <input type="submit" onclick=FFC600"myFunction()" value="   Se connecter" > <a href="#" class=" icon arrow"></a>                                                                                                                                                                                                                                 </h4>
+                    <h3><a href="resetpwd">Mot de passe oublié ?</a></h3>
+                    <input type="submit"  value="   Se connecter" > <a href="#" class=" icon arrow"></a>                                                                                                                                                                                                                                 </h4>
                 </div>
             </form>
         </div>

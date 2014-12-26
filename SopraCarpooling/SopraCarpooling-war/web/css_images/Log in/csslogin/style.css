@@ -67,6 +67,9 @@ body{
 	right:11%;
 	margin:34px 0;
 } 
+form .erreur {
+	color: #F00;
+}
 form {
 	padding:32% 3em;
 }

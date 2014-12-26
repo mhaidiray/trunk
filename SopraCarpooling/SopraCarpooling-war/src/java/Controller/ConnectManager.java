@@ -5,10 +5,8 @@ package Controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +29,26 @@ public class ConnectManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    HashMap<String, String> erreurs = new HashMap<String, String>();
+
+    public void checkMail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("mail");
+        System.out.println(email);
+        if (email != null && email.length() != 0) {
+            if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+                erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
+                request.setAttribute("erreurs", erreurs);
+                request.setAttribute("mail", "invalid");
+
+            }
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            /* TODO output your page here. You may use following sample code. */
-            String nextJSP = "/WEB-INF/login.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
+        /* TODO output your page here. You may use following sample code. */
+        this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
 
@@ -67,7 +78,15 @@ public class ConnectManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        checkMail(request, response);
+        //ajout ici de la vérification de la validité du couple email/mdp
+        if (erreurs.isEmpty()) {
+            //ajout ici de la redirection vers les pages d'accueil
+        } else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            erreurs.clear();
+        }
+        
     }
 
     /**
