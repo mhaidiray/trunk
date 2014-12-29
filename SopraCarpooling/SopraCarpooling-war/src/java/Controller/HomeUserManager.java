@@ -33,7 +33,7 @@ public class HomeUserManager extends HttpServlet {
         /* TODO output your page here. You may use following sample code. */
         
         if (request.getParameter("trajet")!=null){
-            response.sendRedirect("/SopraCarpooling-war/login");
+            response.sendRedirect("/SopraCarpooling-war/search");
         }
         else if (request.getParameter("persinfo")!=null){
             response.sendRedirect("/SopraCarpooling-war/persinfo");
