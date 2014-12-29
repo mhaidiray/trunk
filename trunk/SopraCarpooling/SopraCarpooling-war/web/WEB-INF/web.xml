@@ -4,8 +4,80 @@
         <servlet-name>ConnectManager</servlet-name>
         <servlet-class>Controller.ConnectManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountCreateManager</servlet-name>
+        <servlet-class>Controller.AccountCreateManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPwdManager</servlet-name>
+        <servlet-class>Controller.ResetPwdManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeUserManager</servlet-name>
+        <servlet-class>Controller.HomeUserManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchManager</servlet-name>
+        <servlet-class>Controller.SearchManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonalDataManager</servlet-name>
+        <servlet-class>Controller.PersonalDataManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeAdminManager</servlet-name>
+        <servlet-class>Controller.HomeAdminManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WorkplacesManager</servlet-name>
+        <servlet-class>Controller.WorkplacesManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserEditManager</servlet-name>
+        <servlet-class>Controller.UserEditManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaceEditManager</servlet-name>
+        <servlet-class>Controller.PlaceEditManager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnectManager</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountCreateManager</servlet-name>
+        <url-pattern>/newcpt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPwdManager</servlet-name>
+        <url-pattern>/resetpwd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeUserManager</servlet-name>
+        <url-pattern>/homeuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchManager</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonalDataManager</servlet-name>
+        <url-pattern>/persinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeAdminManager</servlet-name>
+        <url-pattern>/adminhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkplacesManager</servlet-name>
+        <url-pattern>/wrkplcelist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserEditManager</servlet-name>
+        <url-pattern>/useredit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaceEditManager</servlet-name>
+        <url-pattern>/PlaceEditManager</url-pattern>
     </servlet-mapping>
 </web-app>
