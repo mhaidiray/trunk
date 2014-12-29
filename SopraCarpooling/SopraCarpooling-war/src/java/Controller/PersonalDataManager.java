@@ -32,7 +32,16 @@ public class PersonalDataManager extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
+        
+        if (request.getParameter("accueil")!=null){
+            response.sendRedirect("/SopraCarpooling-war/login");
+        }
+        else if (request.getParameter("mod")!=null){
+            response.sendRedirect("/SopraCarpooling-war/modpersinfo");
+        }
+        else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

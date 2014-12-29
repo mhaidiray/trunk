@@ -31,7 +31,16 @@ public class HomeUserManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/userhome.jsp").forward(request, response);
+        
+        if (request.getParameter("trajet")!=null){
+            response.sendRedirect("/SopraCarpooling-war/login");
+        }
+        else if (request.getParameter("persinfo")!=null){
+            response.sendRedirect("/SopraCarpooling-war/persinfo");
+        }
+        else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/userhome.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,6 +70,7 @@ public class HomeUserManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**

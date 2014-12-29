@@ -26,12 +26,12 @@
                 <div class="lable-2">
                     <div class="col_1_of_2 span_1_of_2">
                         <div class="submit">
-                            <input type="submit" onclick="myFunction()" value="Consulter mes informations personnelles" >
+                            <input type="submit" value="Modifier mes informations personnelles" name="persinfo">
                         </div>
                     </div>
                     <div class="col_1_of_2 span_1_of_2">
                         <div class="submit">
-                            <input type="submit" onclick="myFunction()" value="Chercher un trajet personnalisÃ©" >
+                            <input type="submit" value="Chercher un trajet personnalisé" name="trajet">
                         </div>
                     </div>
                     <div class="clear"></div>
