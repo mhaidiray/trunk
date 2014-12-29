@@ -95,6 +95,10 @@ form li{
 .lock{
 	background: url(../imagespwdreset/icons.png) no-repeat -31px 2px;
 }
+
+form .erreur {
+    color: #F00;
+}
 .arrow{
 	background: url(../imagespwdreset/icons.png) no-repeat -62px 11px;
 	position: absolute;

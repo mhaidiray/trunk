@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import Model.SMTPManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Boolean.*;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Samih
  */
 public class ResetPwdManager extends HttpServlet {
+    
+    HashMap<String, String> erreurs = new HashMap<String, String>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,6 +34,20 @@ public class ResetPwdManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public void checkMail(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("mail");
+        System.out.println(email);
+        if (email != null && email.length() != 0) {
+            if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+                erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
+                request.setAttribute("erreurs", erreurs);
+                request.setAttribute("mail", "invalid");
+
+            }
+        }
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,7 +81,22 @@ public class ResetPwdManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("mail");
+        Boolean exist = TRUE;
+        checkMail(request,response);
+        
+        /**Vérification que l'email existe dans la base de données*/
+        if (exist && erreurs.isEmpty()){
+            SecureRandom random = new SecureRandom();
+            String pwd = new BigInteger(60, random).toString(32);
+            /**Modification du password dans la base de données*/
+            SMTPManager.sendNewPassword(email, pwd);
+        } else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
+            erreurs.clear();
+        }
+        
+        
     }
 
     /**
