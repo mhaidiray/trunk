@@ -65,8 +65,8 @@
                 </FORM>
                 <div class="submit">
                     <div class="lable">
-                        <div class="col_1_of_2 span_1_of_2"><input type="submit" onclick="myFunction()" value="Modifier mes informations personnelles"></div>
-                        <div class="col_1_of_2 span_1_of_2"><input type="submit" onclick="myFunction()" value="Retourner à l'accueil"></div>
+                        <div class="col_1_of_2 span_1_of_2"><input type="submit" value="Modifier mes informations personnelles" name="mod"></div>
+                        <div class="col_1_of_2 span_1_of_2"><input type="submit" value="Retourner à l'accueil" name="accueil"></div>
                         <div class="clear"> </div>
                     </div>
                 </div>
