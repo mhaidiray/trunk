@@ -22,9 +22,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-----start-main---->
         <div class="login-form">
             <h1>Récupération de mot de passe:</h1>
-            <form>
+            <form method="post">
+                <span class="erreur">${erreurs['mail']}</span>
                 <li>
-                    <input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
+                    <input type="text" class="text" name="mail" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Email';
                             }" ><a href="#" class=" icon user"></a>
                 </li>
