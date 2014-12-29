@@ -26,59 +26,66 @@
                 <div class="lable-2">
                     <div class="col_1_of_2 span_1_of_2">
                         <div class="submit">
-                            <input type="submit" value="Modifier mes informations personnelles" name="persinfo">
+                            <input type="submit" value="Consulter mes informations personnelles" name="persinfo">
                         </div>
                     </div>
                     <div class="col_1_of_2 span_1_of_2">
                         <div class="submit">
-                            <input type="submit" value="Chercher un trajet personnalisé" name="trajet">
+                            <input type="submit" value="Chercher un trajet personnalisé" name="trajet" >
                         </div>
                     </div>
                     <div class="clear"></div>
 
                 </div>
+                </br>
+
             </form>
-            <h4>Voici les utilisateurs ayant le mÃªme trajet que vous</h4>
-            <table class="responstable">
-                <tr>
-                    <th>Conducteur</th>
-                    <th>Nom</th>
-                    <th>PrÃ©nom</th>
-                    <th>Date of birth</th>
-                    <th>Relationship</th>
-                </tr>
+            <h2> </br>
+                <h2>Voici les utilisateurs ayant le même trajet que vous :</h2>
+                <table class="responstable">
+                    <tr>
+                        <th>Conducteur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>N° Tél</th>
+                    </tr>
 
-                <tr>
-                    <td>Steve</td>
-                    <td>Foo</td>
-                    <td>01/01/1978</td>
-                    <td>Policyholder</td>
-                </tr>
+                    <tr>
+                        <td>Steve</td>
+                        <td>Foo</td>
+                        <td>01/01/1978</td>
+                        <td>Policyholder</td>
+                        <td>Policyholder</td>
+                    </tr>
 
-                <tr>
-                    <td>Steffie</td>
-                    <td>Foo</td>
-                    <td>01/01/1978</td>
-                    <td>Spouse</td>
-                </tr>
+                    <tr>
+                        <td>Steffie</td>
+                        <td>Foo</td>
+                        <td>01/01/1978</td>
+                        <td>Spouse</td>
+                        <td>Policyholder</td>
+                    </tr>
 
-                <tr>
-                    <td>Stan</td>
-                    <td>Foo</td>
-                    <td>01/01/1994</td>
-                    <td>Son</td>
-                </tr>
+                    <tr>
+                        <td>Stan</td>
+                        <td>Foo</td>
+                        <td>01/01/1994</td>
+                        <td>Son</td>
+                        <td>Policyholder</td>
+                    </tr>
 
-                <tr>
-                    <td>Stella</td>
-                    <td>Foo</td>
-                    <td>01/01/1992</td>
-                    <td>Daughter</td>
-                </tr>
+                    <tr>
+                        <td>Stella</td>
+                        <td>Foo</td>
+                        <td>01/01/1992</td>
+                        <td>Daughter</td>
+                        <td>Policyholder</td>
+                    </tr>
 
-            </table>
+                </table>
 
-            <div class="clear"></div>
+                <div class="clear"></div>
         </div>
     </body>
 </html>
