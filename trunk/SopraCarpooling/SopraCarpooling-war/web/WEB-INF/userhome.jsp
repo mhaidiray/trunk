@@ -10,7 +10,7 @@
 <html>
     <head>
         <title>Sopra Carpooling</title>
-    <input type="submit2" onclick="myFunction()" value="Se déconnecter">
+    <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
     <meta charset="utf-8">
     <link href="css_images/User Home/cssuserhome/style.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">

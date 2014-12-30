@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="main">
 	<div class="lable">
 		<div class="col_1_of_2 span_1_of_2"><h1>Lieux de travail</h1></div>
-		<div class="col_1_of_2 span_1_of_2"><input type="submit2" onclick="myFunction()" value="Se déconnecter"></div>
+                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
 		<div class="clear"> </div>
 	</div>	
             <form>

@@ -22,7 +22,7 @@
         <div class="main">
             <div class="lable">
                 <div class="col_1_of_2 span_1_of_2"><h1>Consultez vos informations personnelles</h1></div>
-                <div class="col_1_of_2 span_1_of_2"><input type="submit2" onclick="myFunction()" value="Se déconnecter"></div>
+                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
                 <div class="clear"> </div>
             </div>	
             <form>
