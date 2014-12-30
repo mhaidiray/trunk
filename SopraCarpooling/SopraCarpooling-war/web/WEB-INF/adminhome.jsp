@@ -4,7 +4,7 @@
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="UTF-8">
-    <input type="submit2" onclick="myFunction()" value="Se déconnecter">
+    <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
     <title>Interface d'administration</title>
 
     <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/normalize.css">
