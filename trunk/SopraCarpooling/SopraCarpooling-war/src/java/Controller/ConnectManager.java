@@ -35,12 +35,16 @@ public class ConnectManager extends HttpServlet {
         String email = request.getParameter("mail");
         System.out.println(email);
         if (email != null && email.length() != 0) {
-            if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+            if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
                 erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("mail", "invalid");
 
             }
+        }else {
+            erreurs.put("mail", "Aucune entrée, veuillez réessayer");
+                request.setAttribute("erreurs", erreurs);
+                request.setAttribute("mail", "invalid");
         }
     }
 
