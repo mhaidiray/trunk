@@ -7,8 +7,6 @@ package Controller;
 
 import Model.SMTPManager;
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.Boolean.*;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -39,11 +37,11 @@ public class ResetPwdManager extends HttpServlet {
         String email = request.getParameter("mail");
         System.out.println(email);
         if (email != null && email.length() != 0) {
-            if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+            if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
                 erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("mail", "invalid");
-
+                
             }
         }
     }
@@ -82,7 +80,7 @@ public class ResetPwdManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("mail");
-        Boolean exist = TRUE;
+        Boolean exist = true;
         checkMail(request,response);
         
         /**Vérification que l'email existe dans la base de données*/
