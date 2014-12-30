@@ -46,73 +46,62 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("nom", "Nom incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("nom", "invalid");
-                return ;
             }
         }else {
                 erreurs.put("nom", "Aucune entrée, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("nom", "invalid");
-                return ;
         }
         if (prenom != null && prenom.length() != 0) {
             if (!prenom.matches("([A-Z]+|[A-Z]?[a-z]+)")) {
                 erreurs.put("prenom", "Prenom incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("prenom", "invalid");
-                return ;
                 
             }
         }else {
                 erreurs.put("prenom", "Aucune entrée, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("prenom", "invalid");
-                return ;
         }
         if (email != null && email.length() != 0) {
             if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
                 erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("mail", "invalid");    
-                return ;      
             }
         }else {
                 erreurs.put("mail", "Aucune entrée3, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("mail", "invalid");
-                return ;
         }
         if (pwd1 != null && pwd1.length() != 0) {
             if (pwd1!=pwd2){
                 erreurs.put("pwd2", "Mots de passe différents, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("pwd2", "invalid");
-                return ;
             }
         }else {
                 erreurs.put("pwd2", "Aucune entrée, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("pwd2", "invalid");
-                return ;
         }
         if (commdepart != null && commdepart.length() != 0) {
             if (!commdepart.matches("([A-Z]+|[A-Z]?[a-z]+)")) {
                 erreurs.put("commdepart", "Commune de départ incorrecte, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("commdepart", "invalid");
-                return ;
             }
         }else {
                 erreurs.put("commdepart", "Aucune entrée, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("commdepart", "invalid");
-                return ;
         }
         if (zipdepart != null && zipdepart.length() != 0) {
             if (!zipdepart.matches("[0-9]{5}")) {
                 erreurs.put("zipdepart", "Code postal incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("zipdepart", "invalid");   
-                return ;       
             }
         }
         if (sitearrivee != null && sitearrivee.length() != 0) {
@@ -122,7 +111,6 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("sitearrivee", "Site Sopra incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("sitearrivee", "invalid");      
-                return ;    
             }
         }
         if (heurematin != null && heurematin.length() != 0) {
@@ -130,7 +118,6 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("heurematin", "L'heure est incorrecte, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("heurematin", "invalid"); 
-                return ;         
             }
         }
         if (heuresoir != null && heuresoir.length() != 0) {
@@ -138,7 +125,6 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("heuresoir", "L'heure est incorrecte, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("heuresoir", "invalid"); 
-                return ;         
             }
         }
         if (tel != null && tel.length() != 0) {
@@ -146,7 +132,6 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("tel", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("tel", "invalid");    
-                return ;      
             }
         }
    
