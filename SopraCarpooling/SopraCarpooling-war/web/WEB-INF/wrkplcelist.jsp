@@ -18,7 +18,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </head>
     <body>
         <div class="main">
-            <h1>Lieux de travail</h1>
+	<div class="lable">
+		<div class="col_1_of_2 span_1_of_2"><h1>Lieux de travail</h1></div>
+		<div class="col_1_of_2 span_1_of_2"><input type="submit2" onclick="myFunction()" value="Se déconnecter"></div>
+		<div class="clear"> </div>
+	</div>	
             <form>
                 <select id="soflow">
                     <option value="sopra1" selected>Sopra 1</option>
