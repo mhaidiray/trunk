@@ -149,6 +149,32 @@ input[type=submit] {
 	 background: #FF3333/*#07793D*/;
 	 border:1px solid #FF3333;
 }
+.submit2{
+	text-align: center;
+}
+input[type=submit2] {
+	position: top right;
+	padding: 11px 24px;
+	color: #fff;
+	float: right;
+	font-family: 'Oxygen', sans-serif;
+	background: #DD3333/*#40A46F*/;
+	border: 1px solid #DD3333;
+	cursor: pointer;
+	font-size: 18px;
+	transition: all 0.5s ease-out;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	outline:none;
+	width: 24%;
+	-webkit-appearance: none;
+}
+.submit2 input[type=submit2]:hover {
+	 background: #FF3333/*#07793D*/;
+	 border:1px solid #FF3333;
+}
 /**start-copy-right**/
 .copy-right {
 	text-align: center;

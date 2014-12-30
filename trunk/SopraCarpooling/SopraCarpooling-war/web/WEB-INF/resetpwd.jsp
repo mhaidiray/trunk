@@ -21,7 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <!-----start-main---->
         <div class="login-form">
-            <h1>RÃ©cupÃ©ration de mot de passe:</h1>
+            <h1>Récupération de mot de passe:</h1>
             <form method="post">
                 <span class="erreur">${erreurs['mail']}</span>
                 <li>
@@ -31,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 
                 <div class ="forgot">
-                    <h3><a href="#">Recevoir un nouveau mot de passe</a></h3>                                                                                                                                                                                                                             </h4>
+                    <input type="submit" onclick="myFunction()" value="Recevoir un nouveau mot de passe">                                                                                                                                                                                                                           </h4>
                 </div>
             </form>
         </div>

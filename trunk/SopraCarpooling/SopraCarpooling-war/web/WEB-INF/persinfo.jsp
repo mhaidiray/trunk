@@ -11,7 +11,7 @@
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="utf-8">
-        <link href="css_images/Check Personal Info/csspersinfo/style.css" rel='stylesheet' type='text/css' />
+        <link href="css_images\Check Personal Info\csspersinfo\style.css" rel='stylesheet' type='text/css' />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--webfonts-->
@@ -20,7 +20,11 @@
     </head>
     <body>
         <div class="main">
-            <h1>Consultez vos informations personnelles</h1>
+            <div class="lable">
+                <div class="col_1_of_2 span_1_of_2"><h1>Consultez vos informations personnelles</h1></div>
+                <div class="col_1_of_2 span_1_of_2"><input type="submit2" onclick="myFunction()" value="Se déconnecter"></div>
+                <div class="clear"> </div>
+            </div>	
             <form>
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_2"><h3>Nom</h3></div>

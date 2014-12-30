@@ -19,39 +19,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <body>
         <div class="main">
 
-            <h1>CrÃ©ation de compte</h1>
+            <h1>Création de compte</h1>
             <form method="post" >
                 <div class="lable">
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom'; }"></div>
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="prenom" value="PrÃ©nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PrÃ©nom'; }"></div>
-                    <div class="col_1_of_2 span_1_of_2"><span class="erreur">${erreurs['nom']}</span></div>
-                    <div class="col_1_of_2 span_1_of_2"><span class="erreur">${erreurs['prenom']}</span></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom'; }"><span class="erreur">${erreurs['nom']}</span></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="prenom" value="Prénom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Prénom'; }"><span class="erreur">${erreurs['prenom']}</span></div>
                     <div class="clear"> </div>
                 </div>
                 <div class="lable-2">
+                    <div>
                     <input type="text" class="text" value="Tapez votre email" name="mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tapez votre email '; }">
-                    <span class="erreur">${erreurs['mail']}</span>
+                    <span class="erreur">${erreurs['mail']}</span></div>
                     <input type="password" class="text" value="Password " name="pwd1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password '; }">
                     <span class="erreur">${erreurs['pwd1']}</span>
                     <input type="password" class="text" value="Password " name="pwd2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password '; }">
                     <span class="erreur">${erreurs['pwd2']}</span>
-                    <h4>Informations gÃ©ographiques :</h4>
-
-                    <input type="text" class="text" value="Commune de dÃ©part " name="commdepart" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Commune de dÃ©part '; }">
-                    <span class="erreur">${erreurs['commdepart']}</span>
-                    <input type="text" class="text" value="Code postal de dÃ©part " name="zipdepart" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Code postal de dÃ©part '; }">
+                    <h4>Informations géographiques :</h4>
+                    <div>
+                    <input type="text" class="text" value="Commune de départ " name="commdepart" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Commune de départ '; }">
+                    <span class="erreur">${erreurs['commdepart']}</span></div>
+                    <input type="text" class="text" value="Code postal de départ " name="zipdepart" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Code postal de départ '; }">
                     <span class="erreur">${erreurs['zipdepart']}</span>
-                    <input type="text" class="text" value="Site Sopra d'arrivÃ©e " name="sitearrivee" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Site Sopra d'arrivÃ©e';}">
+                    <input type="text" class="text" value="Site Sopra d'arrivée " name="sitearrivee" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Site Sopra d'arrivée';}">
                     <span class="erreur">${erreurs['sitearrivee']}</span>
                     <h4>Horaires :</h4>
                     
-                    <input type="text" class="text" value="Heure de dÃ©part matin, par exemple: 07h30" name="heurematin" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de dÃ©part '; }">
-                    <span class="erreur">${erreurs['heurematin']}</span>
-                    <input type="text" class="text" value="Heure de dÃ©part soir, par exemple: 18h30 " name="heuresoir" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de dÃ©part soir '; }">
+                    <input type="text" class="text" value="Heure de départ matin, par exemple: 07h30" name="heurematin" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de départ '; }">
+                    <div><span class="erreur">${erreurs['heurematin']}</span></div>
+                    <input type="text" class="text" value="Heure de départ soir, par exemple: 18h30 " name="heuresoir" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de départ soir '; }">
                     <span class="erreur">${erreurs['heuresoir']}</span>
                     <h4>Contact :</h4>
                     
-                    <input type="text" class="text" value="Veuillez entrer votre numÃ©ro de tÃ©lÃ©phone, par exemple: 0666102030 " name="tel" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de dÃ©part '; }">
+                    <input type="text" class="text" value="Veuillez entrer votre numéro de téléphone, par exemple: 0666102030 " name="tel" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de départ '; }">
                     <span class="erreur">${erreurs['tel']}</span>
                     
                     <h5> Veuillez cocher les jours applicables :</h5>		
@@ -72,12 +71,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <INPUT type="radio" name="conducteur" value="Non"> <FONT COLOR=#ffffff >Non</FONT>
                 <br>
 
-                <h5> Souhaitez-vous Ãªtre notifiÃ© lors de l'ajout d'un trajet pouvant vous intÃ©resser ?</h5>
+                <h5> Souhaitez-vous être notifié lors de l'ajout d'un trajet pouvant vous intéresser ?</h5>
                     <INPUT type="radio" name="notif" value="Oui"> <FONT COLOR=#ffffff >Oui</FONT> 
                     <INPUT type="radio" name="notif" value="Non"> <FONT COLOR=#ffffff >Non</FONT> 				   
                 <br>
                 <div class="submit">
-                    <input type="submit" value="CrÃ©er un compte" >
+                    <input type="submit" value="Créer un compte" >
                     </div>
                 <div class="clear"> </div>
             </form>

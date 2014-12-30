@@ -20,27 +20,53 @@
     </head>
     <body>
         <div class="main">
-            <h1>Modifiez vos informations personnelles</h1>
+
+            <div class="lable">
+                <div class="col_1_of_2 span_1_of_2"><h1>Modifiez vos informations personnelles</h1></div>
+                <div class="col_1_of_2 span_1_of_2"><input type="submit2" onclick="myFunction()" value="Se d�connecter"></div>
+                <div class="clear"> </div>
+            </div>	
             <form>
                 <div class="lable">
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom'; }"></div>
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Prénom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Prénom'; }"></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Nom';
+                            }"></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Prénom" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Prénom';
+                            }"></div>
                     <div class="clear"> </div>
                 </div>
                 <div class="lable-2">
-                    <input type="text" class="text" value="Tapez votre email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tapez votre email '; }">
+                    <input type="text" class="text" value="Tapez votre email" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Tapez votre email ';
+                            }">
                     <h4>Entrez votre ancien mot de passe</h4>
-                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password '; }">
+                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Password ';
+                            }">
                     <h4>Entrez un nouveau mot de passe</h4>
-                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password '; }">
-                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password '; }">
+                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Password ';
+                            }">
+                    <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Password ';
+                            }">
                     <h4>Informations géographiques :</h4>
-                    <input type="text" class="text" value="Commune de départ " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Commune de départ '; }">
-                    <input type="text" class="text" value="Code postal de départ " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Code postal de départ '; }">
-                    <input type="text" class="text" value="Site Sopra d'arrivée " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Site Sopra d'arrivée';}">
+                    <input type="text" class="text" value="Commune de départ " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Commune de départ ';
+                            }">
+                    <input type="text" class="text" value="Code postal de départ " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Code postal de départ ';
+                            }">
+                    <input type="text" class="text" value="Site Sopra d'arrivée " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                this.value = 'Site Sopra d'arrivée';}">
                     <h4>Horaires :</h4>
-                    <input type="text" class="text" value="Heure de départ matin : exemple 07h30" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de départ '; }">
-                    <input type="text" class="text" value="Heure de départ soir : exemple 18h30 " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Heure de départ soir '; }">
+                    <input type="text" class="text" value="Heure de départ matin : exemple 07h30" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                    this.value = 'Heure de départ ';
+                                }">
+                    <input type="text" class="text" value="Heure de départ soir : exemple 18h30 " onfocus="this.value = '';" onblur="if (this.value == '') {
+                                    this.value = 'Heure de départ soir ';
+                                }">
                     <h4> Veuillez cocher les jours applicables :</h4>
                 </div>
                 <FORM>

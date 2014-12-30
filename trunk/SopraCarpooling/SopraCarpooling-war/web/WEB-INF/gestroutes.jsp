@@ -4,25 +4,25 @@
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="UTF-8">
+    <input type="submit2" onclick="myFunction()" value="Se d�connecter">
+    <title>Interface d'administration</title>
 
-        <title>Interface d'administration</title>
+    <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/normalize.css">
 
-        <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/normalize.css">
+    <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/style.css" media="screen" type="text/css" />
 
-        <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/style.css" media="screen" type="text/css" />
+</head>
 
-    </head>
+<body>
 
-    <body>
+    <h1>Interface d'administration</h1>	
 
-        <h1>Interface d'administration</h1>	
+    <h2>Gestion des trajets:</h2>
+    <table class="responstable">
 
-        <h2>Gestion des trajets:</h2>
-        <table class="responstable">
-
-            <tr>
-                <th><center>Commune de départ</center></th>
-        <th><center>Site Sopra d'arrivée</center></th>
+        <tr>
+            <th><center>Commune de départ</center></th>
+    <th><center>Site Sopra d'arrivée</center></th>
 </tr>
 <tr>
     <td>Blagnac</td>
