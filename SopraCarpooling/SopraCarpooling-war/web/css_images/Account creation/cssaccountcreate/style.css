@@ -81,6 +81,9 @@ body{
 		color:#fff;
 }
 
+form .erreur {
+    color: #F00;
+}
 
 span.term a{
 	color: #1888A8;
@@ -143,6 +146,7 @@ span.term a:hover{
 }
 input[type=submit] {
 	padding: 17px 30px;
+	display: inline-block;
 	color: #fff;
 	float: right;
 	font-family: 'Oxygen', sans-serif;
