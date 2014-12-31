@@ -16,17 +16,17 @@
 <body>
 
     <h1>Interface d'administration</h1>	
-    <h2>FonctionnalitÃ©s :</h2>
+    <h2>Fonctionnalités :</h2>
 
     <div class="lable-2">
         <div class="col_1_of_2 span_1_of_2">
             <div class="submit">
-                <input type="submit" onclick="myFunction()" value="GÃ©rer les trajets" >
+                <input type="submit" onclick="myFunction()" value="Gérer les trajets" >
             </div>
         </div>
         <div class="col_1_of_2 span_1_of_2">
             <div class="submit">
-                <input type="submit" onclick="myFunction()" value="GÃ©nÃ©rer un rapport gÃ©nÃ©ral" >
+                <input type="submit" onclick="myFunction()" value="Générer un rapport général" >
             </div>
         </div>
         <div class="clear"></div>
@@ -43,10 +43,10 @@
         <tr>
             <th><center>Nom</center></th>
     <th><center>Prenom</center></th>
-<th><center>TÃ©lÃ©phone</center></th>
+<th><center>Téléphone</center></th>
 <th><center>Email</center></th>
-<th><center>Commune de dÃ©part</center></th>
-<th><center>Site Sopra d'arrivÃ©e</center></th>
+<th><center>Commune de départ</center></th>
+<th><center>Site Sopra d'arrivée</center></th>
 </tr>
 
 <tr>

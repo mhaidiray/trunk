@@ -22,24 +22,40 @@
     <div class="main">
         <h1>Bienvenue sur votre interface personnelle</h1>
         <form>
-            <h2>Veuillez renseigner la commune de dÃ©part et le site Sopra d'arrivÃ©e de votre recherche</h2>
+            <h2>Veuillez renseigner la commune de départ et le site Sopra d'arrivée de votre recherche</h2>
             <div class="lable">
-                <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Commune de dÃ©part" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Commune de dÃ©part'; }"></div>
-                <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="Site Sopra d'arrivÃ©e" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Site Sopra d'arrivÃ©e';}"></div>
+
+                <div class="col_1_of_2 span_1_of_2"><h5> Veuillez renseigner le code postal de départ :</h5>
+                    <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
+                                this.value = '';
+                            }" onblur="if (this.value == '') {
+                                        this.value = 'Code postal de départ';
+                                    }">
+
+                </div>
+
+                <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
+                    <select id="soflow">
+                        <option value="sopra1" selected>Sopra 1</option>
+                        <option value="sopra2">Sopra 2</option>
+                        <option value="sopra3">Sopra 3</option>
+                        <option value="sopra4">Sopra 4</option>
+                    </select>
+
+                </div>
                 <div class="clear"> </div>
-            </div>
 
-            <input type="submit3" onclick="myFunction()" value="Chercher">
-
+                <div class="cher"><input type="submit" onclick="myFunction()" value="Chercher"></div>
+                <br CLEAR="all">
         </form>
         <h2>Résultats de votre recherche :</h2>
         <table class="responstable">
             <tr>
                 <th>Conducteur</th>
                 <th>Nom</th>
-                <th>PrÃ©nom</th>
+                <th>Prénom</th>
                 <th>Email</th>
-                <th>NÂ° TÃ©l</th>
+                <th>N° Tél</th>
             </tr>
 
             <tr>

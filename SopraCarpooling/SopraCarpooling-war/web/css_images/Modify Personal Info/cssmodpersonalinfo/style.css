@@ -44,6 +44,13 @@ body{
 	background: #DD3333;
 }
 
+.main{
+	background: #333333;
+	padding: 25px 25px 25px 25px;
+	margin:4em auto 0;
+	width:60%;
+}
+
 .main h1{
 		font-size:1.7em;
 		left:35%;
@@ -72,6 +79,22 @@ body{
 		top:0%;
 }
 
+.main h5{
+		font-weight: bold;
+		font-size:1.0em;
+		left:35%;
+		color:#fff;
+		top:0%;
+}
+.main h6{
+		
+		font-size:1.0em;
+		color:#fff;
+}
+
+form .erreur {
+    color: #F00;
+}
 
 span.term a{
 	color: #1888A8;
@@ -252,4 +275,25 @@ width:70%;
 	width: 84%;
 }
 }
-
+select#soflow {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin-top: 2%;
+   margin-bottom: 2%;
+   margin-left: 0.5%;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
