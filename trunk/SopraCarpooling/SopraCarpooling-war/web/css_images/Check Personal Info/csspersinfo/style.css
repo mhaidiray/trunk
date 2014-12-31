@@ -29,14 +29,17 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-    background: #FFFFFF/*#3C4C55*/;
-    font-family: 'Oxygen', sans-serif;
+	background:url(../imagespersinfo/bg.png)  no-repeat fixed;
+	background-position:right top;
+        background-size: 230px;
+	font-family: 'Oxygen', sans-serif;
+        
 }
 .main{
     background: #333333;
     padding: 25px 25px 25px 25px;
-    margin:7em auto 0;
-    width:80%;
+    margin:4em auto 0;
+    width:60%;
 }
 
 .deco{

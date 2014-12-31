@@ -81,7 +81,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             }" onblur="if (this.value == '') {
                                         this.value = 'Heure de départ soir, par exemple: 18h30';
                                     }">
-                    }" >
                     <span class="erreur">${erreurs['heuresoir']}</span>
                     <h4>Contact :</h4>
 
