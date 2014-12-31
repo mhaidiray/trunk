@@ -70,13 +70,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </select>
                     <h4>Horaires :</h4>
 
-                    <input type="text" class="text" value="Heure de départ matin, par exemple: 07h30" onfocus="if (this.value == 'Heure de départ matin, par exemple: 07h30') {
+                    <input type="text" class="text" name="heurematin" value="Heure de départ matin, par exemple: 07h30"  onfocus="if (this.value == 'Heure de départ matin, par exemple: 07h30') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Heure de départ matin, par exemple: 07h30';
                                     }">
                     <div><span class="erreur">${erreurs['heurematin']}</span></div>
-                    <input type="text" class="text" value="Heure de départ soir, par exemple: 18h30" onfocus="if (this.value == 'Heure de départ soir, par exemple: 18h30') {
+                    <input type="text" class="text" name="heuresoir" value="Heure de départ soir, par exemple: 18h30" onfocus="if (this.value == 'Heure de départ soir, par exemple: 18h30') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Heure de départ soir, par exemple: 18h30';
