@@ -26,11 +26,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <form method="post">
                 <span class="erreur">${erreurs['mail']}</span>
                 <li>
-                    <input type="text" name="mail" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                this.value = 'Email';
-                            }" ><a href="#" class=" icon user"></a>
+                    <input type="text" class="text" value="Tapez votre email" name="mail" onfocus="if (this.value == 'Tapez votre email') {
+                                this.value = '';
+                            }" onblur="if (this.value == '') {
+                                        this.value = 'Tapez votre email';
+                                    }"><a href="#" class=" icon user"></a>
                 </li>
-                
+
                 <li>
                     <input type="password" value="Mot de passe" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Mot de passe';
