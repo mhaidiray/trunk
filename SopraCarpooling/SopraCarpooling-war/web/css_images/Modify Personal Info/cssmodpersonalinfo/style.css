@@ -29,8 +29,11 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-	background: #FFFFFF/*#3C4C55*/;
+	background:url(../imagesmodpersonalinfo/bg.png)  no-repeat fixed;
+	background-position:right top;
+        background-size: 230px;
 	font-family: 'Oxygen', sans-serif;
+        
 }
 .main{
 	background: #333333;
