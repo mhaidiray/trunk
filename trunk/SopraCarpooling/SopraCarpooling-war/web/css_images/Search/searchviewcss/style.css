@@ -12,6 +12,15 @@ If you like this solution, you might also want to check out the 1.0 version:
 	float: right;
 	background: #DD3333;
 }
+
+.cher{
+	float: left;
+	background: #DD3333;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 12%;
+}
+
 .responstable {
   margin: 1em 0;
   width: 100%;
@@ -81,6 +90,14 @@ If you like this solution, you might also want to check out the 1.0 version:
 		color:#fff;
 		top:0%;
 	}
+        
+.main h5{
+		font-weight: bold;
+		font-size:1.0em;
+		left:35%;
+		color:#fff;
+		top:0%;
+}
 
 .submit{
 	padding:5px 4px;
@@ -109,28 +126,6 @@ input[type=submit] {
 	 border:1px solid #FF3333;
 }
 
-input[type=submit3] {
-	padding: 9px 19px;
-	color: #fff;
-	float: center;
-	font-family: 'Oxygen', sans-serif;
-	background: #DD3333/*#40A46F*/;
-	border: 1px solid #DD3333;
-	cursor: pointer;
-	font-size: 18px;
-	transition: all 0.5s ease-out;
-	-webkit-transition: all 0.5s ease-out;
-	-moz-transition: all 0.5s ease-out;
-	-ms-transition: all 0.5s ease-out;
-	-o-transition: all 0.5s ease-out;
-	outline:none;
-	width: 6%;
-	-webkit-appearance: none;
-}
-.submit3 input[type=submit3]:hover {
-	 background: #FF3333/*#07793D*/;
-	 border:1px solid #FF3333;
-}
 
 @media (min-width: 480px) {
   .responstable th, .responstable td {
@@ -162,9 +157,8 @@ span.term a:hover{
 .lable input[type="text"] {
     padding: 15px;
     font-size: 1.1em;
-    margin: 18px 0px;
     color: #666666;
-    width:87%;
+    width:60%;
     cursor: pointer;
     font-family: 'Oxygen', sans-serif;
     outline: none;
@@ -352,4 +346,22 @@ width:70%;
     width: 84%;
 }
 }
-
+select#soflow {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   overflow: hidden;
+   padding: 16px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 400px;
+}
