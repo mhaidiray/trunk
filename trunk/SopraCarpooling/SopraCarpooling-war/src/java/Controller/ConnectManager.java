@@ -86,7 +86,7 @@ public class ConnectManager extends HttpServlet {
         //ajout ici de la vérification de la validité du couple email/mdp
         if (erreurs.isEmpty()) {
             //ajout ici de la redirection vers les pages d'accueil
-            response.sendRedirect("/SopraCarpooling-war/homeuser");
+            response.sendRedirect("/SopraCarpooling-war/adminhome");
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             erreurs.clear();
