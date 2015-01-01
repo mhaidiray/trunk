@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 
@@ -37,20 +31,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
             </form>
         </div>
-        <!--//End-login-form-->
-        <div class="ad728x90" style="text-align:center">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- w3layouts_demo_728x90 -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-9153409599391170"
-                 data-ad-slot="8639520288"></ins>
-            <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-
-
     </body>
 </html>

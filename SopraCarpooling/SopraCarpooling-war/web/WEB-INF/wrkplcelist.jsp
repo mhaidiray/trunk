@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,11 +12,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </head>
     <body>
         <div class="main">
-	<div class="lable">
-		<div class="col_1_of_2 span_1_of_2"><h1>Lieux de travail</h1></div>
+            <div class="lable">
+                <div class="col_1_of_2 span_1_of_2"><h1>Lieux de travail</h1></div>
                 <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
-		<div class="clear"> </div>
-	</div>	
+                <div class="clear"> </div>
+            </div>	
             <form>
                 <select id="soflow">
                     <option value="sopra1" selected>Sopra 1</option>
@@ -51,6 +45,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </form>
             <!-----//end-main---->
         </div>
-
     </body>
 </html>
