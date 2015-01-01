@@ -1,11 +1,3 @@
-
-
-<!--
-        Author: W3layouts
-        Author URL: http://w3layouts.com
-        License: Creative Commons Attribution 3.0 Unported
-        License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,17 +13,15 @@
 <body>
     <div class="main">
         <h1>Bienvenue sur votre interface personnelle</h1>
-        <form>
+        <form method="post">
             <h2>Veuillez renseigner la commune de départ et le site Sopra d'arrivée de votre recherche</h2>
             <div class="lable">
-
                 <div class="col_1_of_2 span_1_of_2"><h5> Veuillez renseigner le code postal de départ :</h5>
                     <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Code postal de départ';
                                     }">
-
                 </div>
 
                 <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
@@ -41,13 +31,11 @@
                         <option value="sopra3">Sopra 3</option>
                         <option value="sopra4">Sopra 4</option>
                     </select>
-
                 </div>
                 <div class="clear"> </div>
-
                 <div class="cher"><input type="submit" onclick="myFunction()" value="Chercher"></div>
-                <br CLEAR="all">
         </form>
+        <br CLEAR="all">
         <h2>Résultats de votre recherche :</h2>
         <table class="responstable">
             <tr>
@@ -96,5 +84,3 @@
     </div>
 </body>
 </html>
-
-
