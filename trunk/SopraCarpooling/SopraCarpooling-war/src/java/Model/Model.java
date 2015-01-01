@@ -40,7 +40,7 @@ public class Model {
         Model.admin = admin;
     }
     
-    class Workplace {
+    public class Workplace {
         private String name;
         private String address;
         private String phone;
@@ -80,7 +80,7 @@ public class Model {
         
     }
     
-    class User {
+    public class User {
         private String email;
         private String password;
         private String firstname;
@@ -272,7 +272,7 @@ public class Model {
         
     }
     
-    class Admin {
+    public class Admin {
         private String name;
         private String mail;
         
