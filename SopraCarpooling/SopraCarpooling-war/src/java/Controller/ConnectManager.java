@@ -5,8 +5,13 @@ package Controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import Model.DatabaseManager;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +36,7 @@ public class ConnectManager extends HttpServlet {
      */
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
-    public void checkMail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String checkMail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("mail");
         System.out.println(email);
         if (email != null && email.length() != 0) {
@@ -41,11 +46,12 @@ public class ConnectManager extends HttpServlet {
                 request.setAttribute("mail", "invalid");
 
             }
-        }else {
+        } else {
             erreurs.put("mail", "Aucune entrée, veuillez réessayer");
-                request.setAttribute("erreurs", erreurs);
-                request.setAttribute("mail", "invalid");
+            request.setAttribute("erreurs", erreurs);
+            request.setAttribute("mail", "invalid");
         }
+        return email;
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -82,16 +88,36 @@ public class ConnectManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        checkMail(request, response);
-        //ajout ici de la vérification de la validité du couple email/mdp
-        if (erreurs.isEmpty()) {
-            //ajout ici de la redirection vers les pages d'accueil
-            response.sendRedirect("/SopraCarpooling-war/adminhome");
-        } else {
+        try {
+            String email = checkMail(request, response);
+            //ajout ici de la vérification de la validité du couple email/mdp
+            String mdp=request.getParameter("mdp");
+            Connection con;
+            con = DatabaseManager.connectionDatabase();
+            if (erreurs.isEmpty()) {
+                //ajout ici de la redirection vers les pages d'accueil
+                if (DatabaseManager.verifConnection(con, email, mdp).equals("user")) {
+                    response.sendRedirect("/SopraCarpooling-war/userhome");
+                } else if (DatabaseManager.verifConnection(con, email, mdp).equals("admin")) {
+                    response.sendRedirect("/SopraCarpooling-war/adminhome");
+                } else
+                {
+                    erreurs.put("mail", "Email inexistant, veuillez créer un compte");
+                    request.setAttribute("erreurs", erreurs);
+                    request.setAttribute("mail", "nodb");
+                }
+            } else {
+                this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                erreurs.clear();
+            }
+        } catch (SQLException ex) {
+            erreurs.put("mail", "Base de données inaccessible, réessayez dans quelques minutes");
+            request.setAttribute("erreurs", erreurs);
+            request.setAttribute("mail", "nodb");
             this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             erreurs.clear();
         }
-        
+
     }
 
     /**
