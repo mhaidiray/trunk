@@ -43,7 +43,7 @@
                     <th>Email</th>
                     <th>N° Tél</th>
                 </tr>
-
+                <% for (int i = 0; i < 100; i++) {%>
                 <tr>
                     <td>Steve</td>
                     <td>Foo</td>
@@ -51,30 +51,8 @@
                     <td>Policyholder</td>
                     <td>Policyholder</td>
                 </tr>
-
-                <tr>
-                    <td>Steffie</td>
-                    <td>Foo</td>
-                    <td>01/01/1978</td>
-                    <td>Spouse</td>
-                    <td>Policyholder</td>
-                </tr>
-
-                <tr>
-                    <td>Stan</td>
-                    <td>Foo</td>
-                    <td>01/01/1994</td>
-                    <td>Son</td>
-                    <td>Policyholder</td>
-                </tr>
-
-                <tr>
-                    <td>Stella</td>
-                    <td>Foo</td>
-                    <td>01/01/1992</td>
-                    <td>Daughter</td>
-                    <td>Policyholder</td>
-                </tr>
+                <%}%>
+                
 
             </table>
 

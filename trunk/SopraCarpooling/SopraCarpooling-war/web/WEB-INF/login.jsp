@@ -34,7 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 
                 <li>
-                    <input type="password" value="Mot de passe" onfocus="this.value = '';" onblur="if (this.value == '') {
+                    <input type="password" value="Mot de passe" name="mdp" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Mot de passe';
                             }"><a href="#" class=" icon lock"></a>
                 </li>
