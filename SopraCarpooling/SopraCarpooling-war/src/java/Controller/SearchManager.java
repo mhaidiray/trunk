@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
+
 import Model.DatabaseManager;
 import static Model.DatabaseManager.usersSameJourney;
 import Model.Model;
@@ -44,7 +45,6 @@ public class SearchManager extends HttpServlet {
     public void checkZip(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String zipdepart = request.getParameter("zipdepart");
-        System.out.println(zipdepart);
         if (zipdepart != null && zipdepart.length() != 0) {
             if (!zipdepart.matches("[0-9]{5}")) {
                 erreurs.put("zipdepart", "Code postal incorrect, veuillez réessayer");
@@ -113,30 +113,24 @@ public class SearchManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         checkZip(request, response);
         if (erreurs.isEmpty()) {
-            //Connection c1 = DatabaseManager.connectionDatabase();
-            ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
-            //String zipcode = request.getParameter("zipcode");
-            //String sitesopra = request.getParameter("sitesopra");
-            //listUsers = usersSameJourney(c1,31400,1);
-            Model model = new Model();
-            Model.User user1 = model.new User("number1@test.com", "pass1", "USER1", "lastname1", "0606060606", 31400, 1, "6h30", "18h30", 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user2 = model.new User("number2@test.com", "pass2", "USER2", "lastname2", "0606060606", 31400, 1, "2h30", "18h30", 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user3 = model.new User("number3@test.com", "pass3", "USER3", "lastname3", "0606060606", 31400, 1, "9h30", "18h30", 0, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user4 = model.new User("number4@test.com", "pass4", "USER4", "lastname4", "0606060606", 31400, 2, "5h30", "18h30", 0, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user5 = model.new User("number5@test.com", "pass5", "USER5", "lastname5", "0606060606", 31600, 1, "4h30", "18h30", 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user6 = model.new User("number6@test.com", "pass6", "USER6", "lastname6", "0606060606", 31500, 1, "7h30", "18h30", 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            Model.User user7 = model.new User("number7@test.com", "pass7", "USER7", "lastname7", "0606060606", 31400, 1, "7h30", "18h30", 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            listUsers.add(user1);
-            listUsers.add(user2);
-            listUsers.add(user3);
-            listUsers.add(user4);
-            listUsers.add(user5);
-            listUsers.add(user6);
-            listUsers.add(user7);
-            request.setAttribute("listUsers", listUsers);
-            processRequest(request, response);
+            try {
+                Connection c1 = DatabaseManager.connectionDatabase();
+                ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
+                String zipcode = request.getParameter("zipdepart");
+                String sitesopra = request.getParameter("sitesopra");
+                int i;
+                i = Integer.parseInt(zipcode);
+                listUsers = usersSameJourney(c1, i, 1);
+                System.out.println(zipcode+ "     "+i);
+
+                request.setAttribute("listUsers", listUsers);
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } else {
             processRequest(request, response);
