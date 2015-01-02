@@ -21,8 +21,8 @@
     <table class="responstable">
 
         <tr>
-            <th><center>Commune de dÃ©part</center></th>
-    <th><center>Site Sopra d'arrivÃ©e</center></th>
+            <th><center>Commune de départ</center></th>
+    <th><center>Site Sopra d'arrivée</center></th>
 </tr>
 <tr>
     <td>Blagnac</td>
@@ -37,7 +37,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="GÃ©nÃ©rer un rapport" >
+            <input type="submit" onclick="myFunction()" value="Générer un rapport" >
         </div>
         <div class="clear"> </div>
     </td>
@@ -65,7 +65,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="GÃ©nÃ©rer un rapport" >
+            <input type="submit" onclick="myFunction()" value="Générer un rapport" >
         </div>
         <div class="clear"> </div>
     </td>
@@ -92,7 +92,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="GÃ©nÃ©rer un rapport" >
+            <input type="submit" onclick="myFunction()" value="Générer un rapport" >
         </div>
         <div class="clear"> </div>
     </td>

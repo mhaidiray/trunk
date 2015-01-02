@@ -29,10 +29,10 @@
                 </div>
                 <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                     <select name="sitearrivee" id="soflow">
-                        <option value="sopra1" selected>Sopra 1</option>
-                        <option value="sopra2">Sopra 2</option>
-                        <option value="sopra3">Sopra 3</option>
-                        <option value="sopra4">Sopra 4</option>
+                    <option value="sopra1" selected>Sopra Colo 1</option>
+                    <option value="sopra2">Sopra Colo 2</option>
+                    <option value="sopra3">Sopra Ramassiers</option>
+                    <option value="sopra4">Sopra Albi</option>
                     </select>
                 </div>
                 <span class="erreur">${erreurs['zipdepart']}</span>

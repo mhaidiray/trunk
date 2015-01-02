@@ -57,10 +57,10 @@
                     <span class="erreur">${erreurs['zipdepart']}</span>
                     <h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                     <select id="soflow">
-                        <option value="sopra1" selected>Sopra 1</option>
-                        <option value="sopra2">Sopra 2</option>
-                        <option value="sopra3">Sopra 3</option>
-                        <option value="sopra4">Sopra 4</option>
+                        <option value="sopra1" selected>Sopra Colo 1</option>
+                        <option value="sopra2">Sopra Colo 2</option>
+                        <option value="sopra3">Sopra Ramassiers</option>
+                        <option value="sopra4">Sopra Albi</option>
                     </select>
                     <h4>Horaires :</h4>
 
