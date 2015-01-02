@@ -1,3 +1,7 @@
+<%@page import="Model.Model"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="Model.Model.User"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,64 +27,59 @@
                                         this.value = 'Code postal de départ';
                                     }">
                 </div>
-
                 <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
-                    <select id="soflow">
+                    <select name="sitearrivee" id="soflow">
                         <option value="sopra1" selected>Sopra 1</option>
                         <option value="sopra2">Sopra 2</option>
                         <option value="sopra3">Sopra 3</option>
                         <option value="sopra4">Sopra 4</option>
                     </select>
                 </div>
-                <div class="clear"> </div>
+                <span class="erreur">${erreurs['zipdepart']}</span>
                 <div class="cher"><input type="submit" onclick="myFunction()" value="Chercher"></div>
-        </form>
-        <br CLEAR="all">
-        <h2>Résultats de votre recherche :</h2>
-        <table class="responstable">
-            <tr>
-                <th>Conducteur</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>N° Tél</th>
-            </tr>
 
-            <tr>
-                <td>Steve</td>
-                <td>Foo</td>
-                <td>01/01/1978</td>
-                <td>Policyholder</td>
-                <td>Policyholder</td>
-            </tr>
 
-            <tr>
-                <td>Steffie</td>
-                <td>Foo</td>
-                <td>01/01/1978</td>
-                <td>Spouse</td>
-                <td>Policyholder</td>
-            </tr>
+                <br CLEAR="all">
+                <h2>Résultats de votre recherche :</h2>
+                <table class="responstable">
+                    <tr>
+                        <th>Conducteur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>N° Tél</th>
+                        <th>Départ à</th>               
+                    </tr>
+                    <%
+                        ArrayList<Model.User> list;
+                        list = (ArrayList<Model.User>) request.getAttribute("listUsers");
+                        ArrayList<User> listUsers = new ArrayList<User>();
 
-            <tr>
-                <td>Stan</td>
-                <td>Foo</td>
-                <td>01/01/1994</td>
-                <td>Son</td>
-                <td>Policyholder</td>
-            </tr>
+                        int cond;
+                        String nom, pre, eml, tel, dep = null;
+                        if (list != null) {
+                            for (int i = 0; i < list.size(); i++) {
+                                User user = (User) list.get(i);
+                                cond = (int) user.getDriver();
+                                nom = (String) user.getLastname();
+                                pre = (String) user.getFirstname();
+                                eml = (String) user.getEmail();
+                                tel = (String) user.getPhone();
+                                dep = (String) user.getMorning_time();
+                    %>
+                    <tr>
+                        <td><%=cond%></td>
+                        <td><%=nom%></td>
+                        <td><%=pre%></td>
+                        <td><%=eml%></td>
+                        <td><%=tel%></td>
+                        <td><%=dep%></td>
+                    </tr>
+                    </form>
+                    <%}}%>
+                </table>
 
-            <tr>
-                <td>Stella</td>
-                <td>Foo</td>
-                <td>01/01/1992</td>
-                <td>Daughter</td>
-                <td>Policyholder</td>
-            </tr>
-
-        </table>
-
-        <div class="clear"></div>
-    </div>
-</body>
-</html>
+                <div class="clear"></div>
+            </div>
+            </body>
+            </html>
