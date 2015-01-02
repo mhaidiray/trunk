@@ -33,6 +33,10 @@
         <servlet-class>Controller.WorkplacesManager</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>WorkplaceeditManager</servlet-name>
+        <servlet-class>Controller.WorkplaceeditManager</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserEditManager</servlet-name>
         <servlet-class>Controller.UserEditManager</servlet-class>
     </servlet>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>WorkplacesManager</servlet-name>
         <url-pattern>/wrkplcelist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkplaceeditManager</servlet-name>
+        <url-pattern>/wrkplceedit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserEditManager</servlet-name>

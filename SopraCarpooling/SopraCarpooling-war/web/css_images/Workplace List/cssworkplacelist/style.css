@@ -79,7 +79,7 @@ span.term a:hover{
 	color:#fff;
 }
 .lable input[type="text"] {
-	padding: 15px;
+	padding: 150px;
 	font-size: 1.1em;
 	margin: 18px 0px;
 	color: #666666;
@@ -297,7 +297,6 @@ width:70%;
   content: attr(data-th);
 }
 
-
 select#soflow {
    -webkit-appearance: button;
    -webkit-border-radius: 2px;
@@ -320,7 +319,3 @@ select#soflow {
    white-space: nowrap;
    width: 300px;
 }
-
-
-
-
