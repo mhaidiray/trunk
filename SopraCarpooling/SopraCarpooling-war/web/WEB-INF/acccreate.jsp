@@ -56,11 +56,11 @@
                                     }">
                     <span class="erreur">${erreurs['zipdepart']}</span>
                     <h5> Veuillez choisir le site Sopra d'arrivée :</h5>
-                    <select id="soflow">
-                        <option value="sopra1" selected>Sopra Colo 1</option>
-                        <option value="sopra2">Sopra Colo 2</option>
-                        <option value="sopra3">Sopra Ramassiers</option>
-                        <option value="sopra4">Sopra Albi</option>
+                    <select name="sitearrivee" id="soflow">
+                        <option value="Sopra Colo 1" selected>Sopra Colo 1</option>
+                        <option value="Sopra Colo 2">Sopra Colo 2</option>
+                        <option value="Sopra Ramassiers">Sopra Ramassiers</option>
+                        <option value="Sopra Albi">Sopra Albi</option>
                     </select>
                     <h4>Horaires :</h4>
 
@@ -88,13 +88,13 @@
                     <h5> Veuillez cocher les jours applicables :</h5>		
 
                 </div>
-                <INPUT type="checkbox" name="choix1" value="1"> <FONT COLOR=#ffffff >Lundi</FONT>
-                <INPUT type="checkbox" name="choix2" value="2"> <FONT COLOR=#ffffff >Mardi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Mercredi</FONT>
-                <INPUT type="checkbox" name="choix4" value="4"> <FONT COLOR=#ffffff >Jeudi</FONT>
-                <INPUT type="checkbox" name="choix2" value="2"> <FONT COLOR=#ffffff >Vendredi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Samedi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Dimanche</FONT>
+                <INPUT type="checkbox" name="lundi" > <FONT COLOR=#ffffff >Lundi</FONT>
+                <INPUT type="checkbox" name="mardi" > <FONT COLOR=#ffffff >Mardi</FONT>
+                <INPUT type="checkbox" name="mercredi" > <FONT COLOR=#ffffff >Mercredi</FONT>
+                <INPUT type="checkbox" name="jeudi" > <FONT COLOR=#ffffff >Jeudi</FONT>
+                <INPUT type="checkbox" name="vendredi" > <FONT COLOR=#ffffff >Vendredi</FONT>
+                <INPUT type="checkbox" name="samedi" > <FONT COLOR=#ffffff >Samedi</FONT>
+                <INPUT type="checkbox" name="dimanche" > <FONT COLOR=#ffffff >Dimanche</FONT>
                 <br>
 
                 <h5> Êtes-vous conducteur ?</h5>
