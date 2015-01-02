@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="main">
-        <h1>Bienvenue sur votre interface personnelle</h1>
+        <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
         <form>
             <h2>Que souhaitez-vous faire aujourd'hui ?</h2>
             <div class="lable-2">
