@@ -201,6 +201,23 @@ public class DatabaseManager {
         
     }
     
+        public static int getJourneyId(Connection con,String sitesopra){
+        
+        int id = 0;
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+sitesopra+"'");
+            if(resultset.next()){
+                id = resultset.getInt("ID_WD");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id ;
+        
+    }
+    
     /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" et étants conducteurs */
     public static ArrayList<User> driversSameJourney(Connection con,int zipcode,int sitesopra){
         
@@ -265,6 +282,8 @@ public class DatabaseManager {
         return exist ;
         
     }
+    
+    
     
     /** Ce main sert uniquement se test, s'y référer pour voir comment appeler les fonctions */
     public static void main(String[] args){
