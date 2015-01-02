@@ -69,7 +69,7 @@ public class PersonalDataManager extends HttpServlet {
         }
         
         if (Valeur==null){
-            response.sendRedirect("/SopraCarpooling-war/homeuser");
+            response.sendRedirect("/SopraCarpooling-war/login");
         }else{
             int positionAt = Valeur.indexOf("@#**#@");
             String email = Valeur.substring(0, positionAt);
