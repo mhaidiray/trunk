@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,6 @@ public class AccountCreateManager extends HttpServlet {
         String email = request.getParameter("mail");
         String pwd1 = request.getParameter("pwd1");
         String pwd2 = request.getParameter("pwd2");
-        String commdepart = request.getParameter("commdepart");
         String zipdepart = request.getParameter("zipdepart");
         String sitearrivee = request.getParameter("sitearrivee");
         String heurematin = request.getParameter("heurematin");
@@ -94,17 +94,6 @@ public class AccountCreateManager extends HttpServlet {
                 erreurs.put("pwd2", "Aucune entrée, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("pwd2", "invalid");
-        }
-        if (commdepart != null && commdepart.length() != 0) {
-            if (!commdepart.matches("([A-Z]+|[A-Z]?[a-z]+)")) {
-                erreurs.put("commdepart", "Commune de départ incorrecte, veuillez réessayer");
-                request.setAttribute("erreurs", erreurs);
-                request.setAttribute("commdepart", "invalid");
-            }
-        }else {
-                erreurs.put("commdepart", "Aucune entrée, veuillez réessayer");
-                request.setAttribute("erreurs", erreurs);
-                request.setAttribute("commdepart", "invalid");
         }
         if (zipdepart != null && zipdepart.length() != 0) {
             if (!zipdepart.matches("[0-9]{5}")) {
@@ -200,8 +189,6 @@ public class AccountCreateManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         checkInfos(request, response);
-        System.out.println("SAVOIIIIIIIIIIIIIIIIIIIIIR SI :"+erreurs.isEmpty());
-        erreurs.clear();
         if (erreurs.isEmpty()){
             try {
                 String nom = request.getParameter("nom");
@@ -291,7 +278,10 @@ public class AccountCreateManager extends HttpServlet {
                 Model.User user = model.new User(email, pwd, prenom, nom, tel, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), heurematin, heuresoir, driver, monday, tuesday, wednesday, thursday, friday, saturday, sunday, notification);
                 DatabaseManager.createUser(con, user);
                 SMTPManager.sendCreateConfirmation(email, pwd);
-                //Ajouter l'envoi de mails a tous les autres
+                ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con,Integer.parseInt(zipdepart) , DatabaseManager.getJourneyId(con, sitearrivee));
+                for (Model.User u : listUsers){
+                    SMTPManager.sendNotification(u.getEmail(),prenom,nom);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
             }
