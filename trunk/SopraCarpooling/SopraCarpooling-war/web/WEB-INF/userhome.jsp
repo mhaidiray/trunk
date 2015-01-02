@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Model.User"%>
+<%@page import="Model.Model"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,15 +46,30 @@
                     <th>Email</th>
                     <th>N° Tél</th>
                 </tr>
-                <% for (int i = 0; i < 100; i++) {%>
-                <tr>
-                    <td>Steve</td>
-                    <td>Foo</td>
-                    <td>01/01/1978</td>
-                    <td>Policyholder</td>
-                    <td>Policyholder</td>
-                </tr>
-                <%}%>
+                <%
+                        ArrayList<Model.User> list;
+                        list = (ArrayList<Model.User>) request.getAttribute("listUsers");
+                        ArrayList<User> listUsers = new ArrayList<User>();
+
+                        int cond;
+                        String nom, pre, eml, tel, dep = null;
+                        if (list != null) {
+                            for (int i = 0; i < list.size(); i++) {
+                                User user = (User) list.get(i);
+                                cond = (int) user.getDriver();
+                                nom = (String) user.getLastname();
+                                pre = (String) user.getFirstname();
+                                eml = (String) user.getEmail();
+                                tel = (String) user.getPhone();
+                    %>
+                    <tr>
+                        <td><%=cond%></td>
+                        <td><%=nom%></td>
+                        <td><%=pre%></td>
+                        <td><%=eml%></td>
+                        <td><%=tel%></td>
+                    </tr>
+                <%}}%>
                 
 
             </table>

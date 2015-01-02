@@ -5,7 +5,14 @@
  */
 package Controller;
 
+import Model.DatabaseManager;
+import Model.Model;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +35,13 @@ public class HomeUserManager extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    public void genList(String email,HttpServletRequest request, HttpServletResponse response){
-        
+    public void genList(String email,String pass,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
+            Connection con;
+            con = DatabaseManager.connectionDatabase();
+            Model.User u=DatabaseManager.recupData(con, email, pass);
+            ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourney(con, u.getZipcode(), u.getWorkplace());
+            request.setAttribute("listUsers", listUsers);
+            processRequest(request, response);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -72,12 +84,16 @@ public class HomeUserManager extends HttpServlet {
         }
         
         if (Valeur==null){
-            response.sendRedirect("/SopraCarpooling-war/homeuser");
+            response.sendRedirect("/SopraCarpooling-war/login");
         }else{
             int positionAt = Valeur.indexOf("@#**#@");
             String email = Valeur.substring(0, positionAt);
             String password = Valeur.substring(positionAt+6);
-            processRequest(request, response);
+            try {
+                genList(email,password,request,response);
+            } catch (SQLException ex) {
+                Logger.getLogger(HomeUserManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
