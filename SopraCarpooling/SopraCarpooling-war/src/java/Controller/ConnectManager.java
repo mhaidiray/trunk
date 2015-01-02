@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -96,16 +97,21 @@ public class ConnectManager extends HttpServlet {
             con = DatabaseManager.connectionDatabase();
             if (erreurs.isEmpty()) {
                 //ajout ici de la redirection vers les pages d'accueil
-                if (DatabaseManager.verifConnection(con, email, mdp).equals("user")) {
-                    response.sendRedirect("/SopraCarpooling-war/userhome");
-                } else if (DatabaseManager.verifConnection(con, email, mdp).equals("admin")) {
-                    response.sendRedirect("/SopraCarpooling-war/adminhome");
-                } else
-                {
+                if (DatabaseManager.verifConnection(con, email, mdp)==null){
                     erreurs.put("mail", "Email inexistant, veuillez créer un compte");
                     request.setAttribute("erreurs", erreurs);
                     request.setAttribute("mail", "nodb");
-                }
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                    erreurs.clear();
+                } else if (DatabaseManager.verifConnection(con, email, mdp).equals("user")) {
+                    Cookie monCookie = new Cookie("user",email+"@#**#@"+mdp) ;
+                    response.addCookie(monCookie);
+                    response.sendRedirect("/SopraCarpooling-war/homeuser");
+                } else if (DatabaseManager.verifConnection(con, email, mdp).equals("admin")) {
+                    Cookie monCookie = new Cookie("admin",email+"@#**#@"+mdp) ;
+                    response.addCookie(monCookie);
+                    response.sendRedirect("/SopraCarpooling-war/adminhome");
+                } 
             } else {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 erreurs.clear();
