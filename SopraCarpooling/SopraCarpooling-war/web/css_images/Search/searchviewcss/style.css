@@ -13,12 +13,17 @@ If you like this solution, you might also want to check out the 1.0 version:
 	background: #DD3333;
 }
 
+form .erreur {
+    color: #F00;
+}
 .cher{
 	float: left;
 	background: #DD3333;
         margin-bottom: 10px;
-        margin-top: 10px;
+        margin-right: 237px;
+        margin-top: 25px;
         width: 12%;
+        float : right;
 }
 
 .responstable {
@@ -100,13 +105,12 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 
 .submit{
-	padding:5px 4px;
+	padding:10px 8px;
 	text-align: center;
 }
 input[type=submit] {
 	padding: 6px 12px;
 	color: #fff;
-	float: right;
 	font-family: 'Oxygen', sans-serif;
 	background: #DD3333/*#40A46F*/;
 	border: 1px solid #DD3333;
