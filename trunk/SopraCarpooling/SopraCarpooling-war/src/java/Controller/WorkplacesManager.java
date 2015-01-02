@@ -8,6 +8,7 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,25 @@ public class WorkplacesManager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Cookie[] cookies = request.getCookies();
+        String Valeur= null;
+        if (cookies!=null){
+        for(int i=0; i < cookies.length; i++) {
+		Cookie MonCookie = cookies[i];
+                if (MonCookie.getName().equals("admin")) {
+			Valeur = cookies[i].getValue();
+                }
+        }
+        }
+        
+        if (Valeur==null){
+            response.sendRedirect("/SopraCarpooling-war/homeuser");
+        }else{
+            int positionAt = Valeur.indexOf("@#**#@");
+            String email = Valeur.substring(0, positionAt);
+            String password = Valeur.substring(positionAt+6);
+            processRequest(request, response);
+        }
     }
 
     /**
