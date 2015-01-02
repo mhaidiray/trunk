@@ -37,49 +37,50 @@
                 </div>
                 <span class="erreur">${erreurs['zipdepart']}</span>
                 <div class="cher"><input type="submit" onclick="myFunction()" value="Chercher"></div>
+        </form>
 
+        <br CLEAR="all">
+        <h2>Résultats de votre recherche :</h2>
+        <table class="responstable">
+            <tr>
+                <th>Conducteur</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>N° Tél</th>
+                <th>Départ à</th>               
+            </tr>
+            <%
+                ArrayList<Model.User> list;
+                list = (ArrayList<Model.User>) request.getAttribute("listUsers");
+                ArrayList<User> listUsers = new ArrayList<User>();
 
-                <br CLEAR="all">
-                <h2>Résultats de votre recherche :</h2>
-                <table class="responstable">
-                    <tr>
-                        <th>Conducteur</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>N° Tél</th>
-                        <th>Départ à</th>               
-                    </tr>
-                    <%
-                        ArrayList<Model.User> list;
-                        list = (ArrayList<Model.User>) request.getAttribute("listUsers");
-                        ArrayList<User> listUsers = new ArrayList<User>();
+                int cond;
+                String nom, pre, eml, tel, dep = null;
+                if (list != null) {
+                    for (int i = 0; i < list.size(); i++) {
+                        User user = (User) list.get(i);
+                        cond = (int) user.getDriver();
+                        nom = (String) user.getLastname();
+                        pre = (String) user.getFirstname();
+                        eml = (String) user.getEmail();
+                        tel = (String) user.getPhone();
+                        dep = (String) user.getMorning_time();
+            %>
+            <tr>
+                <td><%=cond%></td>
+                <td><%=nom%></td>
+                <td><%=pre%></td>
+                <td><%=eml%></td>
+                <td><%=tel%></td>
+                <td><%=dep%></td>
+            </tr>
 
-                        int cond;
-                        String nom, pre, eml, tel, dep = null;
-                        if (list != null) {
-                            for (int i = 0; i < list.size(); i++) {
-                                User user = (User) list.get(i);
-                                cond = (int) user.getDriver();
-                                nom = (String) user.getLastname();
-                                pre = (String) user.getFirstname();
-                                eml = (String) user.getEmail();
-                                tel = (String) user.getPhone();
-                                dep = (String) user.getMorning_time();
-                    %>
-                    <tr>
-                        <td><%=cond%></td>
-                        <td><%=nom%></td>
-                        <td><%=pre%></td>
-                        <td><%=eml%></td>
-                        <td><%=tel%></td>
-                        <td><%=dep%></td>
-                    </tr>
-                    </form>
-                    <%}}%>
-                </table>
+            <%}
+                        }%>
+        </table>
 
-                <div class="clear"></div>
-            </div>
-            </body>
-            </html>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
