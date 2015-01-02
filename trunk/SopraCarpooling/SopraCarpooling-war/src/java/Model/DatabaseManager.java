@@ -183,7 +183,7 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = "+sitesopra+"'");
+            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+sitesopra+"'");
             if(resultset.next()){
                 int id_site = resultset.getInt("ID_WD");
                 resultset =smt.executeQuery("SELECT * FROM User WHERE zipcode = "+zipcode+" AND workplace="+id_site);
