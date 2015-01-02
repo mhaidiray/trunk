@@ -174,6 +174,33 @@ public class DatabaseManager {
         
     }
     
+        /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" */
+    public static ArrayList<User> usersSameJourney(Connection con,int zipcode,String sitesopra){
+        
+        ArrayList<User> listUsers = new ArrayList<User>();
+        Model model = new Model();
+        Model.User user = null; //model.new User(
+        try {
+            
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = "+sitesopra+"'");
+            if(resultset.next()){
+                int id_site = resultset.getInt("ID_WD");
+                resultset =smt.executeQuery("SELECT * FROM User WHERE zipcode = "+zipcode+" AND workplace="+id_site);
+                //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
+                while(resultset.next()){
+                    user = model.new User("none","none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
+                    listUsers.add(user);
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listUsers ;
+        
+    }
+    
     /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" et étants conducteurs */
     public static ArrayList<User> driversSameJourney(Connection con,int zipcode,int sitesopra){
         
