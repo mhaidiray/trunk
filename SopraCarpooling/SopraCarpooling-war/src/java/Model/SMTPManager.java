@@ -27,8 +27,8 @@ public class SMTPManager {
                     ,"Suppression de votre compte sur Sopra Covoiturage");
         }
         
-        public static void sendNotification(String address){
-            SMTPManager.sendMail(address,"Bonjour,\n"+ "Une nouvelle personne propose un trajet qui pourrait vous intérésser.\n\n\n"
+        public static void sendNotification(String address,String newPrenom,String newNom){
+            SMTPManager.sendMail(address,"Bonjour,\n"+ "Une nouvelle personne : '"+newPrenom+" "+newNom+"' propose un trajet qui pourrait vous intérésser.\n\n\n"
                     +"Pour annuler les notifications par mail, veuillez vous rendre sur votre espace client.\n"
                     +"Pour toute réclamation, veuillez contactez l'administrateur à l'adresse mail : XXXXXX"
                     ,"Nouveau trajet disponible sur Sopra Covoiturage");
@@ -59,7 +59,7 @@ public class SMTPManager {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
  
-		Session session = Session.getDefaultInstance(props,
+		Session session = Session.getInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication("noreply.carpooling.sopra@gmail.com","carpoolingsopra");
@@ -89,6 +89,5 @@ public class SMTPManager {
             SMTPManager.sendCreateConfirmation("mohamed_squalli@hotmail.com","coco");
             SMTPManager.sendDeleteConfirmation("mohamed_squalli@hotmail.com");
             SMTPManager.sendNewPassword("mohamed_squalli@hotmail.com", "coco");
-            SMTPManager.sendNotification("mohamed_squalli@hotmail.com");
 	}
 }

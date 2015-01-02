@@ -174,9 +174,8 @@ public class DatabaseManager {
         
     }
     
-        /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" */
+    /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" */
     public static ArrayList<User> usersSameJourney(Connection con,int zipcode,String sitesopra){
-        
         ArrayList<User> listUsers = new ArrayList<User>();
         Model model = new Model();
         Model.User user = null; //model.new User(
@@ -198,11 +197,33 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listUsers ;
+    }
+    
+    /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" et souhaitant être notifiés */
+    public static ArrayList<User> usersSameJourneyNotif(Connection con,int zipcode,int sitesopra){
+        
+        ArrayList<User> listUsers = new ArrayList<User>();
+        Model model = new Model();
+        Model.User user = null; //model.new User(
+        try {
+            
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=User.ID_Member WHERE User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
+            //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
+            while(resultset.next()){
+            user = model.new User(resultset.getString("email"),resultset.getString("password"),resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
+            listUsers.add(user);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listUsers ;
         
     }
     
-        public static int getJourneyId(Connection con,String sitesopra){
-        
+    /** Retourne l'ID d'un site Sopra connaissant son nom complet "sitesopra" */
+    public static int getJourneyId(Connection con,String sitesopra){
         int id = 0;
         try {
             Statement smt = con.createStatement() ;
@@ -320,8 +341,14 @@ public class DatabaseManager {
             createUser(c1,user5);
             createUser(c1,user6);
             createUser(c1,user7);
+            */
             
-            ArrayList<User> allUsers = usersSameJourney(c1,31400,1);
+            ArrayList<User> allUsers = usersSameJourneyNotif(c1,31400,1);
+            for (User u : allUsers){
+                System.out.println(u.getEmail());
+            }
+            
+            /**
             ArrayList<User> allDrivers = driversSameJourney(c1,31400,1);
             ArrayList<User> all = getAllUsers(c1);
             
