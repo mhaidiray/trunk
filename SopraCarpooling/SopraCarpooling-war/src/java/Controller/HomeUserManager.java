@@ -34,28 +34,27 @@ public class HomeUserManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    public void genList(String email,String pass,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
-            Connection con;
-            con = DatabaseManager.connectionDatabase();
-            Model.User u=DatabaseManager.recupData(con, email, pass);
-            ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourney(con, u.getZipcode(), u.getWorkplace());
-            request.setAttribute("listUsers", listUsers);
-            processRequest(request, response);
+    public void genList(String email, String pass, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Connection con;
+        con = DatabaseManager.connectionDatabase();
+        Model.User u = DatabaseManager.recupData(con, email, pass);
+        ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourney(con, u.getZipcode(), u.getWorkplace());
+        request.setAttribute("prenom", u.getFirstname());
+        request.setAttribute("nom", u.getLastname());
+        request.setAttribute("listUsers", listUsers);
+        processRequest(request, response);
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        
-        if (request.getParameter("trajet")!=null){
+
+        if (request.getParameter("trajet") != null) {
             response.sendRedirect("/SopraCarpooling-war/search");
-        }
-        else if (request.getParameter("persinfo")!=null){
+        } else if (request.getParameter("persinfo") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
-        }
-        else {
+        } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/userhome.jsp").forward(request, response);
         }
     }
@@ -73,24 +72,24 @@ public class HomeUserManager extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-        String Valeur= null;
-        if (cookies!=null){
-        for(int i=0; i < cookies.length; i++) {
-		Cookie MonCookie = cookies[i];
+        String Valeur = null;
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie MonCookie = cookies[i];
                 if (MonCookie.getName().equals("user")) {
-			Valeur = cookies[i].getValue();
+                    Valeur = cookies[i].getValue();
                 }
+            }
         }
-        }
-        
-        if (Valeur==null){
+
+        if (Valeur == null) {
             response.sendRedirect("/SopraCarpooling-war/login");
-        }else{
+        } else {
             int positionAt = Valeur.indexOf("@#**#@");
             String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt+6);
+            String password = Valeur.substring(positionAt + 6);
             try {
-                genList(email,password,request,response);
+                genList(email, password, request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(HomeUserManager.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -109,7 +108,7 @@ public class HomeUserManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
