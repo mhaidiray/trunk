@@ -19,7 +19,7 @@
                 <div class="clear"> </div>
             </div>	
             <form>
-                <select name="sitearrivee" id="soflow">
+                <select name="sitesopra" id="soflow">
                     <%
                         ArrayList<String> listSites;
                         listSites = (ArrayList<String>) request.getAttribute("listPlaces");
@@ -35,17 +35,17 @@
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_3">
                         <div class="submit">
-                            <input type="submit" onclick="create()" value="Ajouter" >
+                            <input type="submit" onclick="create()" value="Ajouter" name="add">
                         </div>
                     </div>
                     <div class="col_1_of_2 span_1_of_3">
                         <div class="submit">
-                            <input type="submit" onclick="modify()" value="Modifier" >
+                            <input type="submit" onclick="modify()" value="Modifier" name="modif">
                         </div>
                     </div>
                     <div class="col_1_of_2 span_1_of_3">
                         <div class="submit">
-                            <input type="submit" onclick="create()" value="Supprimer" >
+                            <input type="submit" onclick="create()" value="Supprimer" name="del">
                         </div>
                     </div>
                 </div>
