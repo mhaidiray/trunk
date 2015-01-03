@@ -45,7 +45,6 @@ public class ConnectManager extends HttpServlet {
                 erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("mail", "invalid");
-
             }
         } else {
             erreurs.put("mail", "Aucune entrée, veuillez réessayer");
@@ -98,7 +97,7 @@ public class ConnectManager extends HttpServlet {
             if (erreurs.isEmpty()) {
                 //ajout ici de la redirection vers les pages d'accueil
                 if (DatabaseManager.verifConnection(con, email, mdp)==null){
-                    erreurs.put("mail", "Email inexistant, veuillez créer un compte");
+                    erreurs.put("mail", "Combinaison e-mail/mot de passe incorrecte");
                     request.setAttribute("erreurs", erreurs);
                     request.setAttribute("mail", "nodb");
                     this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
