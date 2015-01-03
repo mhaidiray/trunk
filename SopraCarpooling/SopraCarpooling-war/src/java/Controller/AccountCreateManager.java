@@ -106,6 +106,19 @@ public class AccountCreateManager extends HttpServlet {
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("commdepart", "invalid");
         }
+        if (sitearrivee != null && sitearrivee.length() != 0) {
+            Boolean exist = true ;
+            /** Vérifier que le sitesopra existe */
+            if (!exist) {
+                erreurs.put("sitearrivee", "Site Sopra incorrect, veuillez réessayer");
+                request.setAttribute("erreurs", erreurs);
+                request.setAttribute("sitearrivee", "invalid");      
+            }
+        }else {
+                erreurs.put("sitearrivee", "Aucune entrée, veuillez réessayer");
+                request.setAttribute("erreurs", erreurs);
+                request.setAttribute("commdepart", "invalid");
+        }
         if (heurematin != null && heurematin.length() != 0) {
             if (!heurematin.matches("[0-9]?[0-9]h[0-9]?[0-9]?")) {
                 erreurs.put("heurematin", "L'heure est incorrecte, veuillez réessayer");
@@ -267,9 +280,7 @@ public class AccountCreateManager extends HttpServlet {
                 SMTPManager.sendCreateConfirmation(email, pwd);
                 ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con,Integer.parseInt(zipdepart) , DatabaseManager.getJourneyId(con, sitearrivee));
                 for (Model.User u : listUsers){
-                    if (!u.getEmail().equals(email)){
                     SMTPManager.sendNotification(u.getEmail(),prenom,nom);
-                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
