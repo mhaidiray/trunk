@@ -12,6 +12,19 @@ If you like this solution, you might also want to check out the 1.0 version:
 	float: right;
 	background: #DD3333;
 }
+form .erreur {
+    color: #F00;
+}
+.cher{
+	float: left;
+	background: #DD3333;
+        margin-bottom: 10px;
+        margin-right: 456px;
+        margin-top: 25px;
+        width: 12%;
+        float : right;
+}
+
 
 .responstable {
   margin: 1em 0;
@@ -109,6 +122,55 @@ input[type=submit] {
 	 background: #FF3333/*#07793D*/;
 	 border:1px solid #FF3333;
 }
+.lable input[type="text"] {
+    padding: 15px;
+    font-size: 1.1em;
+    color: #666666;
+    width:50%;
+    cursor: pointer;
+    font-family: 'Oxygen', sans-serif;
+    outline: none;
+    font-weight: 600;
+    margin-left: 3px;
+    margin-right : 10 px;
+    background: #FFFFFF;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    border-left: 6px solid #fff;
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+}
+.lable input[type="text"]:hover,.lable-2 input[type="text"]:hover,input[type="Password"]:hover,#active {
+    color:#DCDCDC;
+    border-left:6px solid#FF3333;
+}
+.lable-2 input[type="text"],input[type="Password"] {  
+    padding: 14px;
+    width: 94%;
+    font-size: 1em;
+    margin: 18px 0px;
+
+    border:none;
+    color: #666666;
+    cursor: pointer;
+    background: none;
+    float: left;
+    outline: none;
+    font-weight: 700;
+    font-family: 'Oxygen', sans-serif;
+    background: #ffffff;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    border-left: 6px solid #fff;
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+}
 
 @media (min-width: 480px) {
   .responstable th, .responstable td {
@@ -132,4 +194,82 @@ h1 {
 }
 h1 span {
   color: #167F92;
+}
+
+select#soflow {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   overflow: hidden;
+   padding: 16px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 400px;
+}
+
+.col_1_of_2:first-child {
+	margin-left: 0;
+}
+.span_1_of_2 {
+	width:49.7%;
+}
+.col_1_of_2 {
+	display: block;
+	float: left;
+	margin:0 0 0 0.6%;
+}
+
+.span_1_of_3 {
+	width:20%;
+}
+.col_1_of_f:first-child {
+	margin-left: 0;
+}
+.span_1_of_f {
+	width:49.7%;
+}
+.col_1_of_f {
+	display: block;
+	float: left;
+	margin:0 0 0 0;
+}
+/*----start-responsive design-----*/
+@media (max-width:1024px){
+.col_1_of_2 {
+	margin: 0 0 0 3.6%;
+}
+.span_1_of_2 {
+	width: 47.7%;
+}
+.span_1_of_f {
+	width: 50%;
+}
+i.fb, i.tw {
+	margin-right: 1em;
+}
+.main {
+	width: 50%;
+}
+}
+@media (max-width:800px){
+.span_1_of_f {
+	width: 100%;
+}
+.col_1_of_f {
+	float:none;
+}
+.span_1_of_2 {
+	width: 100%;
+}
+.col_1_of_2 {
+	margin:0;
 }
