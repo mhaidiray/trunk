@@ -13,12 +13,22 @@
     </head>
 
     <body>
+     <div class="login-form"> 
 
-        <h1>Interface d'administration</h1>
-        <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
-        <h2>Fonctionnalités :</h2>
+   
+    
         <form>
             <div class="lable-2">
+                <div class="col_1_of_2 span_1_of_2">
+                    <div class="submit">
+                     <h1>Interface d'administration</h1>	
+                     <input type="submit" onclick="myFunction()" name="disconnect" value="Se déconnecter">
+                    </div>
+                </div> 
+            </div> 
+            
+       <div class="lable-2">
+           <h2>Fonctionnalités :</h2>
                 <div class="col_1_of_2 span_1_of_2">
                     <div class="submit">
                         <input type="submit" onclick="myFunction()" name="handlePath" value="Gérer les trajets" >
@@ -28,23 +38,19 @@
                     <div class="submit">
                         <input type="submit" onclick="myFunction()" value="Générer un rapport général" >
                     </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </form>
+                 </div>
+                
+                 </div>
+            <div class="clear"></div>
+         </form>
+    
+    <h2>Gestion des comptes :</h2>
+    <table class="responstable">
 
-        <h1/>
-
-        <br/>
-
-
-        <h2>Gestion des comptes :</h2>
-        <table class="responstable">
-
-            <tr>
-                <th><center>Nom</center></th>
-        <th><center>Prenom</center></th>
-    <th><center>Téléphone</center></th>
+        <tr>
+            <th><center>Nom</center></th>
+    <th><center>Prenom</center></th>
+<th><center>Téléphone</center></th>
 <th><center>Email</center></th>
 <th><center>Commune de départ</center></th>
 <th><center>Site Sopra d'arrivée</center></th>
@@ -123,7 +129,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
-
+     </div>
 </body>
 
 </html>
