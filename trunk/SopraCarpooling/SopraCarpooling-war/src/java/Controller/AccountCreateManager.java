@@ -146,7 +146,7 @@ public class AccountCreateManager extends HttpServlet {
         }
         if (tel != null && tel.length() != 0) {
             if (!tel.matches("0[0-9]{9}")) {
-                erreurs.put("tel", "E-mail incorrect, veuillez réessayer");
+                erreurs.put("tel", "Telephone incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("tel", "invalid");
             }

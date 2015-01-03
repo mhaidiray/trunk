@@ -19,33 +19,35 @@
                 <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
                 <div class="clear"> </div>
             </div>	
-            <form>
+            <form method="post">
                 <div class="lable">
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="Nom" onfocus="if (this.value == 'Nom') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Nom';
-                                    }"></div>
+                    
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="Nom" ><span class="erreur">${erreurs['nom']}</span></div>
+                    
                     <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="prenom" value="Prénom" onfocus="if (this.value == 'Prénom') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Prénom';
-                                    }"></div>
+                                    }"><span class="erreur">${erreurs['prenom']}</span></div>
                     <div class="clear"> </div>
                 </div>
-                <div class="lable-2">
-                    <input type="text" class="text" value="Tapez votre email" name="mail" onfocus="if (this.value == 'Tapez votre email') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Tapez votre email';
-                                    }">
+               <div class="lable-2">
+                    <div>
+                        <input type="text" class="text" value="Tapez votre email" name="mail" onfocus="if (this.value == 'Tapez votre email') {
+                                    this.value = '';
+                                }" onblur="if (this.value == '') {
+                                            this.value = 'Tapez votre email';
+                                        }">
+                        <span class="erreur">${erreurs['mail']}</span></div>
                     <h4>Entrez votre ancien mot de passe</h4>
+                    <span class="erreur">${erreurs['pwd1']}</span>
                     <input type="password" class="text" value="Password" name="pwd1" onfocus="if (this.value == 'Password') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Password';
                                     }">
                     <h4>Entrez un nouveau mot de passe</h4>
+                    <span class="erreur">${erreurs['pwd2']}</span>
                     <input type="password" class="text" value="Password" name="pwd2" onfocus="if (this.value == 'Password') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
@@ -57,13 +59,14 @@
                                         this.value = 'Password';
                                     }">
                     <h4>Informations géographiques :</h4>
+                    <span class="erreur">${erreurs['zipdepart']}</span>
                     <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Code postal de départ';
                                     }">
-                    <span class="erreur">${erreurs['zipdepart']}</span>
                     <h5> Veuillez choisir le site Sopra d'arrivée :</h5>
+                    <span class="erreur">${erreurs['sitearrivee']}</span>
                     <select name="sitearrivee" id="soflow">
                         <%
                             ArrayList<String> listSites;
@@ -78,7 +81,6 @@
                             }%>
                     </select>
                     <h4>Horaires :</h4>
-
                     <input type="text" class="text" value="Heure de départ matin, par exemple: 07h30" onfocus="if (this.value == 'Heure de départ matin, par exemple: 07h30') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
@@ -92,7 +94,7 @@
                                     }">
                     <span class="erreur">${erreurs['heuresoir']}</span>
                     <h4>Contact :</h4>
-
+                    
                     <input type="text" class="text" value="Veuillez entrer votre numéro de téléphone, par exemple: 0666102030" name="tel" onfocus="if (this.value == 'Veuillez entrer votre numéro de téléphone, par exemple: 0666102030') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
@@ -124,8 +126,8 @@
                 <br>
                 <div class="submit">
                     <div class="lable">
-                        <div class="col_1_of_2 span_1_of_2"><input type="submit" onclick="myFunction()" value="Valider les modifications"></div>
-                        <div class="col_1_of_2 span_1_of_2"><input type="submit" onclick="myFunction()" value="Annuler"></div>
+                        <div class="col_1_of_2 span_1_of_2"><input type="submit" value="Valider les modifications" name="valider"></div>
+                        <div class="col_1_of_2 span_1_of_2"><input type="submit" value="Annuler" name="annuler"></div>
                         <div class="clear"> </div>
                     </div>
                 </div>
