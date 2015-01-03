@@ -35,7 +35,18 @@ public class WorkplacesManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplcelist.jsp").forward(request, response);
+        if (request.getParameter("del") != null) {
+            // Methode pour supprimer de la base de donnée le site sopra selectionné
+            request.getParameter("sitesopra");
+            response.sendRedirect("/SopraCarpooling-war/adminhome");
+        } else if (request.getParameter("add") != null) {
+            
+            response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
+        } else if (request.getParameter("modif") != null) {
+            response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
+        } else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplcelist.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

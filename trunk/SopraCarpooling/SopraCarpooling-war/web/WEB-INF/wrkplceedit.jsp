@@ -19,10 +19,10 @@
             </div>	
             <form>
                 <div class="lable">
-                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra" onfocus="if (this.value == 'Nom du site Sopra') {
+                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra à ajouter/modifier" onfocus="if (this.value == 'Nom du site Sopra à ajouter/modifier') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
-                                        this.value = 'Nom du site Sopra';
+                                        this.value = 'Nom du site Sopra à ajouter/modifier';
                                     }"></div>
                     <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="adresse" value="Adresse du site Sopra" onfocus="if (this.value == 'Adresse du site Sopra') {
                                 this.value = '';
@@ -42,12 +42,12 @@
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_3">
                         <div class="submit">
-                            <input type="submit" value="Valider" >
+                            <input type="submit" value="Valider" name="valide" >
                         </div>
                     </div>
                     <div class="col_1_of_2 span_1_of_3">
                         <div class="submit">
-                            <input type="submit" value="Annuler" >
+                            <input type="submit" value="Annuler" name ="annule" >
                         </div>
                     </div>
                 </div>
