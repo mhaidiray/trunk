@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,10 +58,17 @@
                     <span class="erreur">${erreurs['zipdepart']}</span>
                     <h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                     <select name="sitearrivee" id="soflow">
-                        <option value="Sopra Colo 1" selected>Sopra Colo 1</option>
-                        <option value="Sopra Colo 2">Sopra Colo 2</option>
-                        <option value="Sopra Ramassiers">Sopra Ramassiers</option>
-                        <option value="Sopra Albi">Sopra Albi</option>
+                        <%
+                            ArrayList<String> listSites;
+                            listSites = (ArrayList<String>) request.getAttribute("listPlaces");
+                            System.out.println(listSites.toString());
+                            if (listSites != null) {
+                                for (int i = 0; i < listSites.size(); i++) {
+                                    String site = (String) listSites.get(i);
+                        %>    
+                        <option value="<%=site%>"><%=site%></option>
+                        <%}
+                                }%>
                     </select>
                     <h4>Horaires :</h4>
 

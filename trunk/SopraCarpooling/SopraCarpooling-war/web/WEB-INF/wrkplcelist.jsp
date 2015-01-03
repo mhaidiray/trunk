@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,11 +19,18 @@
                 <div class="clear"> </div>
             </div>	
             <form>
-                <select id="soflow">
-                    <option value="sopra1" selected>Sopra Colo 1</option>
-                    <option value="sopra2">Sopra Colo 2</option>
-                    <option value="sopra3">Sopra Ramassiers</option>
-                    <option value="sopra4">Sopra Albi</option>
+                <select name="sitearrivee" id="soflow">
+                    <%
+                        ArrayList<String> listSites;
+                        listSites = (ArrayList<String>) request.getAttribute("listPlaces");
+                        System.out.println(listSites.toString());
+                        if (listSites != null) {
+                            for (int i = 0; i < listSites.size(); i++) {
+                                String site = (String) listSites.get(i);
+                    %>    
+                    <option value="<%=site%>"><%=site%></option>
+                    <%}
+                        }%>
                 </select>
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_3">
