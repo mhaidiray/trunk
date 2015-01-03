@@ -120,11 +120,11 @@ public class SearchManager extends HttpServlet {
                 Connection c1 = DatabaseManager.connectionDatabase();
                 ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
                 String zipcode = request.getParameter("zipdepart");
-                String sitesopra = request.getParameter("sitesopra");
+                String sitesopra = request.getParameter("sitearrivee");
+                System.out.println(sitesopra);
                 int i;
                 i = Integer.parseInt(zipcode);
-                listUsers = usersSameJourney(c1, i, 1);
-                System.out.println(zipcode+ "     "+i);
+                listUsers = usersSameJourney(c1, i, sitesopra);
 
                 request.setAttribute("listUsers", listUsers);
                 processRequest(request, response);

@@ -29,10 +29,10 @@
                 </div>
                 <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                     <select name="sitearrivee" id="soflow">
-                    <option value="sopra1" selected>Sopra Colo 1</option>
-                    <option value="sopra2">Sopra Colo 2</option>
-                    <option value="sopra3">Sopra Ramassiers</option>
-                    <option value="sopra4">Sopra Albi</option>
+                    <option value="Sopra Colo 1" selected>Sopra Colo 1</option>
+                    <option value="Sopra Colo 2">Sopra Colo 2</option>
+                    <option value="Sopra Ramassiers">Sopra Ramassiers</option>
+                    <option value="Sopra Albi">Sopra Albi</option>
                     </select>
                 </div>
                 <span class="erreur">${erreurs['zipdepart']}</span>
@@ -56,11 +56,12 @@
                 ArrayList<User> listUsers = new ArrayList<User>();
 
                 int cond;
-                String nom, pre, eml, tel, dep = null;
+                String conduc,nom, pre, eml, tel, dep = null;
                 if (list != null) {
                     for (int i = 0; i < list.size(); i++) {
                         User user = (User) list.get(i);
                         cond = (int) user.getDriver();
+                        if (cond==1){conduc="Oui";} else{conduc="Non";}
                         nom = (String) user.getLastname();
                         pre = (String) user.getFirstname();
                         eml = (String) user.getEmail();
@@ -68,7 +69,7 @@
                         dep = (String) user.getMorning_time();
             %>
             <tr>
-                <td><%=cond%></td>
+                <td><%=conduc%></td>
                 <td><%=nom%></td>
                 <td><%=pre%></td>
                 <td><%=eml%></td>
