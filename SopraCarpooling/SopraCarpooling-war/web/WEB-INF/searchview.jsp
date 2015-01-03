@@ -29,10 +29,17 @@
                     </div>
                     <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                         <select name="sitearrivee" id="soflow">
-                            <option value="Sopra Colo 1" selected>Sopra Colo 1</option>
-                            <option value="Sopra Colo 2">Sopra Colo 2</option>
-                            <option value="Sopra Ramassiers">Sopra Ramassiers</option>
-                            <option value="Sopra Albi">Sopra Albi</option>
+                            <%
+                                ArrayList<String> listSites;
+                                listSites = (ArrayList<String>) request.getAttribute("listPlaces");
+                                System.out.println(listSites.toString());
+                                if (listSites != null) {
+                                    for (int i = 0; i < listSites.size(); i++) {
+                                        String site = (String) listSites.get(i);
+                            %>    
+                            <option value="<%=site%>"><%=site%></option>
+                            <%}
+                        }%>
                         </select>
                     </div>
                     <span class="erreur">${erreurs['zipdepart']}</span>
@@ -53,8 +60,6 @@
                 <%
                     ArrayList<Model.User> list;
                     list = (ArrayList<Model.User>) request.getAttribute("listUsers");
-                    ArrayList<User> listUsers = new ArrayList<User>();
-
                     int cond;
                     String conduc, nom, pre, eml, tel, dep = null;
                     if (list != null) {

@@ -98,6 +98,13 @@ public class SearchManager extends HttpServlet {
             int positionAt = Valeur.indexOf("@#**#@");
             String email = Valeur.substring(0, positionAt);
             String password = Valeur.substring(positionAt + 6);
+            //interrogation de la base de données au lieu de créer manuellement la liste (fonction en attente)
+            ArrayList<String> listPlaces = new ArrayList<String>();
+            listPlaces.add("Sopra Colo 1");
+            listPlaces.add("Sopra Colo 2");
+            listPlaces.add("Sopra Ramassiers");
+            listPlaces.add("Sopra Albi");
+            request.setAttribute("listPlaces", listPlaces);
             processRequest(request, response);
         }
     }
@@ -113,7 +120,7 @@ public class SearchManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         checkZip(request, response);
         if (erreurs.isEmpty()) {
             try {
@@ -121,11 +128,9 @@ public class SearchManager extends HttpServlet {
                 ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
                 String zipcode = request.getParameter("zipdepart");
                 String sitesopra = request.getParameter("sitearrivee");
-                System.out.println(sitesopra);
                 int i;
                 i = Integer.parseInt(zipcode);
                 listUsers = usersSameJourney(c1, i, sitesopra);
-
                 request.setAttribute("listUsers", listUsers);
                 processRequest(request, response);
             } catch (SQLException ex) {

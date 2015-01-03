@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import static Model.DatabaseManager.usersSameJourney;
+import Model.Model;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -48,24 +51,32 @@ public class WorkplacesManager extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
-        String Valeur= null;
-        if (cookies!=null){
-        for(int i=0; i < cookies.length; i++) {
-		Cookie MonCookie = cookies[i];
+        String Valeur = null;
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie MonCookie = cookies[i];
                 if (MonCookie.getName().equals("admin")) {
-			Valeur = cookies[i].getValue();
+                    Valeur = cookies[i].getValue();
                 }
+            }
         }
-        }
-        
-        if (Valeur==null){
+
+        if (Valeur == null) {
             response.sendRedirect("/SopraCarpooling-war/login");
-        }else{
+        } else {
             int positionAt = Valeur.indexOf("@#**#@");
             String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt+6);
+            String password = Valeur.substring(positionAt + 6);
+            //interrogation de la base de données au lieu de créer manuellement la liste (fonction en attente)
+            ArrayList<String> listPlaces = new ArrayList<String>();
+            listPlaces.add("Sopra Colo 1");
+            listPlaces.add("Sopra Colo 2");
+            listPlaces.add("Sopra Ramassiers");
+            listPlaces.add("Sopra Albi");
+            request.setAttribute("listPlaces", listPlaces);
             processRequest(request, response);
         }
+
     }
 
     /**
