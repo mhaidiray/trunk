@@ -4,47 +4,47 @@
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="UTF-8">
-    <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
-    <title>Interface d'administration</title>
+        <title>Interface d'administration</title>
 
-    <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/normalize.css">
+        <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/normalize.css">
 
-    <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <h1>Interface d'administration</h1>	
-    <h2>Fonctionnalités :</h2>
-    <form>
-    <div class="lable-2">
-        <div class="col_1_of_2 span_1_of_2">
-            <div class="submit">
-                <input type="submit" onclick="myFunction()" name="handlePath" value="Gérer les trajets" >
+        <h1>Interface d'administration</h1>
+        <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
+        <h2>Fonctionnalités :</h2>
+        <form>
+            <div class="lable-2">
+                <div class="col_1_of_2 span_1_of_2">
+                    <div class="submit">
+                        <input type="submit" onclick="myFunction()" name="handlePath" value="Gérer les trajets" >
+                    </div>
+                </div>
+                <div class="col_1_of_2 span_1_of_2">
+                    <div class="submit">
+                        <input type="submit" onclick="myFunction()" value="Générer un rapport général" >
+                    </div>
+                </div>
+                <div class="clear"></div>
             </div>
-        </div>
-        <div class="col_1_of_2 span_1_of_2">
-            <div class="submit">
-                <input type="submit" onclick="myFunction()" value="Générer un rapport général" >
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    </form>
+        </form>
 
-    <h1/>
+        <h1/>
 
-    <br/>
+        <br/>
 
 
-    <h2>Gestion des comptes :</h2>
-    <table class="responstable">
+        <h2>Gestion des comptes :</h2>
+        <table class="responstable">
 
-        <tr>
-            <th><center>Nom</center></th>
-    <th><center>Prenom</center></th>
-<th><center>Téléphone</center></th>
+            <tr>
+                <th><center>Nom</center></th>
+        <th><center>Prenom</center></th>
+    <th><center>Téléphone</center></th>
 <th><center>Email</center></th>
 <th><center>Commune de départ</center></th>
 <th><center>Site Sopra d'arrivée</center></th>
