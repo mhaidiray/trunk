@@ -13,12 +13,9 @@
     </head>
     <body>
         <div class="main">
-            <div class="lable">
-                <div class="col_1_of_2 span_1_of_2"><h1>Lieux de travail</h1></div>
-                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
-                <div class="clear"> </div>
-            </div>	
             <form>
+                <div class="col_1_of_2 span_1_of_2"><h1>Gestion des lieux de travail</h1></div>
+                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div></div>
                 <select name="sitesopra" id="soflow">
                     <%
                         ArrayList<String> listSites;
