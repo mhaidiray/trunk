@@ -5,48 +5,48 @@
 <html>
     <head>
         <title>Sopra Carpooling</title>
-    <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
-    <meta charset="utf-8">
-    <link href="css_images/User Home/cssuserhome/style.css" rel='stylesheet' type='text/css' />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!--webfonts-->
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
-    <!--//webfonts-->
-</head>
-<body>
-    <div class="main">
-        <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
-        <form>
-            <h2>Que souhaitez-vous faire aujourd'hui ?</h2>
-            <div class="lable-2">
-                <div class="col_1_of_2 span_1_of_2">
-                    <div class="submit">
-                        <input type="submit" value="Consulter mes informations personnelles" name="persinfo">
+        <meta charset="utf-8">
+        <link href="css_images/User Home/cssuserhome/style.css" rel='stylesheet' type='text/css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--webfonts-->
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+        <!--//webfonts-->
+    </head>
+    <body>
+        <div class="main">
+            <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
+            <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
+            <form>
+                <h2>Que souhaitez-vous faire aujourd'hui ?</h2>
+                <div class="lable-2">
+                    <div class="col_1_of_2 span_1_of_2">
+                        <div class="submit">
+                            <input type="submit" value="Consulter mes informations personnelles" name="persinfo">
+                        </div>
                     </div>
-                </div>
-                <div class="col_1_of_2 span_1_of_2">
-                    <div class="submit">
-                        <input type="submit" value="Chercher un trajet personnalisé" name="trajet" >
+                    <div class="col_1_of_2 span_1_of_2">
+                        <div class="submit">
+                            <input type="submit" value="Chercher un trajet personnalisé" name="trajet" >
+                        </div>
                     </div>
+                    <div class="clear"></div>
+
                 </div>
-                <div class="clear"></div>
+                </br>
 
-            </div>
-            </br>
-
-        </form>
-        <h2> </br>
-            <h2>Voici les utilisateurs ayant le même trajet que vous :</h2>
-            <table class="responstable">
-                <tr>
-                    <th>Conducteur</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>N° Tél</th>
-                </tr>
-                <%
+            </form>
+            <h2> </br>
+                <h2>Voici les utilisateurs ayant le même trajet que vous :</h2>
+                <table class="responstable">
+                    <tr>
+                        <th>Conducteur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>N° Tél</th>
+                    </tr>
+                    <%
                         ArrayList<Model.User> list;
                         list = (ArrayList<Model.User>) request.getAttribute("listUsers");
                         ArrayList<User> listUsers = new ArrayList<User>();
@@ -69,12 +69,13 @@
                         <td><%=eml%></td>
                         <td><%=tel%></td>
                     </tr>
-                <%}}%>
-                
+                    <%}
+                        }%>
 
-            </table>
 
-            <div class="clear"></div>
-    </div>
-</body>
+                </table>
+
+                <div class="clear"></div>
+        </div>
+    </body>
 </html>
