@@ -28,12 +28,32 @@ public class HomeAdminManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
+         if (request.getParameter("disconnect")!=null){
+            response.sendRedirect("/SopraCarpooling-war/");
+        }  
+         
+        else if (request.getParameter("handlePath")!=null){
+            response.sendRedirect("/SopraCarpooling-war/wrkplceedit"); 
+        }
+        /*API de création de PDF
+         else if (request.getParameter("generateGeneralReport")!=null){
+            response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
+        } 
+        else if (request.getParameter("modif1")!=null){
+            response.sendRedirect("/SopraCarpooling-war/persinfo");}
+        else if (request.getParameter("modif2")!=null){
+            response.sendRedirect("/SopraCarpooling-war/persinfo");}
+        else if (request.getParameter("modif3")!=null){
+            response.sendRedirect("/SopraCarpooling-war/persinfo");}*/
+        else { 
         this.getServletContext().getRequestDispatcher("/WEB-INF/adminhome.jsp").forward(request, response);
-    }
+        }
+    }	
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
