@@ -35,12 +35,14 @@ public class WorkplacesManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        if (request.getParameter("del") != null) {
+        if (request.getParameter("deco") != null) {
+            response.sendRedirect("/SopraCarpooling-war/login");
+        } else if (request.getParameter("del") != null) {
             // Methode pour supprimer de la base de donnée le site sopra selectionné
             request.getParameter("sitesopra");
             response.sendRedirect("/SopraCarpooling-war/adminhome");
         } else if (request.getParameter("add") != null) {
-            
+
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
         } else if (request.getParameter("modif") != null) {
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
