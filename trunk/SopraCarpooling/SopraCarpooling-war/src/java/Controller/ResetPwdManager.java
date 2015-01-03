@@ -5,11 +5,16 @@
  */
 package Controller;
 
+import Model.DatabaseManager;
 import Model.SMTPManager;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,15 +39,30 @@ public class ResetPwdManager extends HttpServlet {
      */
     
     public void checkMail(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("mail");
-        System.out.println(email);
-        if (email != null && email.length() != 0) {
-            if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
-                erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
-                request.setAttribute("erreurs", erreurs);
-                request.setAttribute("mail", "invalid");
-                
+        try {
+            String email = request.getParameter("mail");
+            System.out.println(email);
+            Connection con = DatabaseManager.connectionDatabase();
+            if (DatabaseManager.existMail(con, email)){
+                if (email != null && email.length() != 0) {
+                    if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
+                        erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
+                        request.setAttribute("erreurs", erreurs);
+                        request.setAttribute("mail", "invalid");
+                        
+                    }
+                } else {
+                    erreurs.put("mail", "Aucune entrée, veuillez réessayer");
+                    request.setAttribute("erreurs", erreurs);
+                    request.setAttribute("mail", "invalid");
+                }
+            } else {
+                erreurs.put("mail", "Email inexistant dans la base de données, veuillez réessayer");
+                    request.setAttribute("erreurs", erreurs);
+                    request.setAttribute("mail", "invalid");
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ResetPwdManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -79,19 +99,22 @@ public class ResetPwdManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("mail");
-        Boolean exist = true;
-        checkMail(request,response);
-        
-        /**Vérification que l'email existe dans la base de données*/
-        if (exist && erreurs.isEmpty()){
-            SecureRandom random = new SecureRandom();
-            String pwd = new BigInteger(60, random).toString(32);
-            /**Modification du password dans la base de données*/
-            SMTPManager.sendNewPassword(email, pwd);
-        } else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
-            erreurs.clear();
+        try {
+            String email = request.getParameter("mail");
+            checkMail(request,response);
+            Connection con = DatabaseManager.connectionDatabase();
+            if (erreurs.isEmpty()){
+                SecureRandom random = new SecureRandom();
+                String pwd = new BigInteger(60, random).toString(32);
+                DatabaseManager.modifPwd(con, email, pwd);
+                SMTPManager.sendNewPassword(email, pwd);
+                response.sendRedirect("/SopraCarpooling-war/login");
+            } else {
+                this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
+                erreurs.clear();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ResetPwdManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
