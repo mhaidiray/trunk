@@ -47,6 +47,7 @@ public class SMTPManager {
             String subject="Création de votre compte sur Sopra Covoiturage" ;
             SMTPManager.sendMail(adresse,mess,subject);   
         }
+
     
         public static void sendMail(String address,String msg,String subject){
             
@@ -82,8 +83,6 @@ public class SMTPManager {
 			throw new RuntimeException(e);
 		}
 	}
-        
-        
 	public static void main(String[] args) {
             //SMTPManager.sendMail("squallih@etud.insa-toulouse.fr", "Voici mon message,"
             //        + "\n Hehe cocoo !", "Ca marche !");
