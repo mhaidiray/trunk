@@ -22,23 +22,14 @@
             <form method="post">
                 <div class="lable">
                     
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="Nom" ><span class="erreur">${erreurs['nom']}</span></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="${nom}"><span class="erreur">${erreurs['nom']}</span></div>
                     
-                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="prenom" value="Prénom" onfocus="if (this.value == 'Prénom') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Prénom';
-                                    }"><span class="erreur">${erreurs['prenom']}</span></div>
+                    <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="prenom" value="${prenom}"><span class="erreur">${erreurs['prenom']}</span></div>
                     <div class="clear"> </div>
                 </div>
                <div class="lable-2">
                     <div>
-                        <input type="text" class="text" value="Tapez votre email" name="mail" onfocus="if (this.value == 'Tapez votre email') {
-                                    this.value = '';
-                                }" onblur="if (this.value == '') {
-                                            this.value = 'Tapez votre email';
-                                        }">
-                        <span class="erreur">${erreurs['mail']}</span></div>
+                        <input type="text" class="text" name="mail" value="${mail}"><span class="erreur">${erreurs['mail']}</span></div>
                     <h4>Entrez votre ancien mot de passe</h4>
                     <span class="erreur">${erreurs['pwd1']}</span>
                     <input type="password" class="text" value="Password" name="pwd1" onfocus="if (this.value == 'Password') {
@@ -46,25 +37,21 @@
                             }" onblur="if (this.value == '') {
                                         this.value = 'Password';
                                     }">
-                    <h4>Entrez un nouveau mot de passe</h4>
+                    <h4>Entrez un nouveau mot de passe (facultatif)</h4>
                     <span class="erreur">${erreurs['pwd2']}</span>
-                    <input type="password" class="text" value="Password" name="pwd2" onfocus="if (this.value == 'Password') {
+                    <input type="password" class="text" value="" name="pwd2" onfocus="if (this.value == '') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
-                                        this.value = 'Password';
+                                        this.value = '';
                                     }">
-                    <input type="password" class="text" value="Password" name="pwd3" onfocus="if (this.value == 'Password') {
+                    <input type="password" class="text" value="" name="pwd3" onfocus="if (this.value == '') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
-                                        this.value = 'Password';
+                                        this.value = '';
                                     }">
                     <h4>Informations géographiques :</h4>
                     <span class="erreur">${erreurs['zipdepart']}</span>
-                    <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Code postal de départ';
-                                    }">
+                    <input type="text" class="text" value="${zipdepart}" name="zipdepart">
                     <h5> Veuillez choisir le site Sopra d'arrivée :</h5>
                     <span class="erreur">${erreurs['sitearrivee']}</span>
                     <select name="sitearrivee" id="soflow">
@@ -81,48 +68,67 @@
                             }%>
                     </select>
                     <h4>Horaires :</h4>
-                    <input type="text" class="text" value="Heure de départ matin, par exemple: 07h30" onfocus="if (this.value == 'Heure de départ matin, par exemple: 07h30') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Heure de départ matin, par exemple: 07h30';
-                                    }">
+                    <input type="text" class="text" name="heurematin" value="${heurematin}">
                     <div><span class="erreur">${erreurs['heurematin']}</span></div>
-                    <input type="text" class="text" value="Heure de départ soir, par exemple: 18h30" onfocus="if (this.value == 'Heure de départ soir, par exemple: 18h30') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Heure de départ soir, par exemple: 18h30';
-                                    }">
+                    <input type="text" class="text" name="heuresoir" value="${heuresoir}">
                     <span class="erreur">${erreurs['heuresoir']}</span>
                     <h4>Contact :</h4>
                     
-                    <input type="text" class="text" value="Veuillez entrer votre numéro de téléphone, par exemple: 0666102030" name="tel" onfocus="if (this.value == 'Veuillez entrer votre numéro de téléphone, par exemple: 0666102030') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Veuillez entrer votre numéro de téléphone, par exemple: 0666102030';
-                                    }">
+                    <input type="text" class="text" value="${tel}" name="tel">
                     <span class="erreur">${erreurs['tel']}</span>
 
                     <h5> Veuillez cocher les jours applicables :</h5>		
 
                 </div>
-                <INPUT type="checkbox" name="choix1" value="1"> <FONT COLOR=#ffffff >Lundi</FONT>
-                <INPUT type="checkbox" name="choix2" value="2"> <FONT COLOR=#ffffff >Mardi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Mercredi</FONT>
-                <INPUT type="checkbox" name="choix4" value="4"> <FONT COLOR=#ffffff >Jeudi</FONT>
-                <INPUT type="checkbox" name="choix2" value="2"> <FONT COLOR=#ffffff >Vendredi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Samedi</FONT>
-                <INPUT type="checkbox" name="choix3" value="3"> <FONT COLOR=#ffffff >Dimanche</FONT>
+                    <% if (request.getAttribute("lundi")!=null){ %>
+                <INPUT type="checkbox" name="lundi" value="1" checked=""> <FONT COLOR=#ffffff >Lundi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="lundi" value="1"> <FONT COLOR=#ffffff >Lundi</FONT>
+                <% } if (request.getAttribute("mardi")!=null){ %>
+                <INPUT type="checkbox" name="mardi" value="2" checked=""> <FONT COLOR=#ffffff >Mardi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="mardi" value="2"> <FONT COLOR=#ffffff >Mardi</FONT>
+                <% } if (request.getAttribute("mercredi")!=null){ %>
+                <INPUT type="checkbox" name="mercredi" value="3" checked=""> <FONT COLOR=#ffffff >Mercredi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="mercredi" value="3"> <FONT COLOR=#ffffff >Mercredi</FONT>
+                <% } if (request.getAttribute("jeudi")!=null){ %>
+                <INPUT type="checkbox" name="jeudi" value="2" checked=""> <FONT COLOR=#ffffff >Jeudi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="jeudi" value="2"> <FONT COLOR=#ffffff >Jeudi</FONT>
+                <% } if (request.getAttribute("vendredi")!=null){ %>
+                <INPUT type="checkbox" name="vendredi" value="2" checked=""> <FONT COLOR=#ffffff >Vendredi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="vendredi" value="2"> <FONT COLOR=#ffffff >Vendredi</FONT>
+                <% } if (request.getAttribute("samedi")!=null){ %>
+                <INPUT type="checkbox" name="samedi" value="2" checked=""> <FONT COLOR=#ffffff >Samedi</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="samedi" value="2"> <FONT COLOR=#ffffff >Samedi</FONT>
+                <% } if (request.getAttribute("dimanche")!=null){ %>
+                <INPUT type="checkbox" name="dimanche" value="2" checked=""> <FONT COLOR=#ffffff >Dimanche</FONT>
+                <% } else {%>
+                <INPUT type="checkbox" name="dimanche" value="2"> <FONT COLOR=#ffffff >Dimanche</FONT>
+                <% } %>
                 <br>
 
                 <h5> Êtes-vous conducteur ?</h5>
-
-                <INPUT type="radio" name="conducteur" value="Oui"> <FONT COLOR=#ffffff >Oui</FONT>
+                <% if (request.getAttribute("cond")!=null){ %>
+                <INPUT type="radio" name="conducteur" value="Oui" checked="checked"> <FONT COLOR=#ffffff >Oui</FONT>
                 <INPUT type="radio" name="conducteur" value="Non"> <FONT COLOR=#ffffff >Non</FONT>
+                <% } else {%>
+                <INPUT type="radio" name="conducteur" value="Oui" > <FONT COLOR=#ffffff >Oui</FONT>
+                <INPUT type="radio" name="conducteur" value="Non" checked="checked"> <FONT COLOR=#ffffff >Non</FONT>
+                <% } %>
                 <br>
 
                 <h5> Souhaitez-vous être notifié lors de l'ajout d'un trajet pouvant vous intéresser ?</h5>
-                <INPUT type="radio" name="notif" value="Oui"> <FONT COLOR=#ffffff >Oui</FONT> 
-                <INPUT type="radio" name="notif" value="Non"> <FONT COLOR=#ffffff >Non</FONT> 				   
+                <% if (request.getAttribute("not")!=null){ %>
+                <INPUT type="radio" name="notif" value="Oui" checked="checked"> <FONT COLOR=#ffffff >Oui</FONT>
+                <INPUT type="radio" name="notif" value="Non"> <FONT COLOR=#ffffff >Non</FONT>
+                <% } else {%>
+                <INPUT type="radio" name="notif" value="Oui" > <FONT COLOR=#ffffff >Oui</FONT>
+                <INPUT type="radio" name="notif" value="Non" checked="checked"> <FONT COLOR=#ffffff >Non</FONT>
+                <% } %>				   
                 <br>
                 <div class="submit">
                     <div class="lable">
