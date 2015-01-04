@@ -375,7 +375,7 @@ public class DatabaseManager {
         return w1 ;  
     }
     
-    /** Modifie les données du site Sopra ayant le nom "site" par les nouvelles données contenues dans "w1" et renvoie true si le site sopra existe */
+    /** Modifie ou ajoute les données du site Sopra ayant le nom "site" par les nouvelles données contenues dans "w1" et renvoie true si le site sopra existe */
     public static Boolean modifWorkplace(Connection con,Workplace w1,String site){
         Boolean exist = false ;
         try {
@@ -386,6 +386,9 @@ public class DatabaseManager {
             int i = resultset.getInt("ID_WD");
             smt.executeUpdate("UPDATE Work_Destination SET Site='"+w1.getName()+"',Address='"+w1.getAddress()+"' WHERE ID_WD="+i);
             exist = true ;
+            }else {
+                Statement smt = con.createStatement() ;
+                smt.executeUpdate("INSERT INTO Work_Destination (Site,Address) VALUES ('"+w1.getName()+"','"+w1.getAddress()+"')");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
