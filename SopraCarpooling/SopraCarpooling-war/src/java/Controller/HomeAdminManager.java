@@ -37,18 +37,18 @@ public class HomeAdminManager extends HttpServlet {
         }  
          
         else if (request.getParameter("handlePath")!=null){
-            response.sendRedirect("/SopraCarpooling-war/wrkplceedit"); 
+            response.sendRedirect("/SopraCarpooling-war/wrkplcelist"); 
         }
         /*API de création de PDF
          else if (request.getParameter("generateGeneralReport")!=null){
             response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
-        } 
-        else if (request.getParameter("modif1")!=null){
+        } */
+        else if (request.getParameter("mod1")!=null){
+            this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);}
+        else if (request.getParameter("mod2")!=null){
             response.sendRedirect("/SopraCarpooling-war/persinfo");}
-        else if (request.getParameter("modif2")!=null){
+        else if (request.getParameter("mod3")!=null){
             response.sendRedirect("/SopraCarpooling-war/persinfo");}
-        else if (request.getParameter("modif3")!=null){
-            response.sendRedirect("/SopraCarpooling-war/persinfo");}*/
         else { 
         this.getServletContext().getRequestDispatcher("/WEB-INF/adminhome.jsp").forward(request, response);
         }
