@@ -32,7 +32,6 @@
                             <%
                                 ArrayList<String> listSites;
                                 listSites = (ArrayList<String>) request.getAttribute("listPlaces");
-                                System.out.println(listSites.toString());
                                 if (listSites != null) {
                                     for (int i = 0; i < listSites.size(); i++) {
                                         String site = (String) listSites.get(i);
