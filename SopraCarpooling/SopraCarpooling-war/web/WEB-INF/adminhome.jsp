@@ -60,7 +60,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="Modifier" >
+            <input type="submit" onclick="myFunction()" value="Modifier" name="mod1" >
         </div>
         <div class="clear"> </div>
     </td>
@@ -83,7 +83,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="Modifier" >
+            <input type="submit" onclick="myFunction()" value="Modifier" name="mod2" >
         </div>
         <div class="clear"> </div>
     </td>
@@ -106,7 +106,7 @@
 
     <td>	
         <div class="submit">
-            <input type="submit" onclick="myFunction()" value="Modifier" >
+            <input type="submit" onclick="myFunction()" value="Modifier" name="mod3" >
         </div>
         <div class="clear"> </div>
     </td>
