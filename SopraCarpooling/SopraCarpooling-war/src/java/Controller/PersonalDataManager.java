@@ -45,46 +45,54 @@ public class PersonalDataManager extends HttpServlet {
         Model.User u = DatabaseManager.recupData(con, email, pwd);
         request.setAttribute("prenom", u.getFirstname());
         request.setAttribute("nom", u.getLastname());
-        request.setAttribute("email", u.getEmail());
-        request.setAttribute("phone", u.getPhone());
-        request.setAttribute("zip", u.getZipcode());
-        request.setAttribute("site", u.getWorkplace());
-        request.setAttribute("matin", u.getMorning_time());
-        request.setAttribute("soir", u.getAfternoon_time());
+        request.setAttribute("mail", u.getEmail());
+        request.setAttribute("tel", u.getPhone());
+        request.setAttribute("zipdepart", u.getZipcode());
+        request.setAttribute("sitearrivee", u.getWorkplace());
+        request.setAttribute("heurematin", u.getMorning_time());
+        request.setAttribute("heuresoir", u.getAfternoon_time());
+        ArrayList<String> listPlaces = new ArrayList<String>();
+        listPlaces.add("Sopra Colo 1");
+        listPlaces.add("Sopra Colo 2");
+        listPlaces.add("Sopra Ramassiers");
+        listPlaces.add("Sopra Albi");
+        request.setAttribute("listPlaces", listPlaces);
         if (u.getMonday() == 1) {
-            request.setAttribute("lun", "Lundi ");
+            request.setAttribute("lundi", "Lundi ");
         }
         if (u.getTuesday() == 1) {
-            request.setAttribute("mar", "Mardi ");
+            request.setAttribute("mardi", "Mardi ");
         }
         if (u.getWednesday() == 1) {
-            request.setAttribute("mer", "Mercredi ");
+            request.setAttribute("mercredi", "Mercredi ");
         }
         if (u.getThursday() == 1) {
-            request.setAttribute("jeu", "Jeudi ");
+            request.setAttribute("jeudi", "Jeudi ");
         }
         if (u.getFriday() == 1) {
-            request.setAttribute("ven", "Vendredi ");
+            request.setAttribute("vendredi", "Vendredi ");
         }
         if (u.getSaturday() == 1) {
-            request.setAttribute("sam", "Samedi ");
+            request.setAttribute("samedi", "Samedi ");
         }
         if (u.getSunday() == 1) {
-            request.setAttribute("dim", "Dimanche");
+            request.setAttribute("dimanche", "Dimanche");
         }
         if (u.getDriver() == 1) {
-            request.setAttribute("driver", "Oui");
+            request.setAttribute("conducteur", "Oui");
+            request.setAttribute("cond", "Oui");
         }
         if (u.getDriver() == 0) {
-            request.setAttribute("driver", "Non");
+            request.setAttribute("conducteur", "Non");
         }
         if (u.getNotification() == 1) {
             request.setAttribute("notif", "Oui");
+            request.setAttribute("not", "Oui");
         }
         if (u.getNotification() == 0) {
             request.setAttribute("notif", "Non");
         }
-        processRequest(request, response);
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -132,6 +140,7 @@ public class PersonalDataManager extends HttpServlet {
             String password = Valeur.substring(positionAt + 6);
             try {
                 fetchData(email, password, request, response);
+                processRequest(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(PersonalDataManager.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -167,13 +176,16 @@ public class PersonalDataManager extends HttpServlet {
                 int positionAt = Valeur.indexOf("@#**#@");
                 String email = Valeur.substring(0, positionAt);
                 String password = Valeur.substring(positionAt + 6);
-                modifUser(password, request, response, email);
-                
+                try {
+                    modifUser(password, request, response, email);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PersonalDataManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         } else if (request.getParameter("annuler") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
         }
-        processRequest(request, response);
     }
 
     /**
@@ -186,7 +198,8 @@ public class PersonalDataManager extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void modifUser(String pass, HttpServletRequest request, HttpServletResponse response, String mail) throws ServletException, IOException {
+    public void modifUser(String pass, HttpServletRequest request, HttpServletResponse response, String mail) throws ServletException, IOException, SQLException {
+
         checkInfos(pass, request, response);
         if (erreurs.isEmpty()) {
             try {
@@ -274,9 +287,28 @@ public class PersonalDataManager extends HttpServlet {
 
                 Connection con = DatabaseManager.connectionDatabase();
                 Model model = new Model();
-                Model.User user = model.new User(email, pwd, prenom, nom, tel, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), heurematin, heuresoir, driver, monday, tuesday, wednesday, thursday, friday, saturday, sunday, notification);
-                DatabaseManager.modifUser(con, user, DatabaseManager.recupData(con, mail, pass));
-                DatabaseManager.modifPwd(con, email, pwd);
+                Model.User user = model.new User(email, pass, prenom, nom, tel, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), heurematin, heuresoir, driver, monday, tuesday, wednesday, thursday, friday, saturday, sunday, notification);
+                System.out.println(DatabaseManager.modifUser(con, user, DatabaseManager.recupData(con, mail, pass)));
+                Cookie mookie;
+                if (pwd != "" && pwd.length() > 0) {
+                    DatabaseManager.modifPwd(con, email, pwd);
+                    mookie = new Cookie("user", email + "@#**#@" + pwd);
+                } else {
+                    mookie = new Cookie("user", email + "@#**#@" + pass);
+                }
+
+                Cookie[] cookies = request.getCookies();
+                if (cookies != null) {
+                    for (int i = 0; i < cookies.length; i++) {
+                        Cookie MonCookie = cookies[i];
+                        if (MonCookie.getName().equals("user")) {
+                            MonCookie.setMaxAge(0);
+                            response.addCookie(MonCookie);
+                        }
+                    }
+                }
+                response.addCookie(mookie);
+                
                 ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee));
                 for (Model.User u : listUsers) {
                     SMTPManager.sendNotification(u.getEmail(), prenom, nom);
@@ -286,6 +318,14 @@ public class PersonalDataManager extends HttpServlet {
             }
             response.sendRedirect("/SopraCarpooling-war/persinfo");
         } else {
+            ArrayList<String> listPlaces = new ArrayList<String>();
+            listPlaces.add("Sopra Colo 1");
+            listPlaces.add("Sopra Colo 2");
+            listPlaces.add("Sopra Ramassiers");
+            listPlaces.add("Sopra Albi");
+            fetchData(mail, pass, request, response);
+            request.setAttribute("listPlaces", listPlaces);
+            request.setAttribute("erreurs", erreurs);
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
             erreurs.clear();
         }
@@ -306,41 +346,38 @@ public class PersonalDataManager extends HttpServlet {
         String driver = request.getParameter("conducteur");
         String notif = request.getParameter("notif");
         if (nom != null && nom.length() != 0) {
-            if (!nom.matches("([A-Z]+|[A-Z]?[a-z]+)('\'s([A-Z]+|[A-Z]?[a-z]+))?")) {
+            if (!nom.matches("([A-Za-z0-9 ]+)")) {
                 erreurs.put("nom", "Nom incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("nom", "invalid");
+                request.setAttribute("nom", nom);
             }
         } else {
             erreurs.put("nom", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("nom", "invalid");
         }
         if (prenom != null && prenom.length() != 0) {
-            if (!prenom.matches("([A-Z]+|[A-Z]?[a-z]+)")) {
+            if (!prenom.matches("([A-Za-z0-9 ]+)")) {
                 erreurs.put("prenom", " Prenom incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("prenom", "invalid");
+                request.setAttribute("prenom", prenom);
 
             }
         } else {
             erreurs.put("prenom", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("prenom", "invalid");
         }
         if (email != null && email.length() != 0) {
-            if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}")) {
+            if (!email.matches("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z]+")) {
                 erreurs.put("mail", "E-mail incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("mail", "invalid");
+                request.setAttribute("mail", email);
             }
         } else {
             erreurs.put("mail", "Aucune entrée3, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("mail", "invalid");
         }
         if (pwd1 != null && pwd1.length() != 0) {
-            if (!pwd2.equals(pass)) {
+            if (!pwd1.equals(pass)) {
                 erreurs.put("pwd1", "Ce mot de passe ne correspond pas à l'ancien");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("pwd1", "invalid");
@@ -352,21 +389,16 @@ public class PersonalDataManager extends HttpServlet {
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("pwd2", "invalid");
             }
-        } else {
-            erreurs.put("pwd2", "Aucune entrée, veuillez réessayer");
-            request.setAttribute("erreurs", erreurs);
-            request.setAttribute("pwd2", "invalid");
         }
         if (zipdepart != null && zipdepart.length() != 0) {
-            if (!zipdepart.matches("[0-9]{5}")) {
+            if (!zipdepart.matches("[0-9][0-9][0-9][0-9][0-9]")) {
                 erreurs.put("zipdepart", "Code postal incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("zipdepart", "invalid");
+                request.setAttribute("zipdepart", zipdepart);
             }
         } else {
             erreurs.put("zipdepart", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("commdepart", "invalid");
         }
         if (sitearrivee != null && sitearrivee.length() != 0) {
             Boolean exist = true;
@@ -376,45 +408,41 @@ public class PersonalDataManager extends HttpServlet {
             if (!exist) {
                 erreurs.put("sitearrivee", "Site Sopra incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("sitearrivee", "invalid");
+                request.setAttribute("sitearrivee", sitearrivee);
             }
         } else {
             erreurs.put("sitearrivee", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("commdepart", "invalid");
         }
         if (heurematin != null && heurematin.length() != 0) {
-            if (!heurematin.matches("[0-9]?[0-9]h[0-9]?[0-9]?")) {
+            if (!heurematin.matches("[0-2]?[0-9]h[0-5]?[0-9]?")) {
                 erreurs.put("heurematin", "L'heure est incorrecte, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("heurematin", "invalid");
+                request.setAttribute("heurematin", heurematin);
             }
         } else {
             erreurs.put("heurematin", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("commdepart", "invalid");
         }
         if (heuresoir != null && heuresoir.length() != 0) {
-            if (!heuresoir.matches("[0-9]?[0-9]h[0-9]?[0-9]?")) {
+            if (!heuresoir.matches("[0-2]?[0-9]h[0-5]?[0-9]?")) {
                 erreurs.put("heuresoir", "L'heure est incorrecte, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("heuresoir", "invalid");
+                request.setAttribute("heuresoir", heuresoir);
             }
         } else {
             erreurs.put("heuresoir", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("commdepart", "invalid");
         }
         if (tel != null && tel.length() != 0) {
-            if (!tel.matches("0[0-9]{9}")) {
+            if (!tel.matches("0[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")) {
                 erreurs.put("tel", "Telephone incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
-                request.setAttribute("tel", "invalid");
+                request.setAttribute("tel", tel);
             }
         } else {
             erreurs.put("tel", "Aucune entrée, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-            request.setAttribute("commdepart", "invalid");
         }
 
     }

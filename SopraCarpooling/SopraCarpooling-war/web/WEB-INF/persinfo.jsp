@@ -24,25 +24,25 @@
                     <div class="clear"> </div>
                 </div>
                 <div class="lable">
-                    <div class="col_1_of_2 span_1_of_2"><h3>${email}</h3></div>
-                    <div class="col_1_of_2 span_1_of_2"><h3>${phone}</h3></div>
+                    <div class="col_1_of_2 span_1_of_2"><h3>${mail}</h3></div>
+                    <div class="col_1_of_2 span_1_of_2"><h3>${tel}</h3></div>
                     <div class="clear"> </div>
                 </div>
                 <div class="lable-2">
                     <h4>Informations géographiques :</h4>
                     <div class="lable-2">
-                        <div class="col_1_of_2 span_1_of_2"><h3>${zip}</h3></div>
-                        <div class="col_1_of_2 span_1_of_2"><h3>${site}</h3></div>
+                        <div class="col_1_of_2 span_1_of_2"><h3>${zipdepart}</h3></div>
+                        <div class="col_1_of_2 span_1_of_2"><h3>${sitearrivee}</h3></div>
                         <div class="clear"> </div>
                     </div>
 
 
                     <h4>Horaires :</h4>
-                    <h3>${matin}</h3>
-                    <h3>${soir}</h3>
-                    <h4> Jours applicables : ${lun}${mar}${mer}${jeu}${ven}${sam}${dim}</h4>
+                    <h3>${heurematin}</h3>
+                    <h3>${heuresoir}</h3>
+                    <h4> Jours applicables : ${lundi}${mardi}${mercredi}${jeudi}${vendredi}${samedi}${dimanche}</h4>
                 </div>
-                <h4> Conducteur : ${driver}</h4>
+                <h4> Conducteur : ${conducteur}</h4>
                 <h4> Reçevoir des notifications : ${notif}</h4>
                 <div class="submit">
                     <div class="lable">
