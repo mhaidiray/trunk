@@ -43,12 +43,10 @@ public class Model {
     public class Workplace {
         private String name;
         private String address;
-        private String phone;
         
-        public Workplace(String n,String a,String p){
+        public Workplace(String n,String a){
             this.name=n;
             this.address=a;
-            this.phone=p;
         }
 
         public String getName() {
@@ -59,10 +57,6 @@ public class Model {
             return address;
         }
 
-        public String getPhone() {
-            return phone;
-        }
-
         public void setName(String name) {
             this.name = name;
         }
@@ -70,12 +64,6 @@ public class Model {
         public void setAddress(String address) {
             this.address = address;
         }
-
-        public void setPhone(String phone) {
-            this.phone = phone;
-        }
-
-        
         
         
     }
