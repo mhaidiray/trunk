@@ -18,8 +18,27 @@
                 <div class="clear"> </div>
             </div>	
             <form>
+                <%
+                    String nomsite = (String) request.getAttribute("nomsite");
+                    String addrsite = (String) request.getAttribute("addrsite");
+                    if ((nomsite != null) && (addrsite != null)) {%>
                 <div class="lable">
-                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra à ajouter/modifier" onfocus="if (this.value == 'Nom du site Sopra à ajouter/modifier') {
+                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="<%=nomsite%>" onfocus="if (this.value == '<%=nomsite%>') {
+                                this.value = '';
+                            }" onblur="if (this.value == '') {
+                                        this.value = '<%=nomsite%>';
+                                    }"></div>
+                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="adresse" value="<%=addrsite%>" onfocus="if (this.value == '<%=addrsite%>') {
+                                this.value = '';
+                            }" onblur="if (this.value == '') {
+                                        this.value = '<%=addrsite%>';
+                                    }"></div>
+                    <div class="clear"> </div>
+                </div>
+                
+                <%} else {%>
+                <div class="lable">
+                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra à ajouter" onfocus="if (this.value == 'Nom du site Sopra à ajouter/modifier') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Nom du site Sopra à ajouter/modifier';
@@ -29,14 +48,9 @@
                             }" onblur="if (this.value == '') {
                                         this.value = 'Adresse du site Sopra';
                                     }"></div>
-                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="tel" value="Num de téléphone du site Sopra" onfocus="if (this.value == 'Num de téléphone du site Sopra') {
-                                this.value = '';
-                            }" onblur="if (this.value == '') {
-                                        this.value = 'Num de téléphone du site Sopra';
-                                    }"></div>
                     <div class="clear"> </div>
                 </div>
-
+                <%}%>
 
 
                 <div class="lable">
