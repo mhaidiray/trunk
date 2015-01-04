@@ -47,9 +47,13 @@ public class WorkplacesManager extends HttpServlet {
             request.getParameter("sitesopra");
             response.sendRedirect("/SopraCarpooling-war/adminhome");
         } else if (request.getParameter("add") != null) {
-
+            Cookie monCookie = new Cookie("modif", "none");
+            response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
         } else if (request.getParameter("modif") != null) {
+            String nom = request.getParameter("sitesopra");
+            Cookie monCookie = new Cookie("modif", nom);
+            response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplcelist.jsp").forward(request, response);
@@ -83,16 +87,16 @@ public class WorkplacesManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
             try {
-                int positionAt = Valeur.indexOf("@#**#@");
-                String email = Valeur.substring(0, positionAt);
-                String password = Valeur.substring(positionAt + 6);
+            int positionAt = Valeur.indexOf("@#**#@");
+            String email = Valeur.substring(0, positionAt);
+            String password = Valeur.substring(positionAt + 6);
                 Connection con = DatabaseManager.connectionDatabase();
                 ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
-                request.setAttribute("listPlaces", listPlaces);
-                processRequest(request, response);
+            request.setAttribute("listPlaces", listPlaces);
+            processRequest(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(WorkplacesManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
         }
 
     }
