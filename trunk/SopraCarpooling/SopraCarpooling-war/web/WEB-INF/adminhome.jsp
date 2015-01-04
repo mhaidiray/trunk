@@ -13,22 +13,12 @@
     </head>
 
     <body>
-     <div class="login-form"> 
-
-   
-    
-        <form>
-            <div class="lable-2">
-                <div class="col_1_of_2 span_1_of_2">
-                    <div class="submit">
-                     <h1>Interface d'administration</h1>	
-                     <input type="submit" onclick="myFunction()" name="disconnect" value="Se déconnecter">
-                    </div>
-                </div> 
-            </div> 
-            
-       <div class="lable-2">
-           <h2>Fonctionnalités :</h2>
+        <h1>Interface d'administration</h1>
+        <div class="deco"><input type="submit" onclick="myFunction()" name="disconnect" value="Se déconnecter"></div>
+        <h2>Fonctionnalités :</h2>            	
+         <form>         
+                 <div class="lable-2">
+           
                 <div class="col_1_of_2 span_1_of_2">
                     <div class="submit">
                         <input type="submit" onclick="myFunction()" name="handlePath" value="Gérer les trajets" >
@@ -42,8 +32,10 @@
                 
                  </div>
             <div class="clear"></div>
-         </form>
-    
+         </form>   
+
+        <h1/>
+        <br/>
     <h2>Gestion des comptes :</h2>
     <table class="responstable">
 
@@ -129,7 +121,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
-     </div>
+     
 </body>
 
 </html>
