@@ -103,6 +103,7 @@ public class PersonalDataManager extends HttpServlet {
         if (request.getParameter("accueil") != null) {
             response.sendRedirect("/SopraCarpooling-war/homeuser");
         } else if (request.getParameter("mod") != null) {
+            request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
@@ -326,6 +327,7 @@ public class PersonalDataManager extends HttpServlet {
             fetchData(mail, pass, request, response);
             request.setAttribute("listPlaces", listPlaces);
             request.setAttribute("erreurs", erreurs);
+            request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
             erreurs.clear();
         }
