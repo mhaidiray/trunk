@@ -5,8 +5,14 @@
  */
 package Controller;
 
+import Model.DatabaseManager;
+import Model.Model.Workplace;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -51,22 +57,38 @@ public class WorkplaceeditManager extends HttpServlet {
             throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
         String Valeur = null;
+        String Valeur2 = null;
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
                 Cookie MonCookie = cookies[i];
                 if (MonCookie.getName().equals("admin")) {
                     Valeur = cookies[i].getValue();
                 }
+                if (MonCookie.getName().equals("modif")) {
+                    Valeur2 = cookies[i].getValue();
+                }
             }
         }
 
-        if (Valeur == null) {
+        if ((Valeur == null) || (Valeur2 == null)) {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
-            int positionAt = Valeur.indexOf("@#**#@");
-            String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt + 6);
-            processRequest(request, response);
+            if (Valeur2.equals("none")) {
+                processRequest(request, response);
+            } else {
+                try {
+                    String admin = Valeur.substring(0);
+                    String nomSite = Valeur2.substring(0);
+                    Connection con = DatabaseManager.connectionDatabase();
+                    Workplace wp = DatabaseManager.getWorkplace(con, nomSite);
+                    String adr = wp.getAddress();
+                    request.setAttribute("nomsite", nomSite);
+                    request.setAttribute("addrsite", adr);
+                    processRequest(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(WorkplaceeditManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
 
