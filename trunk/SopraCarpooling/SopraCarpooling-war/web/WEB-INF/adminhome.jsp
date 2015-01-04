@@ -4,6 +4,7 @@
     <head>
         <title>Sopra Carpooling</title>
         <meta charset="UTF-8">
+         
         <title>Interface d'administration</title>
 
         <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/normalize.css">
@@ -11,12 +12,13 @@
         <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
 
     </head>
-
     <body>
-        <h1>Interface d'administration</h1>
-        <div class="deco"><input type="submit" onclick="myFunction()" name="disconnect" value="Se déconnecter"></div>
-        <h2>Fonctionnalités :</h2>            	
-         <form>         
+    
+             	
+         <form>  
+                <h1>Interface d'administration</h1>
+                <div class="deco"><input type="submit" onclick="myFunction()" name="disconnect" value="Se déconnecter"></div>
+                <h2>Fonctionnalités :</h2>      
                  <div class="lable-2">
            
                 <div class="col_1_of_2 span_1_of_2">
@@ -122,6 +124,6 @@
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
      
-</body>
 
+</body>
 </html>
