@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DatabaseManager {
     private static String userName = "root" ;
-    private static String password = "root" ;
+    private static String password = "coco" ;
     private static String serverName = "localhost";
     private static String portNumber="3306";
     private static String dbName ="SopraCarpooling";
@@ -78,6 +78,22 @@ public class DatabaseManager {
         return exist ;
     }
     
+    /** Vérifie l'existence du Site sopra "place" dans la table des workplaces, renvoie "true" s'il existe, "false" sinon */
+    public static Boolean existWorkplace(Connection con, String place){
+        Boolean exist = false ;
+        try {
+            Statement smt = con.createStatement();
+            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+place+"'");
+            if (resultset.next()){
+                exist=true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exist ;
+    }
+    
     /** Modifie le mot de passe de l'utilisateur ayant l'email "email" avec le nouveau mot de passe "mdp" et renvoie "true" si l'email existe dans la base de données */
     public static Boolean modifPwd(Connection con,String email, String mdp){
         Boolean exist = false;
@@ -119,7 +135,7 @@ public class DatabaseManager {
         String lastMdp = lastUser.getPassword();
         Boolean exist = false ;
         try {
-            if (verifConnection(con, lastEmail, lastMdp)=="user"){
+            if(verifConnection(con, lastEmail, lastMdp)!=null && verifConnection(con, lastEmail, lastMdp).equals("user")){
             Statement smt = con.createStatement() ;
             ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             System.out.println("le resultat est "+resultset.next());
@@ -304,9 +320,80 @@ public class DatabaseManager {
         
     }
     
+    /** Supprime le site Sopra ayant le nom "place" et renvoie "true" si ce site existait bien, "false" sinon */
+    public static Boolean  deleteWorkplace(Connection con, String place){
+        Boolean exist = false ;
+        try {
+            if (existWorkplace(con, place)){
+                Statement smt = con.createStatement() ;
+                ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+place+"'");
+                resultset.next();
+                int i = resultset.getInt("ID_WD");
+                smt.executeUpdate("DELETE FROM Work_Destination WHERE ID_WD="+i);
+                exist = true ;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exist ;
+        
+    }
     
+    /** Retourne une liste des noms de tous les sites Sopra de l'application */
+    public static ArrayList<String>  getAllWorkplaces(Connection con){
+        
+        ArrayList<String> listWorkplaces = new ArrayList<String>();
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM Work_Destination");
+            while(resultset.next()){
+            listWorkplaces.add(resultset.getString("Site"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listWorkplaces ;
+        
+    }
     
-    /** Ce main sert uniquement se test, s'y référer pour voir comment appeler les fonctions */
+    /** Retourne un objet workplace qui contient les données du site Sopra de l'application dont le nom est "site" */
+    public static Workplace  getWorkplace(Connection con, String site){
+        Model model = new Model();
+        Workplace w1 = null ;// model.new Workplace();
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM Work_Destination WHERE Site='"+site+"'");
+            if(resultset.next()){
+            w1 = model.new Workplace(resultset.getString("Site"),resultset.getString("Address"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return w1 ;  
+    }
+    
+    /** Modifie les données du site Sopra ayant le nom "site" par les nouvelles données contenues dans "w1" et renvoie true si le site sopra existe */
+    public static Boolean modifWorkplace(Connection con,Workplace w1,String site){
+        Boolean exist = false ;
+        try {
+            if (existWorkplace(con, site)){
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+site+"'");
+            resultset.next();
+            int i = resultset.getInt("ID_WD");
+            smt.executeUpdate("UPDATE Work_Destination SET Site='"+w1.getName()+"',Address='"+w1.getAddress()+"' WHERE ID_WD="+i);
+            exist = true ;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exist ;
+    }
+    
+    /** Ce main sert uniquement de test, s'y référer pour voir comment appeler les fonctions */
     public static void main(String[] args){
         try {
             
@@ -343,9 +430,9 @@ public class DatabaseManager {
             createUser(c1,user7);
             */
             
-            ArrayList<User> allUsers = usersSameJourneyNotif(c1,31400,1);
-            for (User u : allUsers){
-                System.out.println(u.getEmail());
+            ArrayList<String> allUsers = getAllWorkplaces(c1);
+            for (String u : allUsers){
+                System.out.println(u);
             }
             
             /**
@@ -367,7 +454,7 @@ public class DatabaseManager {
             
             System.out.println(recupData(c1,"ayoub@test.com", "pass").getFirstname());
             * */
-            deleteUsers(c1,"number1@test.com");
+            //deleteUsers(c1,"number1@test.com");
             c1.close();
             
         } catch (SQLException ex) {

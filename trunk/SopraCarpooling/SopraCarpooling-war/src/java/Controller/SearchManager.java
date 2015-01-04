@@ -95,17 +95,17 @@ public class SearchManager extends HttpServlet {
         if (Valeur == null) {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
-            int positionAt = Valeur.indexOf("@#**#@");
-            String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt + 6);
-            //interrogation de la base de données au lieu de créer manuellement la liste (fonction en attente)
-            ArrayList<String> listPlaces = new ArrayList<String>();
-            listPlaces.add("Sopra Colo 1");
-            listPlaces.add("Sopra Colo 2");
-            listPlaces.add("Sopra Ramassiers");
-            listPlaces.add("Sopra Albi");
-            request.setAttribute("listPlaces", listPlaces);
-            processRequest(request, response);
+            try {
+                int positionAt = Valeur.indexOf("@#**#@");
+                String email = Valeur.substring(0, positionAt);
+                String password = Valeur.substring(positionAt + 6);
+                Connection con = DatabaseManager.connectionDatabase();
+                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+                request.setAttribute("listPlaces", listPlaces);
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

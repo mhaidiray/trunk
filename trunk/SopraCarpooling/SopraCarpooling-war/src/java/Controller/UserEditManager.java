@@ -5,9 +5,14 @@
  */
 package Controller;
 
+import Model.DatabaseManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -62,17 +67,17 @@ public class UserEditManager extends HttpServlet {
         if (Valeur==null){
             response.sendRedirect("/SopraCarpooling-war/login");
         }else{
-            int positionAt = Valeur.indexOf("@#**#@");
-            String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt+6);
-            //interrogation de la base de données au lieu de créer manuellement la liste (fonction en attente)
-            ArrayList<String> listPlaces = new ArrayList<String>();
-            listPlaces.add("Sopra Colo 1");
-            listPlaces.add("Sopra Colo 2");
-            listPlaces.add("Sopra Ramassiers");
-            listPlaces.add("Sopra Albi");
-            request.setAttribute("listPlaces", listPlaces);
-            processRequest(request, response);
+            try {
+                int positionAt = Valeur.indexOf("@#**#@");
+                String email = Valeur.substring(0, positionAt);
+                String password = Valeur.substring(positionAt+6);
+                Connection con = DatabaseManager.connectionDatabase();
+                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+                request.setAttribute("listPlaces", listPlaces);
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserEditManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

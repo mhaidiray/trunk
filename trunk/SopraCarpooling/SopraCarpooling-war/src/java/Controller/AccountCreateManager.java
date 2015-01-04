@@ -177,14 +177,14 @@ public class AccountCreateManager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //interrogation de la base de données au lieu de créer manuellement la liste (fonction en attente)
-        ArrayList<String> listPlaces = new ArrayList<String>();
-        listPlaces.add("Sopra Colo 1");
-        listPlaces.add("Sopra Colo 2");
-        listPlaces.add("Sopra Ramassiers");
-        listPlaces.add("Sopra Albi");
-        request.setAttribute("listPlaces", listPlaces);
-        processRequest(request, response);
+        try {
+            Connection con = DatabaseManager.connectionDatabase();
+            ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+            request.setAttribute("listPlaces", listPlaces);
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
