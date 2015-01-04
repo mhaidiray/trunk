@@ -186,6 +186,8 @@ public class PersonalDataManager extends HttpServlet {
             }
         } else if (request.getParameter("annuler") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
+        } else if (request.getParameter("deco")!=null){
+            response.sendRedirect("/SopraCarpooling-war/login");
         }
     }
 

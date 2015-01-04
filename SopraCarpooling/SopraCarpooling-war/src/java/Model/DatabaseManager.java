@@ -176,10 +176,10 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT * FROM User WHERE zipcode = "+zipcode+" AND workplace="+sitesopra);
+            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member WHERE User.zipcode = "+zipcode+" AND User.workplace="+sitesopra);
             //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             while(resultset.next()){
-            user = model.new User("none","none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
+            user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
             listUsers.add(user);
             }
             
@@ -201,10 +201,10 @@ public class DatabaseManager {
             ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+sitesopra+"'");
             if(resultset.next()){
                 int id_site = resultset.getInt("ID_WD");
-                resultset =smt.executeQuery("SELECT * FROM User WHERE zipcode = "+zipcode+" AND workplace="+id_site);
+                resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member  WHERE User.zipcode = "+zipcode+" AND User.workplace="+id_site);
                 //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
                 while(resultset.next()){
-                    user = model.new User("none","none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
+                    user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
                     listUsers.add(user);
                 }
             }
@@ -227,7 +227,7 @@ public class DatabaseManager {
             ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=User.ID_Member WHERE User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
             //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             while(resultset.next()){
-            user = model.new User(resultset.getString("email"),resultset.getString("password"),resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
+            user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
             listUsers.add(user);
             }
             
@@ -373,6 +373,22 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return w1 ;  
+    }
+    
+    /** Retourne le mot de passe de l'utilisateur dont l'email est "user" si l'utilisateur existe, null sinon */
+    public static String  getPassword(Connection con, String user){
+        String pass = null ;
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT password FROM Member WHERE email='"+user+"'");
+            if(resultset.next()){
+                pass = resultset.getString("password");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pass ;  
     }
     
     /** Modifie ou ajoute les données du site Sopra ayant le nom "site" par les nouvelles données contenues dans "w1" et renvoie true si le site sopra existe */

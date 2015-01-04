@@ -13,13 +13,13 @@
     </head>
     <body>
         <div class="main">
-
+            <form method="post">
             <div class="lable">
                 <div class="col_1_of_2 span_1_of_2"><h1>${titre}</h1></div>
-                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
+                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div></div>
                 <div class="clear"> </div>
             </div>	
-            <form method="post">
+            
                 <div class="lable">
                     
                     <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" name="nom" value="${nom}"><span class="erreur">${erreurs['nom']}</span></div>
