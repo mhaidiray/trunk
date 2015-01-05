@@ -12,12 +12,13 @@
     </head>
     <body>
         <div class="main">
-            <div class="lable">
-                <div class="col_1_of_2 span_1_of_2"><h1>Gestion des lieux de travail</h1></div>
-                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
-                <div class="clear"> </div>
-            </div>	
             <form>
+                <div class="lable">
+                    <div class="col_1_of_2 span_1_of_2"><h1>Gestion des lieux de travail</h1></div>
+                    <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div></div>
+                    <div class="clear"> </div>
+                </div>	
+                <span class="erreur">${erreurs['site']}</span>
                 <%
                     String nomsite = (String) request.getAttribute("nomsite");
                     String addrsite = (String) request.getAttribute("addrsite");
@@ -28,6 +29,7 @@
                             }" onblur="if (this.value == '') {
                                         this.value = '<%=nomsite%>';
                                     }"></div>
+                    <span class="erreur">${erreurs['adr']}</span>
                     <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="adresse" value="<%=addrsite%>" onfocus="if (this.value == '<%=addrsite%>') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
@@ -35,14 +37,15 @@
                                     }"></div>
                     <div class="clear"> </div>
                 </div>
-                
+
                 <%} else {%>
                 <div class="lable">
-                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra à ajouter" onfocus="if (this.value == 'Nom du site Sopra à ajouter/modifier') {
+                    <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="nom" value="Nom du site Sopra à ajouter" onfocus="if (this.value == 'Nom du site Sopra à ajouter') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
-                                        this.value = 'Nom du site Sopra à ajouter/modifier';
+                                        this.value = 'Nom du site Sopra à ajouter';
                                     }"></div>
+                    <span class="erreur">${erreurs['adr']}</span>
                     <div class="col_1_of_3 span_1_of_2"><input type="text" class="text" name="adresse" value="Adresse du site Sopra" onfocus="if (this.value == 'Adresse du site Sopra') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
@@ -67,6 +70,10 @@
                 </div>
                 <div class="clear"></div>
             </form>
+            <br clear="all">
+            <h10>${erreurs['modifier']}</h10>
+            <h10>${erreurs['creer']}</h10>
+
             <!-----//end-main---->
         </div>
     </body>

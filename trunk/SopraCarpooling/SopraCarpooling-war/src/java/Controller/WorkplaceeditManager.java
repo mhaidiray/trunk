@@ -6,11 +6,12 @@
 package Controller;
 
 import Model.DatabaseManager;
+import static Model.DatabaseManager.modifWorkplace;
 import Model.Model.Workplace;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -27,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "WrkplaceeditManager", urlPatterns = {"/WrkplaceeditManager"})
 public class WorkplaceeditManager extends HttpServlet {
 
+    HashMap<String, String> erreurs = new HashMap<String, String>();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,11 +39,73 @@ public class WorkplaceeditManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public boolean checkSite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean erreurexist = false;
+        String site = request.getParameter("nom");
+        if (site.equals("Nom du site Sopra Ã  ajouter")) {
+            erreurs.put("site", "Veuillez remplir le champ de nom du site Sopra");
+            request.setAttribute("erreurs", erreurs);
+            request.setAttribute("site", "invalid");
+            erreurexist = true;
+        }
+        return erreurexist;
+    }
+
+    public boolean checkAdr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean erreurexist = false;
+        String adr = request.getParameter("adresse");
+        if (adr.equals("Adresse du site Sopra")) {
+            erreurs.put("adr", "Veuillez remplir le champ de l'adresse du site Sopra");
+            request.setAttribute("erreurs", erreurs);
+            request.setAttribute("adr", "invalid");
+            erreurexist = true;
+        }
+        return erreurexist;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplceedit.jsp").forward(request, response);
+        if (request.getParameter("deco") != null) {
+            response.sendRedirect("/SopraCarpooling-war/login");
+
+        } else if (request.getParameter("annule") != null) {
+            response.sendRedirect("/SopraCarpooling-war/wrkplcelist");
+
+        } else if (request.getParameter("valide") != null) {
+            boolean checksi=checkSite(request, response);
+            boolean checkad=checkAdr(request, response);
+            if (checksi || checkad) {
+                this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplceedit.jsp").forward(request, response);
+                erreurs.clear();
+            } else {
+                try {
+                    String site = request.getParameter("nom");
+                    String adr = request.getParameter("adresse");
+                    Workplace w1 = null;
+                    w1 = new Model.Model().new Workplace(site, adr);
+                    Connection con = DatabaseManager.connectionDatabase();
+                    if (modifWorkplace(con, w1, site)) {
+                        erreurs.put("modifier", "Félicitations, vous venez de modifier le site " + site);
+                        request.setAttribute("erreurs", erreurs);
+                        request.setAttribute("modifier", "invalid");
+                    } else {
+                        erreurs.put("creer", "Félicitations, Vous venez de créer le site " + site);
+                        request.setAttribute("erreurs", erreurs);
+                        request.setAttribute("creer", "invalid");
+                    }
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplceedit.jsp").forward(request, response);
+                    erreurs.clear();
+                } catch (SQLException ex) {
+                    Logger.getLogger(WorkplaceeditManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        } else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplceedit.jsp").forward(request, response);
+            erreurs.clear();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
