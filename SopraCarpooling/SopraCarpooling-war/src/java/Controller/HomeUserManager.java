@@ -38,7 +38,7 @@ public class HomeUserManager extends HttpServlet {
         Connection con;
         con = DatabaseManager.connectionDatabase();
         Model.User u = DatabaseManager.recupData(con, email, pass);
-        ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourney(con, u.getZipcode(), u.getWorkplace());
+        ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourney(con, u.getZipcode(), u.getWorkplace(),email);
         request.setAttribute("prenom", u.getFirstname());
         request.setAttribute("nom", u.getLastname());
         request.setAttribute("listUsers", listUsers);
@@ -54,7 +54,10 @@ public class HomeUserManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/search");
         } else if (request.getParameter("persinfo") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
-        }else if (request.getParameter("deco")!=null){
+        }else if (request.getParameter("deco")!=null){                    
+            Cookie monCookie = new Cookie("user",null) ;
+            monCookie.setMaxAge(0);
+            response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
         }else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/userhome.jsp").forward(request, response);

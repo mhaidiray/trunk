@@ -168,7 +168,7 @@ public class DatabaseManager {
     } 
     
     /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" */
-    public static ArrayList<User> usersSameJourney(Connection con,int zipcode,int sitesopra){
+    public static ArrayList<User> usersSameJourney(Connection con,int zipcode,int sitesopra,String email){
         
         ArrayList<User> listUsers = new ArrayList<User>();
         Model model = new Model();
@@ -176,7 +176,7 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member WHERE User.zipcode = "+zipcode+" AND User.workplace="+sitesopra);
+            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member WHERE Member.email != '"+email+"' AND User.workplace="+sitesopra+" AND User.zipcode = "+zipcode);
             //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             while(resultset.next()){
             user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
@@ -191,7 +191,7 @@ public class DatabaseManager {
     }
     
     /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" */
-    public static ArrayList<User> usersSameJourney(Connection con,int zipcode,String sitesopra){
+    public static ArrayList<User> usersSameJourney(Connection con,int zipcode,String sitesopra,String email){
         ArrayList<User> listUsers = new ArrayList<User>();
         Model model = new Model();
         Model.User user = null; //model.new User(
@@ -201,7 +201,7 @@ public class DatabaseManager {
             ResultSet resultset =smt.executeQuery("SELECT ID_WD FROM Work_Destination WHERE Site = '"+sitesopra+"'");
             if(resultset.next()){
                 int id_site = resultset.getInt("ID_WD");
-                resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member  WHERE User.zipcode = "+zipcode+" AND User.workplace="+id_site);
+                resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member  WHERE Member.email != '"+email+"' AND User.zipcode = "+zipcode+" AND User.workplace="+id_site);
                 //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
                 while(resultset.next()){
                     user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
@@ -216,7 +216,7 @@ public class DatabaseManager {
     }
     
     /** Retourne une liste d'objets User ayant le même trajet source="zipcode" et workplace="sitesopra" et souhaitant être notifiés */
-    public static ArrayList<User> usersSameJourneyNotif(Connection con,int zipcode,int sitesopra){
+    public static ArrayList<User> usersSameJourneyNotif(Connection con,int zipcode,int sitesopra, String email){
         
         ArrayList<User> listUsers = new ArrayList<User>();
         Model model = new Model();
@@ -224,7 +224,7 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=User.ID_Member WHERE User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
+            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=User.ID_Member WHERE Member.email != '"+email+"' AND User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
             //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             while(resultset.next()){
             user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
@@ -449,9 +449,9 @@ public class DatabaseManager {
             createUser(c1,user7);
             */
             
-            ArrayList<String> allUsers = getAllWorkplaces(c1);
-            for (String u : allUsers){
-                System.out.println(u);
+            ArrayList<User> allUsers = usersSameJourney(c1,31400,"Sopra Colo 1","mohamed_squalli@hotmail.com");
+            for (User u : allUsers){
+                System.out.println("L'email est ..........? : "+u.getEmail());
             }
             
             /**

@@ -38,7 +38,14 @@ public class GestroutesManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
+        if (request.getParameter("deco")!=null){                    
+            Cookie monCookie = new Cookie("user",null) ;
+            monCookie.setMaxAge(0);
+            response.addCookie(monCookie);
+            response.sendRedirect("/SopraCarpooling-war/login");
+        }else {
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestroutes.jsp").forward(request, response);
+        }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
