@@ -7,8 +7,6 @@ package Controller;
 
 import Model.DatabaseManager;
 import static Model.DatabaseManager.deleteWorkplace;
-import static Model.DatabaseManager.usersSameJourney;
-import Model.Model;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -92,16 +90,16 @@ public class WorkplacesManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
             try {
-            int positionAt = Valeur.indexOf("@#**#@");
-            String email = Valeur.substring(0, positionAt);
-            String password = Valeur.substring(positionAt + 6);
+                int positionAt = Valeur.indexOf("@#**#@");
+                String email = Valeur.substring(0, positionAt);
+                String password = Valeur.substring(positionAt + 6);
                 Connection con = DatabaseManager.connectionDatabase();
                 ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
-            request.setAttribute("listPlaces", listPlaces);
-            processRequest(request, response);
+                request.setAttribute("listPlaces", listPlaces);
+                processRequest(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(WorkplacesManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
         }
 
     }
