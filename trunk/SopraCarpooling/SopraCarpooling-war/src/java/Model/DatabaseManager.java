@@ -224,7 +224,7 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=User.ID_Member WHERE Member.email != '"+email+"' AND User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
+            ResultSet resultset =smt.executeQuery("SELECT * FROM User JOIN Member ON User.ID_Member=Member.ID_Member WHERE Member.email != '"+email+"' AND User.zipcode = "+zipcode+" AND User.workplace="+sitesopra+" AND User.notification=1");
             //ResultSet resultset =smt.executeQuery("SELECT ID_Member FROM Member WHERE email = '"+lastEmail+"' AND password='"+lastMdp+"'");
             while(resultset.next()){
             user = model.new User(resultset.getString("email"),"none",resultset.getString("firstname"),resultset.getString("lastname"),resultset.getString("phone"),resultset.getInt("zipcode"),resultset.getInt("workplace"),resultset.getString("morning_time"),resultset.getString("afternoon_time"),resultset.getInt("driver"),resultset.getInt("monday"),resultset.getInt("tuesday"),resultset.getInt("wednesday"),resultset.getInt("thursday"),resultset.getInt("friday"),resultset.getInt("saturday"),resultset.getInt("sunday"),resultset.getInt("notification"));
