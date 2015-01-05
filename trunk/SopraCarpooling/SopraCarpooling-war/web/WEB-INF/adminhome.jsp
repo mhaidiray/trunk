@@ -28,7 +28,7 @@
                 </div>
                 <div class="col_1_of_2 span_1_of_2">
                     <div class="submit">
-                        <input type="submit" onclick="myFunction()" value="Générer un rapport général" >
+                        <input type="submit" onclick="myFunction()" name="generate" value="Générer un rapport général" >
                     </div>
                  </div>
                 

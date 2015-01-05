@@ -43,6 +43,9 @@ public class HomeAdminManager extends HttpServlet {
          else if (request.getParameter("generateGeneralReport")!=null){
             response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
         } */
+        else if (request.getParameter("generate")!=null){
+            response.sendRedirect("/SopraCarpooling-war/gestroutes"); 
+        }
         else if (request.getParameter("mod1")!=null){
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);}
         else if (request.getParameter("mod2")!=null){
