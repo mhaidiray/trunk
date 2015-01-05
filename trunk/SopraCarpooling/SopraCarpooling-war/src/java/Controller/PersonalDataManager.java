@@ -105,7 +105,10 @@ public class PersonalDataManager extends HttpServlet {
         } else if (request.getParameter("mod") != null) {
             request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
-        } else if (request.getParameter("deco")!=null){
+        } else if (request.getParameter("deco")!=null){                    
+            Cookie monCookie = new Cookie("user",null) ;
+            monCookie.setMaxAge(0);
+            response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
         }else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
@@ -293,7 +296,8 @@ public class PersonalDataManager extends HttpServlet {
                 Connection con = DatabaseManager.connectionDatabase();
                 Model model = new Model();
                 Model.User user = model.new User(email, pass, prenom, nom, tel, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), heurematin, heuresoir, driver, monday, tuesday, wednesday, thursday, friday, saturday, sunday, notification);
-                System.out.println(DatabaseManager.modifUser(con, user, DatabaseManager.recupData(con, mail, pass)));
+                Model.User lastUser = DatabaseManager.recupData(con, mail, pass);
+                System.out.println(DatabaseManager.modifUser(con, user, lastUser));
                 Cookie mookie;
                 if (pwd != "" && pwd.length() > 0) {
                     DatabaseManager.modifPwd(con, email, pwd);
@@ -301,22 +305,13 @@ public class PersonalDataManager extends HttpServlet {
                 } else {
                     mookie = new Cookie("user", email + "@#**#@" + pass);
                 }
-
-                Cookie[] cookies = request.getCookies();
-                if (cookies != null) {
-                    for (int i = 0; i < cookies.length; i++) {
-                        Cookie MonCookie = cookies[i];
-                        if (MonCookie.getName().equals("user")) {
-                            MonCookie.setMaxAge(0);
-                            response.addCookie(MonCookie);
-                        }
-                    }
-                }
                 response.addCookie(mookie);
                 
-                ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee));
-                for (Model.User u : listUsers) {
-                    SMTPManager.sendNotification(u.getEmail(), prenom, nom);
+                if (user.getZipcode()!=lastUser.getZipcode() || user.getWorkplace() != lastUser.getWorkplace()){
+                    ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee),email);
+                    for (Model.User u : listUsers) {
+                        SMTPManager.sendNotification(u.getEmail(), prenom, nom);
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);

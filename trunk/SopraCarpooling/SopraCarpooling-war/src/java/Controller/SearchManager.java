@@ -117,29 +117,48 @@ public class SearchManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("search") != null) {
-            checkZip(request, response);
-            if (erreurs.isEmpty()) {
-                try {
-                    Connection c1 = DatabaseManager.connectionDatabase();
-                    ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
-                    String zipcode = request.getParameter("zipdepart");
-                    String sitesopra = request.getParameter("sitearrivee");
-                    int i;
-                    i = Integer.parseInt(zipcode);
-                    listUsers = usersSameJourney(c1, i, sitesopra);
-                    request.setAttribute("listUsers", listUsers);
-                    ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
-                    request.setAttribute("listPlaces", listPlaces);
-                    processRequest(request, response);
-                } catch (SQLException ex) {
-                    Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+            Cookie[] cookies = request.getCookies();
+            String Valeur = null;
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie MonCookie = cookies[i];
+                    if (MonCookie.getName().equals("user")) {
+                        Valeur = cookies[i].getValue();
+                    }
                 }
-
-            } else {
-                processRequest(request, response);
-                erreurs.clear();
             }
-        } else if (request.getParameter("deco") != null) {
+            if (Valeur==null){
+                response.sendRedirect("/SopraCarpooling-war/login");
+            }else {
+                checkZip(request, response);
+                if (erreurs.isEmpty()) {
+                    try {
+                        int positionAt = Valeur.indexOf("@#**#@");
+                        String email = Valeur.substring(0, positionAt);
+                        Connection c1 = DatabaseManager.connectionDatabase();
+                        ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
+                        String zipcode = request.getParameter("zipdepart");
+                        String sitesopra = request.getParameter("sitearrivee");
+                        int i;
+                        i = Integer.parseInt(zipcode);
+                        listUsers = usersSameJourney(c1, i, sitesopra,email);
+                        request.setAttribute("listUsers", listUsers);
+                        ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
+                        request.setAttribute("listPlaces", listPlaces);
+                        processRequest(request, response);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    processRequest(request, response);
+                    erreurs.clear();
+                }
+            }
+        } else if (request.getParameter("deco") != null) {                    
+            Cookie monCookie = new Cookie("user",null) ;
+            monCookie.setMaxAge(0);
+            response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
         }
     }

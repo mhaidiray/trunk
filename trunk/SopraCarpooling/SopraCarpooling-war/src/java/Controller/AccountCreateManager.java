@@ -288,7 +288,7 @@ public class AccountCreateManager extends HttpServlet {
                 Model.User user = model.new User(email, pwd, prenom, nom, tel, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), heurematin, heuresoir, driver, monday, tuesday, wednesday, thursday, friday, saturday, sunday, notification);
                 DatabaseManager.createUser(con, user);
                 SMTPManager.sendCreateConfirmation(email, pwd);
-                ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee));
+                ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee),email);
                 for (Model.User u : listUsers) {
                     SMTPManager.sendNotification(u.getEmail(), prenom, nom);
                 }

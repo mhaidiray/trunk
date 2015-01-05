@@ -15,9 +15,9 @@
 
     <body>
 
-        <h1>Interface d'administration</h1>	
-        <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
+        <h1>Interface d'administration</h1>
         <form method="post">
+        <div class="deco"><input type="submit" onclick="myFunction()" name="deco" value="Se déconnecter"></div>
             <h2>Veuillez renseigner le trajet pour lequel vous souhaitez générer un rapport</h2>
             <div class="lable">
                 <div class="col_1_of_3 span_1_of_2"><h5> Veuillez renseigner le code postal de départ :</h5>
@@ -45,6 +45,7 @@
                 <span class="erreur">${erreurs['zipdepart']}</span>
                 <br clear="all">
                 <div class="cher"><input type="submit" onclick="myFunction()" value="Générer un rapport"></div>
+            </div>
         </form>
 
     </body>
