@@ -6,10 +6,10 @@
 package Controller;
 
 import Model.DatabaseManager;
+import static Model.DatabaseManager.deleteWorkplace;
 import static Model.DatabaseManager.usersSameJourney;
 import Model.Model;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Samih
+ * @author Salah
  */
 public class WorkplacesManager extends HttpServlet {
 
@@ -43,9 +43,14 @@ public class WorkplacesManager extends HttpServlet {
         if (request.getParameter("deco") != null) {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else if (request.getParameter("del") != null) {
-            // Methode pour supprimer de la base de donnée le site sopra selectionné
-            request.getParameter("sitesopra");
-            response.sendRedirect("/SopraCarpooling-war/adminhome");
+            try {
+                Connection con = DatabaseManager.connectionDatabase();
+                String place = request.getParameter("sitesopra");
+                deleteWorkplace(con, place);
+                response.sendRedirect("/SopraCarpooling-war/adminhome");
+            } catch (SQLException ex) {
+                Logger.getLogger(WorkplacesManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (request.getParameter("add") != null) {
             Cookie monCookie = new Cookie("modif", "none");
             response.addCookie(monCookie);
