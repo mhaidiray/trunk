@@ -51,11 +51,7 @@ public class PersonalDataManager extends HttpServlet {
         request.setAttribute("sitearrivee", u.getWorkplace());
         request.setAttribute("heurematin", u.getMorning_time());
         request.setAttribute("heuresoir", u.getAfternoon_time());
-        ArrayList<String> listPlaces = new ArrayList<String>();
-        listPlaces.add("Sopra Colo 1");
-        listPlaces.add("Sopra Colo 2");
-        listPlaces.add("Sopra Ramassiers");
-        listPlaces.add("Sopra Albi");
+        ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
         request.setAttribute("listPlaces", listPlaces);
         if (u.getMonday() == 1) {
             request.setAttribute("lundi", "Lundi ");
