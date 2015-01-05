@@ -12,12 +12,12 @@
     </head>
     <body>
         <div class="main">
+            <form>
             <div class="lable">
                 <div class="col_1_of_2 span_1_of_2"><h1>Consultez vos informations personnelles</h1></div>
-                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div></div>
+                <div class="col_1_of_2 span_1_of_2"><div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div></div>
                 <div class="clear"> </div>
             </div>	
-            <form>
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_2"><h3>${nom}</h3></div>
                     <div class="col_1_of_2 span_1_of_2"><h3>${prenom}</h3></div>

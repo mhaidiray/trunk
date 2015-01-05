@@ -16,8 +16,9 @@
     <body>
         <div class="main">
             <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
-            <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
             <form>
+            <div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div>
+
                 <h2>Que souhaitez-vous faire aujourd'hui ?</h2>
                 <div class="lable-2">
                     <div class="col_1_of_2 span_1_of_2">
