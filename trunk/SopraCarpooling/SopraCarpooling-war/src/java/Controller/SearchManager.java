@@ -120,28 +120,31 @@ public class SearchManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getParameter("search") != null) {
+            checkZip(request, response);
+            if (erreurs.isEmpty()) {
+                try {
+                    Connection c1 = DatabaseManager.connectionDatabase();
+                    ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
+                    String zipcode = request.getParameter("zipdepart");
+                    String sitesopra = request.getParameter("sitearrivee");
+                    int i;
+                    i = Integer.parseInt(zipcode);
+                    listUsers = usersSameJourney(c1, i, sitesopra);
+                    request.setAttribute("listUsers", listUsers);
+                    ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
+                    request.setAttribute("listPlaces", listPlaces);
+                    processRequest(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-        checkZip(request, response);
-        if (erreurs.isEmpty()) {
-            try {
-                Connection c1 = DatabaseManager.connectionDatabase();
-                ArrayList<Model.User> listUsers = new ArrayList<Model.User>();
-                String zipcode = request.getParameter("zipdepart");
-                String sitesopra = request.getParameter("sitearrivee");
-                int i;
-                i = Integer.parseInt(zipcode);
-                listUsers = usersSameJourney(c1, i, sitesopra);
-                request.setAttribute("listUsers", listUsers);
-                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
-                request.setAttribute("listPlaces", listPlaces);
+            } else {
                 processRequest(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+                erreurs.clear();
             }
-
-        } else {
-            processRequest(request, response);
-            erreurs.clear();
+        }else if (request.getParameter("deco") != null){
+            response.sendRedirect("/SopraCarpooling-war/login");
         }
     }
 

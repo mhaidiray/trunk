@@ -16,8 +16,8 @@
     <body>
         <div class="main">
             <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
-            <div class="deco"><input type="submit" onclick="myFunction()" value="Se déconnecter"></div>
             <form method="post">
+            <div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div>
                 <h2>Veuillez renseigner la commune de départ et le site Sopra d'arrivée de votre recherche</h2>
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_2"><h5> Veuillez renseigner le code postal de départ :</h5>
@@ -42,8 +42,8 @@
                         </select>
                     </div>
                     <span class="erreur">${erreurs['zipdepart']}</span>
-                    <div class="cher"><input type="submit" onclick="myFunction()" value="Chercher"></div>
-            </form>
+                    <div class="cher"><input type="submit" name="search" onclick="myFunction()" value="Chercher"></div>
+            
 
             <br CLEAR="all">
             <h2>Résultats de votre recherche :</h2>
@@ -90,6 +90,8 @@
             </table>
 
             <div class="clear"></div>
+            
         </div>
+            </form>
     </body>
 </html>

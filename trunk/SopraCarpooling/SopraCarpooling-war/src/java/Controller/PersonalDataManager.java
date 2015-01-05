@@ -105,7 +105,9 @@ public class PersonalDataManager extends HttpServlet {
         } else if (request.getParameter("mod") != null) {
             request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
-        } else {
+        } else if (request.getParameter("deco")!=null){
+            response.sendRedirect("/SopraCarpooling-war/login");
+        }else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
         }
     }

@@ -54,7 +54,9 @@ public class HomeUserManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/search");
         } else if (request.getParameter("persinfo") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
-        } else {
+        }else if (request.getParameter("deco")!=null){
+            response.sendRedirect("/SopraCarpooling-war/login");
+        }else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/userhome.jsp").forward(request, response);
         }
     }
