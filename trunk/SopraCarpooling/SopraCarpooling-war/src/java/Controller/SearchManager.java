@@ -8,17 +8,13 @@ package Controller;
 import Model.DatabaseManager;
 import static Model.DatabaseManager.usersSameJourney;
 import Model.Model;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.registry.infomodel.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Samih
+ * @author Salah
  */
 public class SearchManager extends HttpServlet {
 
@@ -143,7 +139,7 @@ public class SearchManager extends HttpServlet {
                 processRequest(request, response);
                 erreurs.clear();
             }
-        }else if (request.getParameter("deco") != null){
+        } else if (request.getParameter("deco") != null) {
             response.sendRedirect("/SopraCarpooling-war/login");
         }
     }
