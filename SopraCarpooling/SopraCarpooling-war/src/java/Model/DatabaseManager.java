@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DatabaseManager {
     private static String userName = "root" ;
-    private static String password = "coco" ;
+    private static String password = "root" ;
     private static String serverName = "localhost";
     private static String portNumber="3306";
     private static String dbName ="SopraCarpooling";

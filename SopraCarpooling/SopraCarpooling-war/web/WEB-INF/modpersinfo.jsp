@@ -81,33 +81,33 @@
 
                 </div>
                     <% if (request.getAttribute("lundi")!=null){ %>
-                <INPUT type="checkbox" name="lundi" value="1" checked=""> <FONT COLOR=#ffffff >Lundi</FONT>
+                <INPUT type="checkbox" name="lun" value="1" checked=""> <FONT COLOR=#ffffff >Lundi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="lundi" value="1"> <FONT COLOR=#ffffff >Lundi</FONT>
+                <INPUT type="checkbox" name="lun" value="1"> <FONT COLOR=#ffffff >Lundi</FONT>
                 <% } if (request.getAttribute("mardi")!=null){ %>
-                <INPUT type="checkbox" name="mardi" value="2" checked=""> <FONT COLOR=#ffffff >Mardi</FONT>
+                <INPUT type="checkbox" name="mar" value="1" checked=""> <FONT COLOR=#ffffff >Mardi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="mardi" value="2"> <FONT COLOR=#ffffff >Mardi</FONT>
+                <INPUT type="checkbox" name="mar" value="1"> <FONT COLOR=#ffffff >Mardi</FONT>
                 <% } if (request.getAttribute("mercredi")!=null){ %>
-                <INPUT type="checkbox" name="mercredi" value="3" checked=""> <FONT COLOR=#ffffff >Mercredi</FONT>
+                <INPUT type="checkbox" name="mer" value="1" checked=""> <FONT COLOR=#ffffff >Mercredi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="mercredi" value="3"> <FONT COLOR=#ffffff >Mercredi</FONT>
+                <INPUT type="checkbox" name="mer" value="1"> <FONT COLOR=#ffffff >Mercredi</FONT>
                 <% } if (request.getAttribute("jeudi")!=null){ %>
-                <INPUT type="checkbox" name="jeudi" value="2" checked=""> <FONT COLOR=#ffffff >Jeudi</FONT>
+                <INPUT type="checkbox" name="jeu" value="1" checked=""> <FONT COLOR=#ffffff >Jeudi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="jeudi" value="2"> <FONT COLOR=#ffffff >Jeudi</FONT>
+                <INPUT type="checkbox" name="jeu" value="1"> <FONT COLOR=#ffffff >Jeudi</FONT>
                 <% } if (request.getAttribute("vendredi")!=null){ %>
-                <INPUT type="checkbox" name="vendredi" value="2" checked=""> <FONT COLOR=#ffffff >Vendredi</FONT>
+                <INPUT type="checkbox" name="ven" value="1" checked=""> <FONT COLOR=#ffffff >Vendredi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="vendredi" value="2"> <FONT COLOR=#ffffff >Vendredi</FONT>
+                <INPUT type="checkbox" name="ven" value="1"> <FONT COLOR=#ffffff >Vendredi</FONT>
                 <% } if (request.getAttribute("samedi")!=null){ %>
-                <INPUT type="checkbox" name="samedi" value="2" checked=""> <FONT COLOR=#ffffff >Samedi</FONT>
+                <INPUT type="checkbox" name="sam" value="1" checked=""> <FONT COLOR=#ffffff >Samedi</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="samedi" value="2"> <FONT COLOR=#ffffff >Samedi</FONT>
+                <INPUT type="checkbox" name="sam" value="1"> <FONT COLOR=#ffffff >Samedi</FONT>
                 <% } if (request.getAttribute("dimanche")!=null){ %>
-                <INPUT type="checkbox" name="dimanche" value="2" checked=""> <FONT COLOR=#ffffff >Dimanche</FONT>
+                <INPUT type="checkbox" name="dim" value="1" checked=""> <FONT COLOR=#ffffff >Dimanche</FONT>
                 <% } else {%>
-                <INPUT type="checkbox" name="dimanche" value="2"> <FONT COLOR=#ffffff >Dimanche</FONT>
+                <INPUT type="checkbox" name="dim" value="1"> <FONT COLOR=#ffffff >Dimanche</FONT>
                 <% } %>
                 <br>
 
