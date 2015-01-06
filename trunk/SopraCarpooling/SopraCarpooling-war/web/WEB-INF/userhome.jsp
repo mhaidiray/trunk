@@ -53,18 +53,19 @@
                         ArrayList<User> listUsers = new ArrayList<User>();
 
                         int cond;
-                        String nom, pre, eml, tel, dep = null;
+                        String nom, pre, eml, tel, dep = null, conduc="Non";
                         if (list != null) {
                             for (int i = 0; i < list.size(); i++) {
                                 User user = (User) list.get(i);
-                                cond = (int) user.getDriver();
+                                cond = user.getDriver();
+                                if(cond==1){conduc="Oui";}
                                 nom = (String) user.getLastname();
                                 pre = (String) user.getFirstname();
                                 eml = (String) user.getEmail();
                                 tel = (String) user.getPhone();
                     %>
                     <tr>
-                        <td><%=cond%></td>
+                        <td><%=conduc%></td>
                         <td><%=nom%></td>
                         <td><%=pre%></td>
                         <td><%=eml%></td>
