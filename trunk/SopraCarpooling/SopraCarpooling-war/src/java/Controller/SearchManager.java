@@ -151,8 +151,15 @@ public class SearchManager extends HttpServlet {
                     }
 
                 } else {
-                    processRequest(request, response);
-                    erreurs.clear();
+                    try {
+                        Connection c1=DatabaseManager.connectionDatabase();
+                        ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
+                        request.setAttribute("listPlaces", listPlaces);
+                        processRequest(request, response);
+                        erreurs.clear();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(SearchManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         } else if (request.getParameter("deco") != null) {                    
