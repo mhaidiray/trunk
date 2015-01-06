@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DatabaseManager {
     private static String userName = "root" ;
-    private static String password = "root" ;
+    private static String password = "coco" ;
     private static String serverName = "localhost";
     private static String portNumber="3306";
     private static String dbName ="SopraCarpooling";
@@ -365,6 +365,23 @@ public class DatabaseManager {
         try {
             Statement smt = con.createStatement() ;
             ResultSet resultset =smt.executeQuery("SELECT * FROM Work_Destination WHERE Site='"+site+"'");
+            if(resultset.next()){
+            w1 = model.new Workplace(resultset.getString("Site"),resultset.getString("Address"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return w1 ;  
+    }
+    
+        /** Retourne un objet workplace qui contient les données du site Sopra de l'application dont l'ID est "site" */
+    public static Workplace  getWorkplace(Connection con, int site){
+        Model model = new Model();
+        Workplace w1 = null ;// model.new Workplace();
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM Work_Destination WHERE ID_WD="+site);
             if(resultset.next()){
             w1 = model.new Workplace(resultset.getString("Site"),resultset.getString("Address"));
             }

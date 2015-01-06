@@ -48,7 +48,7 @@ public class PersonalDataManager extends HttpServlet {
         request.setAttribute("mail", u.getEmail());
         request.setAttribute("tel", u.getPhone());
         request.setAttribute("zipdepart", u.getZipcode());
-        request.setAttribute("sitearrivee", u.getWorkplace());
+        request.setAttribute("sitearrivee", DatabaseManager.getWorkplace(con, u.getWorkplace()).getName());
         request.setAttribute("heurematin", u.getMorning_time());
         request.setAttribute("heuresoir", u.getAfternoon_time());
         ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
