@@ -297,8 +297,17 @@ public class AccountCreateManager extends HttpServlet {
             }
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
+            Connection con;
+            try {
+                con = DatabaseManager.connectionDatabase();
+            
+            ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+            request.setAttribute("listPlaces", listPlaces);
             this.getServletContext().getRequestDispatcher("/WEB-INF/acccreate.jsp").forward(request, response);
             erreurs.clear();
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

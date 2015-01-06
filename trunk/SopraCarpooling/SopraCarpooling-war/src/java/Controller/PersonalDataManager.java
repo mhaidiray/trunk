@@ -101,12 +101,12 @@ public class PersonalDataManager extends HttpServlet {
         } else if (request.getParameter("mod") != null) {
             request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
-        } else if (request.getParameter("deco")!=null){                    
-            Cookie monCookie = new Cookie("user",null) ;
+        } else if (request.getParameter("deco") != null) {
+            Cookie monCookie = new Cookie("user", null);
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
-        }else {
+        } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/persinfo.jsp").forward(request, response);
         }
     }
@@ -187,7 +187,7 @@ public class PersonalDataManager extends HttpServlet {
             }
         } else if (request.getParameter("annuler") != null) {
             response.sendRedirect("/SopraCarpooling-war/persinfo");
-        } else if (request.getParameter("deco")!=null){
+        } else if (request.getParameter("deco") != null) {
             response.sendRedirect("/SopraCarpooling-war/login");
         }
     }
@@ -239,51 +239,51 @@ public class PersonalDataManager extends HttpServlet {
                 } else {
                     notification = 0;
                 }
-                if (request.getParameter("lundi") == null) {
+                if (request.getParameter("lun") == null) {
                     monday = 0;
-                } else if (request.getParameter("lundi").equals("on")) {
+                } else if (request.getParameter("lun").equals("1")) {
                     monday = 1;
                 } else {
                     monday = 0;
                 }
-                if (request.getParameter("mardi") == null) {
+                if (request.getParameter("mar") == null) {
                     tuesday = 0;
-                } else if (request.getParameter("mardi").equals("on")) {
+                } else if (request.getParameter("mar").equals("1")) {
                     tuesday = 1;
                 } else {
                     tuesday = 0;
                 }
-                if (request.getParameter("mercredi") == null) {
+                if (request.getParameter("mer") == null) {
                     wednesday = 0;
-                } else if (request.getParameter("mercredi").equals("on")) {
+                } else if (request.getParameter("mer").equals("1")) {
                     wednesday = 1;
                 } else {
                     wednesday = 0;
                 }
-                if (request.getParameter("jeudi") == null) {
+                if (request.getParameter("jeu") == null) {
                     thursday = 0;
-                } else if (request.getParameter("jeudi").equals("on")) {
+                } else if (request.getParameter("jeu").equals("1")) {
                     thursday = 1;
                 } else {
                     thursday = 0;
                 }
-                if (request.getParameter("vendredi") == null) {
+                if (request.getParameter("ven") == null) {
                     friday = 0;
-                } else if (request.getParameter("vendredi").equals("on")) {
+                } else if (request.getParameter("ven").equals("1")) {
                     friday = 1;
                 } else {
                     friday = 0;
                 }
-                if (request.getParameter("samedi") == null) {
+                if (request.getParameter("sam") == null) {
                     saturday = 0;
-                } else if (request.getParameter("samedi").equals("on")) {
+                } else if (request.getParameter("sam").equals("1")) {
                     saturday = 1;
                 } else {
                     saturday = 0;
                 }
-                if (request.getParameter("dimanche") == null) {
+                if (request.getParameter("dim") == null) {
                     sunday = 0;
-                } else if (request.getParameter("dimanche").equals("on")) {
+                } else if (request.getParameter("dim").equals("1")) {
                     sunday = 1;
                 } else {
                     sunday = 0;
@@ -302,9 +302,9 @@ public class PersonalDataManager extends HttpServlet {
                     mookie = new Cookie("user", email + "@#**#@" + pass);
                 }
                 response.addCookie(mookie);
-                
-                if (user.getZipcode()!=lastUser.getZipcode() || user.getWorkplace() != lastUser.getWorkplace()){
-                    ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee),email);
+
+                if (user.getZipcode() != lastUser.getZipcode() || user.getWorkplace() != lastUser.getWorkplace()) {
+                    ArrayList<Model.User> listUsers = DatabaseManager.usersSameJourneyNotif(con, Integer.parseInt(zipdepart), DatabaseManager.getJourneyId(con, sitearrivee), email);
                     for (Model.User u : listUsers) {
                         SMTPManager.sendNotification(u.getEmail(), prenom, nom);
                     }
@@ -314,13 +314,15 @@ public class PersonalDataManager extends HttpServlet {
             }
             response.sendRedirect("/SopraCarpooling-war/persinfo");
         } else {
-            ArrayList<String> listPlaces = new ArrayList<String>();
-            listPlaces.add("Sopra Colo 1");
-            listPlaces.add("Sopra Colo 2");
-            listPlaces.add("Sopra Ramassiers");
-            listPlaces.add("Sopra Albi");
+            Connection con;
+            try {
+                con = DatabaseManager.connectionDatabase();
+                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+                request.setAttribute("listPlaces", listPlaces);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
             fetchData(mail, pass, request, response);
-            request.setAttribute("listPlaces", listPlaces);
             request.setAttribute("erreurs", erreurs);
             request.setAttribute("titre", "Modifiez vos informations personnelles");
             this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
