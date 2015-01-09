@@ -429,6 +429,28 @@ public class DatabaseManager {
         return exist ;
     }
     
+    /** Retourne toutes les routes disponibles dans la base */
+    public static ArrayList<Route> getRoutes(Connection con){
+        
+        ArrayList<Route> listUsers = new ArrayList<Route>();
+        Route r;
+        try {
+            
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT zipcode, workplace FROM User");
+            while(resultset.next()){ 
+            r = new Route(resultset.getInt("zipcode"),getWorkplace(con, resultset.getInt("workplace")).getName());
+            listUsers.add(r);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listUsers ;
+        
+    }
+    
+    
     /** Ce main sert uniquement de test, s'y référer pour voir comment appeler les fonctions */
     public static void main(String[] args){
         try {
@@ -466,9 +488,9 @@ public class DatabaseManager {
             createUser(c1,user7);
             */
             
-            ArrayList<User> allUsers = usersSameJourney(c1,31400,"Sopra Colo 1","mohamed_squalli@hotmail.com");
-            for (User u : allUsers){
-                System.out.println("L'email est ..........? : "+u.getEmail());
+            ArrayList<Route> allRoutes = getRoutes(c1);
+            for (Route u : allRoutes){
+                System.out.println(u.getWorkplace() +""+u.getZipcode());
             }
             
             /**

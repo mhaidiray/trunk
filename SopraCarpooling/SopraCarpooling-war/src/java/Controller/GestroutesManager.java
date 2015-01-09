@@ -6,6 +6,8 @@
 package Controller;
 
 import Model.DatabaseManager;
+import Model.Model;
+import Model.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -34,6 +36,15 @@ public class GestroutesManager extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+      public void genList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Connection con;
+        con = DatabaseManager.connectionDatabase();
+        ArrayList<Route> listRoutes = DatabaseManager.getRoutes(con);
+        request.setAttribute("listRoutes", listRoutes);
+        processRequest(request, response);
+    }
+      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -81,7 +92,8 @@ public class GestroutesManager extends HttpServlet {
                 Connection con = DatabaseManager.connectionDatabase();
                 ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
                 request.setAttribute("listPlaces", listPlaces);
-                processRequest(request, response);
+                genList(request, response);
+           
             } catch (SQLException ex) {
                 Logger.getLogger(GestroutesManager.class.getName()).log(Level.SEVERE, null, ex);
             }
