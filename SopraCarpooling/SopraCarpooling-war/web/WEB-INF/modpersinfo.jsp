@@ -62,9 +62,14 @@
                             if (listSites != null) {
                                 for (int i = 0; i < listSites.size(); i++) {
                                     String site = (String) listSites.get(i);
+                                    if (site.equals(request.getAttribute("work"))) {
                         %>    
-                        <option value="<%=site%>"><%=site%></option>
+                        <option selected value="<%=site%>"><%=site%></option>
                         <%}
+                                    else { %>
+                        <option value="<%=site%>"><%=site%></option>            
+                            <%}
+                                }
                             }%>
                     </select>
                     <h4>Horaires :</h4>
