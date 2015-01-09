@@ -58,7 +58,7 @@ body{
 } 
 .login-form h2 a{
         text-shadow: 1px 1px 3px #fffffff;
-        background: #FF3333;
+        background: #170829;
         padding: 10px 20px 10px 20px;
 	text-align:right;
 	color: #fff;
@@ -243,7 +243,7 @@ input[type="submit"]:hover{
 	}
 	input[type="text"], input[type="password"]{
 		font-size:18px;
-		padding: 0.4em 1em 0.45em 1em;15px 2px
+		padding: 0.4em 1em 0.45em 1em;
 	}
 	.copy-right {
 	left:20%;
