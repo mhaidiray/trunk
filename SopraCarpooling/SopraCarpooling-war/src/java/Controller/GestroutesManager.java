@@ -41,7 +41,20 @@ public class GestroutesManager extends HttpServlet {
         Connection con;
         con = DatabaseManager.connectionDatabase();
         ArrayList<Route> listRoutes = DatabaseManager.getRoutes(con);
+        ArrayList<Model.User> listUser = DatabaseManager.getAllUsers(con);
         request.setAttribute("listRoutes", listRoutes);
+        int cond=0;
+        int pass=0;
+        for (int i=0;i<listUser.size();i++){
+            if (listUser.get(i).getDriver()==0){
+                pass++;
+            } else {
+                cond++;
+            }
+        }
+        request.setAttribute("cond", cond);
+        request.setAttribute("pass", pass);
+        request.setAttribute("conn", "2996");
         processRequest(request, response);
     }
       
@@ -86,12 +99,6 @@ public class GestroutesManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
             try {
-                int positionAt = Valeur.indexOf("@#**#@");
-                String email = Valeur.substring(0, positionAt);
-                String password = Valeur.substring(positionAt + 6);
-                Connection con = DatabaseManager.connectionDatabase();
-                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
-                request.setAttribute("listPlaces", listPlaces);
                 genList(request, response);
            
             } catch (SQLException ex) {

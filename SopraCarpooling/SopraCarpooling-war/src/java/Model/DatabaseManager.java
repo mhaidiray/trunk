@@ -437,7 +437,7 @@ public class DatabaseManager {
         try {
             
             Statement smt = con.createStatement() ;
-            ResultSet resultset =smt.executeQuery("SELECT zipcode, workplace FROM User");
+            ResultSet resultset =smt.executeQuery("SELECT distinct zipcode, workplace FROM User");
             while(resultset.next()){ 
             r = new Route(resultset.getInt("zipcode"),getWorkplace(con, resultset.getInt("workplace")).getName());
             listUsers.add(r);
@@ -486,7 +486,7 @@ public class DatabaseManager {
             createUser(c1,user5);
             createUser(c1,user6);
             createUser(c1,user7);
-            */
+            /*/
             
             ArrayList<Route> allRoutes = getRoutes(c1);
             for (Route u : allRoutes){
