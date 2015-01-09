@@ -40,13 +40,67 @@ public class UserEditManager extends HttpServlet {
     
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
+    public void fetchData(String email, String pwd, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        Connection con;
+        con = DatabaseManager.connectionDatabase();
+        Model.User u = DatabaseManager.recupData(con, email, pwd);
+        request.setAttribute("prenom", u.getFirstname());
+        request.setAttribute("nom", u.getLastname());
+        request.setAttribute("mail", u.getEmail());
+        request.setAttribute("tel", u.getPhone());
+        request.setAttribute("zipdepart", u.getZipcode());
+        request.setAttribute("sitearrivee", DatabaseManager.getWorkplace(con, u.getWorkplace()).getName());
+        request.setAttribute("heurematin", u.getMorning_time());
+        request.setAttribute("heuresoir", u.getAfternoon_time());
+        ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
+        request.setAttribute("listPlaces", listPlaces);
+        request.setAttribute("work", listPlaces.get(u.getWorkplace()-1));
+        request.setAttribute("listPlaces", listPlaces);
+        if (u.getMonday() == 1) {
+            request.setAttribute("lundi", "Lundi ");
+        }
+        if (u.getTuesday() == 1) {
+            request.setAttribute("mardi", "Mardi ");
+        }
+        if (u.getWednesday() == 1) {
+            request.setAttribute("mercredi", "Mercredi ");
+        }
+        if (u.getThursday() == 1) {
+            request.setAttribute("jeudi", "Jeudi ");
+        }
+        if (u.getFriday() == 1) {
+            request.setAttribute("vendredi", "Vendredi ");
+        }
+        if (u.getSaturday() == 1) {
+            request.setAttribute("samedi", "Samedi ");
+        }
+        if (u.getSunday() == 1) {
+            request.setAttribute("dimanche", "Dimanche");
+        }
+        if (u.getDriver() == 1) {
+            request.setAttribute("conducteur", "Oui");
+            request.setAttribute("cond", "Oui");
+        }
+        if (u.getDriver() == 0) {
+            request.setAttribute("conducteur", "Non");
+        }
+        if (u.getNotification() == 1) {
+            request.setAttribute("notif", "Oui");
+            request.setAttribute("not", "Oui");
+        }
+        if (u.getNotification() == 0) {
+            request.setAttribute("notif", "Non");
+        }
+
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         /* TODO output your page here. You may use following sample code. */     
         request.setAttribute("titre", "Modifiez les informations personnelles de l'utilisateur");
-        this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/modpersadmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,9 +134,9 @@ public class UserEditManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/login");
         }else{
             try {
-                Connection con = DatabaseManager.connectionDatabase();
-                ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
-                request.setAttribute("listPlaces", listPlaces);
+                Connection con=DatabaseManager.connectionDatabase();
+                String pwd=DatabaseManager.getPassword(con, Valeur2);
+                fetchData(Valeur2, pwd, request, response);
                 processRequest(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(UserEditManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,7 +186,10 @@ public class UserEditManager extends HttpServlet {
         } else if (request.getParameter("annuler") != null) {
             response.sendRedirect("/SopraCarpooling-war/adminhome");
         } else if (request.getParameter("deco")!=null){                    
-            Cookie monCookie = new Cookie("user",null) ;
+            Cookie monCookie = new Cookie("modifuser",null) ;
+            monCookie.setMaxAge(0);
+            response.addCookie(monCookie);
+            monCookie = new Cookie("admin",null) ;
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
@@ -260,7 +317,7 @@ public class UserEditManager extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(AccountCreateManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-            response.sendRedirect("/SopraCarpooling-war/persinfo");
+            response.sendRedirect("/SopraCarpooling-war/adminhome");
         } else {
             ArrayList<String> listPlaces = new ArrayList<String>();
             listPlaces.add("Sopra Colo 1");
@@ -271,7 +328,7 @@ public class UserEditManager extends HttpServlet {
             request.setAttribute("listPlaces", listPlaces);
             request.setAttribute("erreurs", erreurs);
             request.setAttribute("titre", "Modifiez les informations personnelles de l'utilisateur");
-            this.getServletContext().getRequestDispatcher("/WEB-INF/modpersinfo.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/modpersadmin.jsp").forward(request, response);
             erreurs.clear();
         }
     }
@@ -280,7 +337,6 @@ public class UserEditManager extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("mail");
-        String pwd1 = request.getParameter("pwd1");
         String pwd2 = request.getParameter("pwd2");
         String pwd3 = request.getParameter("pwd3");
         String zipdepart = request.getParameter("zipdepart");
@@ -320,13 +376,6 @@ public class UserEditManager extends HttpServlet {
         } else {
             erreurs.put("mail", "Aucune entrée3, veuillez réessayer");
             request.setAttribute("erreurs", erreurs);
-        }
-        if (pwd1 != null && pwd1.length() != 0) {
-            if (!pwd1.equals(pass)) {
-                erreurs.put("pwd1", "Ce mot de passe ne correspond pas à l'ancien");
-                request.setAttribute("erreurs", erreurs);
-                request.setAttribute("pwd1", "invalid");
-            }
         }
         if (pwd2 != null && pwd2.length() != 0) {
             if (!pwd2.equals(pwd3)) {
@@ -392,61 +441,5 @@ public class UserEditManager extends HttpServlet {
 
     }
   
-    
-    public void fetchData(String email, String pwd, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        Connection con;
-        con = DatabaseManager.connectionDatabase();
-        Model.User u = DatabaseManager.recupData(con, email, pwd);
-        request.setAttribute("prenom", u.getFirstname());
-        request.setAttribute("nom", u.getLastname());
-        request.setAttribute("mail", u.getEmail());
-        request.setAttribute("tel", u.getPhone());
-        request.setAttribute("zipdepart", u.getZipcode());
-        request.setAttribute("sitearrivee", u.getWorkplace());
-        request.setAttribute("heurematin", u.getMorning_time());
-        request.setAttribute("heuresoir", u.getAfternoon_time());
-        ArrayList<String> listPlaces = new ArrayList<String>();
-        listPlaces.add("Sopra Colo 1");
-        listPlaces.add("Sopra Colo 2");
-        listPlaces.add("Sopra Ramassiers");
-        listPlaces.add("Sopra Albi");
-        request.setAttribute("listPlaces", listPlaces);
-        if (u.getMonday() == 1) {
-            request.setAttribute("lundi", "Lundi ");
-        }
-        if (u.getTuesday() == 1) {
-            request.setAttribute("mardi", "Mardi ");
-        }
-        if (u.getWednesday() == 1) {
-            request.setAttribute("mercredi", "Mercredi ");
-        }
-        if (u.getThursday() == 1) {
-            request.setAttribute("jeudi", "Jeudi ");
-        }
-        if (u.getFriday() == 1) {
-            request.setAttribute("vendredi", "Vendredi ");
-        }
-        if (u.getSaturday() == 1) {
-            request.setAttribute("samedi", "Samedi ");
-        }
-        if (u.getSunday() == 1) {
-            request.setAttribute("dimanche", "Dimanche");
-        }
-        if (u.getDriver() == 1) {
-            request.setAttribute("conducteur", "Oui");
-            request.setAttribute("cond", "Oui");
-        }
-        if (u.getDriver() == 0) {
-            request.setAttribute("conducteur", "Non");
-        }
-        if (u.getNotification() == 1) {
-            request.setAttribute("notif", "Oui");
-            request.setAttribute("not", "Oui");
-        }
-        if (u.getNotification() == 0) {
-            request.setAttribute("notif", "Non");
-        }
-
-    }
     
 }
