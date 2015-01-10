@@ -8,6 +8,7 @@ package Controller;
 import Model.DatabaseManager;
 import Model.Model;
 import Model.Model.Workplace;
+import Model.SMTPManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -69,6 +70,7 @@ public class HomeAdminManager extends HttpServlet {
                     response.sendRedirect("/SopraCarpooling-war/useredit");
                 } else if (request.getParameter("sup" + j) != null) {
                     DatabaseManager.deleteUsers(con, listUsers.get(j).getEmail());
+                    SMTPManager.sendDeleteConfirmation(listUsers.get(j).getEmail());
                     tek=false;
                     response.sendRedirect("/SopraCarpooling-war/adminhome");
                 }
