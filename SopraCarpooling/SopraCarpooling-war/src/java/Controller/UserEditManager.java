@@ -215,7 +215,7 @@ public class UserEditManager extends HttpServlet {
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
                 String email = request.getParameter("mail");
-                String pwd = request.getParameter("pwd2");
+                String pwd = ResetPwdManager.encode(request.getParameter("pwd2"),email);
                 String zipdepart = request.getParameter("zipdepart");
                 String sitearrivee = request.getParameter("sitearrivee");
                 String heurematin = request.getParameter("heurematin");
@@ -304,6 +304,10 @@ public class UserEditManager extends HttpServlet {
                     DatabaseManager.modifPwd(con, email, pwd);
                     mookie = new Cookie("user", email + "@#**#@" + pwd);
                 } else {
+                    if (!mail.equals(email)){
+                        pass = ResetPwdManager.encode(request.getParameter("pwd1"),email);
+                        DatabaseManager.modifPwd(con, email, pass);
+                    }
                     mookie = new Cookie("user", email + "@#**#@" + pass);
                 }
                 response.addCookie(mookie);
@@ -337,8 +341,8 @@ public class UserEditManager extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("mail");
-        String pwd2 = request.getParameter("pwd2");
-        String pwd3 = request.getParameter("pwd3");
+        String pwd2 = ResetPwdManager.encode(request.getParameter("pwd2"),email);
+        String pwd3 = ResetPwdManager.encode(request.getParameter("pwd3"),email);
         String zipdepart = request.getParameter("zipdepart");
         String sitearrivee = request.getParameter("sitearrivee");
         String heurematin = request.getParameter("heurematin");

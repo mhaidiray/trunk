@@ -89,7 +89,7 @@ public class ConnectManager extends HttpServlet {
         try {
             String email = checkMail(request, response);
             //ajout ici de la vérification de la validité du couple email/mdp
-            String mdp=request.getParameter("mdp");
+            String mdp=ResetPwdManager.encode(request.getParameter("mdp"),email);
             Connection con;
             con = DatabaseManager.connectionDatabase();
             if (erreurs.isEmpty()) {

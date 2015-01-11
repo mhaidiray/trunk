@@ -36,49 +36,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
 
                 <li>
-                    <input type="password" value="Mot de passe" name="mdpp" onfocus="this.value = '';" onblur="if (this.value == '') {
+                    <input type="password" value="Mot de passe" name="mdp" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = 'Mot de passe';
                             }"><a href="#" class=" icon lock"></a>
                 </li>
-                    
-                                <%!
-                private static String encode(String mdp, String email)
-                {
-                    String password = mdp+"SopraCarpooling"+email;
-                    byte[] uniqueKey = password.getBytes();
-                    byte[] hash      = null;
-
-                    try
-                    {
-                        hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
-                    }
-                    catch (NoSuchAlgorithmException e)
-                    {
-                        throw new Error("No MD5 support in this VM.");
-                    }
-
-                    StringBuilder hashString = new StringBuilder();
-                    for (int i = 0; i < hash.length; i++)
-                    {
-                        String hex = Integer.toHexString(hash[i]);
-                        if (hex.length() == 1)
-                        {
-                            hashString.append('0');
-                            hashString.append(hex.charAt(hex.length() - 1));
-                        }
-                        else
-                            hashString.append(hex.substring(hex.length() - 2));
-                    }
-                    return hashString.toString();
-                }                                              
-            %>
-                   <%   
-                        String pwd1 = request.getParameter("mdpp"); 
-                        String email = request.getParameter("mail");
-                        String chiffre1 = encode(pwd1,email);
-                   %>
-
-                    <input type="hidden" name="mdp" value="<%=chiffre1%>">
                 
                 <div class ="forgot">
                     <h3><a href="resetpwd">Mot de passe oublié ?</a></h3>
