@@ -42,8 +42,8 @@ public class AccountCreateManager extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("mail");
-        String pwd1 = request.getParameter("pwd1");
-        String pwd2 = request.getParameter("pwd2");
+        String pwd1 = ResetPwdManager.encode(request.getParameter("pwd1"),email);
+        String pwd2 = ResetPwdManager.encode(request.getParameter("pwd2"),email);
         String zipdepart = request.getParameter("zipdepart");
         String sitearrivee = request.getParameter("sitearrivee");
         String heurematin = request.getParameter("heurematin");
@@ -204,7 +204,7 @@ public class AccountCreateManager extends HttpServlet {
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
                 String email = request.getParameter("mail");
-                String pwd = request.getParameter("pwd1");
+                String pwd = ResetPwdManager.encode(request.getParameter("pwd1"),email);
                 String zipdepart = request.getParameter("zipdepart");
                 String sitearrivee = request.getParameter("sitearrivee");
                 String heurematin = request.getParameter("heurematin");

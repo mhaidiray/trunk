@@ -34,19 +34,19 @@
                         <input type="text" class="text" name="mail" value="${mail}"><span class="erreur">${erreurs['mail']}</span></div>
                     <h4>Entrez votre ancien mot de passe</h4>
                     <span class="erreur">${erreurs['pwd1']}</span>
-                    <input type="password" class="text" value="Password" name="pwdd1" onfocus="if (this.value == 'Password') {
+                    <input type="password" class="text" value="Password" name="pwd1" onfocus="if (this.value == 'Password') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = 'Password';
                                     }">
                     <h4>Entrez un nouveau mot de passe (facultatif)</h4>
                     <span class="erreur">${erreurs['pwd2']}</span>
-                    <input type="password" class="text" value="" name="pwdd2" onfocus="if (this.value == '') {
+                    <input type="password" class="text" value="" name="pwd2" onfocus="if (this.value == '') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
-                    <input type="password" class="text" value="" name="pwdd3" onfocus="if (this.value == '') {
+                    <input type="password" class="text" value="" name="pwd3" onfocus="if (this.value == '') {
                                 this.value = '';
                             }" onblur="if (this.value == '') {
                                         this.value = '';
@@ -54,51 +54,6 @@
                     
                                         
                     
-                    
-                                <%!
-                private static String encode(String mdp, String email)
-                {
-                    String password = mdp+"SopraCarpooling"+email;
-                    byte[] uniqueKey = password.getBytes();
-                    byte[] hash      = null;
-
-                    try
-                    {
-                        hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
-                    }
-                    catch (NoSuchAlgorithmException e)
-                    {
-                        throw new Error("No MD5 support in this VM.");
-                    }
-
-                    StringBuilder hashString = new StringBuilder();
-                    for (int i = 0; i < hash.length; i++)
-                    {
-                        String hex = Integer.toHexString(hash[i]);
-                        if (hex.length() == 1)
-                        {
-                            hashString.append('0');
-                            hashString.append(hex.charAt(hex.length() - 1));
-                        }
-                        else
-                            hashString.append(hex.substring(hex.length() - 2));
-                    }
-                    return hashString.toString();
-                }                                              
-            %>
-                   <%   
-                        String pwd1 = request.getParameter("pwdd1"); 
-                        String pwd2 = request.getParameter("pwdd2"); 
-                        String pwd3 = request.getParameter("pwdd3"); 
-                        String email = request.getParameter("mail");
-                        String chiffre1 = encode(pwd1,email);
-                        String chiffre2 = encode(pwd2,email);
-                        String chiffre3 = encode(pwd3,email);
-                   %>
-
-                    <input type="hidden" name="pwd1" value="<%=chiffre1%>">
-                    <input type="hidden" name="pwd2" value="<%=chiffre2%>">
-                    <input type="hidden" name="pwd3" value="<%=chiffre3%>">
                     <h4>Informations géographiques :</h4>
                     <span class="erreur">${erreurs['zipdepart']}</span>
                     <input type="text" class="text" value="${zipdepart}" name="zipdepart">

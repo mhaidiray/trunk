@@ -60,7 +60,7 @@ public class ResetPwdManager extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
     }
     
-    private static String encode(String mdp, String email){
+    public static String encode(String mdp, String email){
                     String password = mdp+"SopraCarpooling"+email;
                     byte[] uniqueKey = password.getBytes();
                     byte[] hash      = null;
@@ -125,7 +125,9 @@ public class ResetPwdManager extends HttpServlet {
                 SecureRandom random = new SecureRandom();
                 String pwd = new BigInteger(60, random).toString(32);
                 /**Modification du password dans la base de données*/
-                SMTPManager.sendNewPassword(email, encode(pwd,email));
+                SMTPManager.sendNewPassword(email, pwd);
+                DatabaseManager.modifPwd(con, email, encode(pwd,email));
+                response.sendRedirect("SopraCarpooling-war/login");
             } else {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
                 erreurs.clear();

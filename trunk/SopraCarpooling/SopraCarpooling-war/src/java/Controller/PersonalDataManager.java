@@ -205,13 +205,13 @@ public class PersonalDataManager extends HttpServlet {
 
     public void modifUser(String pass, HttpServletRequest request, HttpServletResponse response, String mail) throws ServletException, IOException, SQLException {
 
-        checkInfos(pass, request, response);
+        checkInfos(pass,mail, request, response);
         if (erreurs.isEmpty()) {
             try {
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
                 String email = request.getParameter("mail");
-                String pwd = request.getParameter("pwd2");
+                String pwd = ResetPwdManager.encode(request.getParameter("pwd2"),email);
                 String zipdepart = request.getParameter("zipdepart");
                 String sitearrivee = request.getParameter("sitearrivee");
                 String heurematin = request.getParameter("heurematin");
@@ -300,6 +300,10 @@ public class PersonalDataManager extends HttpServlet {
                     DatabaseManager.modifPwd(con, email, pwd);
                     mookie = new Cookie("user", email + "@#**#@" + pwd);
                 } else {
+                    if (!mail.equals(email)){
+                        pass = ResetPwdManager.encode(request.getParameter("pwd1"),email);
+                        DatabaseManager.modifPwd(con, email, pass);
+                    }
                     mookie = new Cookie("user", email + "@#**#@" + pass);
                 }
                 response.addCookie(mookie);
@@ -331,13 +335,13 @@ public class PersonalDataManager extends HttpServlet {
         }
     }
 
-    public void checkInfos(String pass, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void checkInfos(String pass,String mail, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("mail");
-        String pwd1 = request.getParameter("pwd1");
-        String pwd2 = request.getParameter("pwd2");
-        String pwd3 = request.getParameter("pwd3");
+        String pwd1 = ResetPwdManager.encode(request.getParameter("pwd1"),mail);
+        String pwd2 = ResetPwdManager.encode(request.getParameter("pwd2"),email);
+        String pwd3 = ResetPwdManager.encode(request.getParameter("pwd3"),email);
         String zipdepart = request.getParameter("zipdepart");
         String sitearrivee = request.getParameter("sitearrivee");
         String heurematin = request.getParameter("heurematin");
