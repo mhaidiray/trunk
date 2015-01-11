@@ -52,7 +52,7 @@ public class AccountCreateManager extends HttpServlet {
         String driver = request.getParameter("conducteur");
         String notif = request.getParameter("notif");
         if (nom != null && nom.length() != 0) {
-            if (!nom.matches("([A-Z]+|[A-Z]?[a-z]+)('\'s([A-Z]+|[A-Z]?[a-z]+))?")) {
+            if (!nom.matches("([A-Z]+|[A-Z]?[a-z]+)(\\s([A-Z]+|[A-Z]?[a-z]+))?")) {
                 erreurs.put("nom", "Nom incorrect, veuillez réessayer");
                 request.setAttribute("erreurs", erreurs);
                 request.setAttribute("nom", "invalid");
