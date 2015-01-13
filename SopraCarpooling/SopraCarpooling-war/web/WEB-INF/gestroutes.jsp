@@ -8,31 +8,48 @@
         <meta charset="UTF-8">
         <title>Interface d'administration</title>
 
-        <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/normalize.css">
+       <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/normalize.css">
 
         <link rel="stylesheet" href="css_images/Admin Gestion Routes/cssadminroutes/style.css" media="screen" type="text/css" />
 
     </head>
 
     <body>
-
-        <h1>Interface d'administration</h1>
+    <div class="main">
+    
         <form method="post">
-            <div class="deco"><input type="submit" onclick="myFunction()" name="deco" value="Se déconnecter"></div>
+
+        <div class="lable">
+            <div class="col_1_of_2 span_1_of_2">
+                <h1>Rapport</h1>
+            </div>
+
+            <div class="col_1_of_2 span_1_of_2">
+                <div class="lable">
+                    <div class="col_1_of_2 span_1_of_2">
+                        <input type="submit" name="acc" onclick="myFunction()" value="Accueil">
+                    </div>
+                    <div class="col_1_of_2 span_1_of_2">
+                        <input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter">
+                    </div>
+                </div>
+            </div>
         </div>
-        <h4>Nombre de connexions : ${conn} </h4>
-        <h4>Nombre total de conducteurs : ${cond} </h4>
-        <h4>Nombre total de passagers : ${pass} </h4>
+    
+        <br clear="all">
+        <h5>Nombre de connexions : ${conn} </h5>
+        <h5>Nombre total de conducteurs : ${cond} </h5>
+        <h5>Nombre total de passagers : ${pass} </h5>
 
     </form>
-    <h2> </br>
+    <h2>
         <h2>Routes existantes :</h2>
         <table class="responstable">
             <tr>
-                <th>CP Départ</th>
-                <th>Site Sopra</th>
-                <th>Conducteurs sur cette route</th>
-                <th>Passagers sur cette route</th>
+                <th><center>CP Départ</center></th>
+                <th><center>Site Sopra</center></th>
+                <th><center>Conducteurs sur cette route</center></th>
+                <th><center>Passagers sur cette route</center></th>
             </tr>
             <%
                 ArrayList<Route> list;
@@ -50,13 +67,14 @@
                         pass = list.get(i).getNbpass();
             %>
             <tr>
-                <td><%=zipcode%></td>
-                <td><%=siteSopra%></td>
-                <td><%=cond%></td>
-                <td><%=pass%></td>
+                <td><center><%=zipcode%></center></td>
+                <td><center><%=siteSopra%></center></td>
+                <td><center><%=cond%></center></td>
+                <td><center><%=pass%></center></td>
             </tr>
             <%}
                     }%>
+            </div>
             </body>
 
             </html>
