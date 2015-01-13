@@ -40,10 +40,14 @@
                     <h4>Horaires :</h4>
                     <h3>${heurematin}</h3>
                     <h3>${heuresoir}</h3>
+                    <br>
                     <h4> Jours applicables : ${lundi}${mardi}${mercredi}${jeudi}${vendredi}${samedi}${dimanche}</h4>
                 </div>
+                <br>
                 <h4> Conducteur : ${conducteur}</h4>
+                <br>
                 <h4> Reçevoir des notifications : ${notif}</h4>
+                <br>
                 <div class="submit">
                     <div class="lable">
                         <div class="col_1_of_2 span_1_of_2"><input type="submit" value="Modifier mes informations personnelles" name="mod"></div>

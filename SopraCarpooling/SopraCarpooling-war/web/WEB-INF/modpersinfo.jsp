@@ -120,7 +120,7 @@
                 <INPUT type="checkbox" name="dim" value="1"> <FONT COLOR=#ffffff >Dimanche</FONT>
                 <% } %>
                 <br>
-
+                <br>
                 <h5> Êtes-vous conducteur ?</h5>
                 <% if (request.getAttribute("cond")!=null){ %>
                 <INPUT type="radio" name="conducteur" value="Oui" checked="checked"> <FONT COLOR=#ffffff >Oui</FONT>
@@ -130,7 +130,7 @@
                 <INPUT type="radio" name="conducteur" value="Non" checked="checked"> <FONT COLOR=#ffffff >Non</FONT>
                 <% } %>
                 <br>
-
+                <br>
                 <h5> Souhaitez-vous être notifié lors de l'ajout d'un trajet pouvant vous intéresser ?</h5>
                 <% if (request.getAttribute("not")!=null){ %>
                 <INPUT type="radio" name="notif" value="Oui" checked="checked"> <FONT COLOR=#ffffff >Oui</FONT>
@@ -139,6 +139,7 @@
                 <INPUT type="radio" name="notif" value="Oui" > <FONT COLOR=#ffffff >Oui</FONT>
                 <INPUT type="radio" name="notif" value="Non" checked="checked"> <FONT COLOR=#ffffff >Non</FONT>
                 <% } %>				   
+                <br>
                 <br>
                 <div class="submit">
                     <div class="lable">
