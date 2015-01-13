@@ -101,6 +101,7 @@ public class ConnectManager extends HttpServlet {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     erreurs.clear();
                 } else if (DatabaseManager.verifConnection(con, email, mdp).equals("user")) {
+                    DatabaseManager.setNbConn(con);
                     Cookie monCookie = new Cookie("user",email+"@#**#@"+mdp) ;
                     response.addCookie(monCookie);
                     response.sendRedirect("/SopraCarpooling-war/homeuser");

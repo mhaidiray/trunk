@@ -54,7 +54,7 @@ public class GestroutesManager extends HttpServlet {
         }
         request.setAttribute("cond", cond);
         request.setAttribute("pass", pass);
-        request.setAttribute("conn", "2996");
+        request.setAttribute("conn", DatabaseManager.getNbConn(con));
         processRequest(request, response);
     }
       
