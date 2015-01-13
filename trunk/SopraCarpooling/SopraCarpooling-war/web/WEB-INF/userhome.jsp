@@ -7,10 +7,7 @@
         <title>Sopra Carpooling</title>
         <meta charset="utf-8">
         <link href="css_images/User Home/cssuserhome/style.css" rel='stylesheet' type='text/css' />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--webfonts-->
-        <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
-        <!--//webfonts-->
+      
     </head>
     <body>
         <div class="main">
