@@ -67,6 +67,8 @@ public class GestroutesManager extends HttpServlet {
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
+        }else if (request.getParameter("acc")!=null){           
+            response.sendRedirect("/SopraCarpooling-war/adminhome");
         }else {
         this.getServletContext().getRequestDispatcher("/WEB-INF/gestroutes.jsp").forward(request, response);
         }
