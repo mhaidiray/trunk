@@ -215,7 +215,13 @@ public class UserEditManager extends HttpServlet {
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
                 String email = request.getParameter("mail");
-                String pwd = ResetPwdManager.encode(request.getParameter("pwd2"),email);
+                String pwd;
+                if (request.getParameter("pwd2").length()>0) {
+                    pwd = ResetPwdManager.encode(request.getParameter("pwd2"),email);
+                }
+                else {
+                    pwd = request.getParameter("pwd2");
+                }
                 String zipdepart = request.getParameter("zipdepart");
                 String sitearrivee = request.getParameter("sitearrivee");
                 String heurematin = request.getParameter("heurematin");
