@@ -127,7 +127,7 @@ public class ResetPwdManager extends HttpServlet {
                 /**Modification du password dans la base de données*/
                 SMTPManager.sendNewPassword(email, pwd);
                 DatabaseManager.modifPwd(con, email, encode(pwd,email));
-                response.sendRedirect("SopraCarpooling-war/login");
+                response.sendRedirect("login");
             } else {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
                 erreurs.clear();
