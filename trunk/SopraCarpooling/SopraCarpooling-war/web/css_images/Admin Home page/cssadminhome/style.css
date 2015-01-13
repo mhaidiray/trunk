@@ -178,16 +178,6 @@ input[type=submit] {
     padding: .1em;
   }
 }
-
-
-body{
-  background:url(../imagesaccountcreate/bg.png)  no-repeat fixed;
-  background-position:right top;
-        background-size: 230px;
-  font-family: 'Oxygen', sans-serif;
-        
-}
-
 h1 {
   font-family: Verdana;
   font-weight: normal;

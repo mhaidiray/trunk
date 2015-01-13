@@ -14,21 +14,21 @@
     <body>
         <div class="main">
             <form>
-                        <div class="lable">
+                <div class="lable">
                     <div class="col_1_of_2 span_1_of_2">
-            <h1>Gestion des lieux de travail</h1>
-            </div>
-            <div class="col_1_of_2 span_1_of_2">
-            <div class="lable">
-            <div class="col_1_of_2 span_1_of_2">
-            <input type="submit" name="acc" onclick="myFunction()" value="Accueil">
-            </div>
-            <div class="col_1_of_2 span_1_of_2">
-            <input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter">
-            </div>
-            </div>
-            </div>
-            </div>
+                        <h1>Gestion des lieux de travail</h1>
+                    </div>
+                    <div class="col_1_of_2 span_1_of_2">
+                        <div class="lable">
+                            <div class="col_1_of_2 span_1_of_2">
+                                <input type="submit" name="acc" onclick="myFunction()" value="Accueil">
+                            </div>
+                            <div class="col_1_of_2 span_1_of_2">
+                                <input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <select name="sitesopra" id="soflow">
                     <%
                         ArrayList<String> listSites;
