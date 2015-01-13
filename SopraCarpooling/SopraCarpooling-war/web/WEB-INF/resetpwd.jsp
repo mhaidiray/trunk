@@ -15,7 +15,7 @@
 
         <!-----start-main---->
         <div class="login-form">
-            <h1>Récupération de mot de passe:</h1>
+            <h1>Récupération de mot de passe</h1>
             <form method="post">
                 <span class="erreur">${erreurs['mail']}</span>
                 <li>
