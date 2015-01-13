@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
 
     </head>
-    <body background="../imagesadminhome/bg.png">
+    <body>
 
         <div class="main">
             <form>
@@ -52,7 +52,7 @@
                 <table class="responstable">
 
                     <tr>
-                    <th><center>Nom</center></th>
+                        <th><center>Nom</center></th>
                     <th><center>Prénom</center></th>
                     <th><center>N° Tel</center></th>
                     <th><center>Adresse email</center></th>
@@ -83,20 +83,20 @@
                     %>
                     <tr>
                         <td><center><%=nom%></center></td>
-                        <td><center><%=pre%></center></td>
-                        <td><center><%=tel%></center></td>
-                        <td><center><%=eml%></center></td>
-                        <td><center><%=zip%></center></td>
-                        <td><center><%=work%></center></td>
-                        <td>	
-                            <input type="submit" id="boutontab" value="Modifier" name="mod<%=i%>" >
+                    <td><center><%=pre%></center></td>
+                    <td><center><%=tel%></center></td>
+                    <td><center><%=eml%></center></td>
+                    <td><center><%=zip%></center></td>
+                    <td><center><%=work%></center></td>
+                    <td>	
+                        <input type="submit" id="boutontab" value="Modifier" name="mod<%=i%>" >
 
-                        </td>
+                    </td>
 
-                        <td>	
-                            <input type="submit" id="boutontab" value="Supprimer" name="sup<%=i%>">
+                    <td>	
+                        <input type="submit" id="boutontab" value="Supprimer" name="sup<%=i%>">
 
-                        </td>
+                    </td>
                     </tr>
                     <%}
                         }%>
@@ -105,10 +105,6 @@
         </div>
 
     </table>
-
-
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
-
 
 </body>
 </html>
