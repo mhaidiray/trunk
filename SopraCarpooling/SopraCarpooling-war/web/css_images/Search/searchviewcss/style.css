@@ -10,7 +10,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 
 */
 body{
-	background:url(../bg.png)  no-repeat center fixed;
+	background:url(../imagessearch/bg.png)  no-repeat center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -194,16 +194,6 @@ input[type=submit2] {
     padding: .1em;
   }
 }
-
-
-body{
-  background:url(../imagesaccountcreate/bg.png)  no-repeat fixed;
-  background-position:right top;
-        background-size: 230px;
-  font-family: 'Oxygen', sans-serif;
-        
-}
-
 h1 {
   font-family: Verdana;
   font-weight: normal;
