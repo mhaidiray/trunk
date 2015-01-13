@@ -60,9 +60,6 @@ body{
 	margin:34px 0;
 } 
 .login-form h2 a{
-        text-shadow: 1px 1px 3px #fffffff;
-        background: #170829;
-        padding: 10px 20px 10px 20px;
 	text-align:right;
 	color: #fff;
 	font-size:1.15em;

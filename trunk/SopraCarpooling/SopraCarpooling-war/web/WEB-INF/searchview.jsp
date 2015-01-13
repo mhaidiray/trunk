@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Sopra Carpooling</title>
         <meta charset="utf-8">
         <link href="css_images/Search/searchviewcss/style.css" rel='stylesheet' type='text/css' />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,19 +16,43 @@
     </head>
     <body>
         <div class="main">
-            <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
             <form method="post">
-            <div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div>
+
+                <div class="lable">
+                    <div class="col_1_of_2 span_1_of_2">
+                        <h1>Recherche de covoitureurs</h1>
+                    </div>
+                    <div class="col_1_of_2 span_1_of_2">
+                        <div class="lable">
+                            <div class="col_1_of_2 span_1_of_2">
+                                <input type="submit" name="accu" onclick="myFunction()" value="Accueil">
+                            </div>
+                            <div class="col_1_of_2 span_1_of_2">
+                                <input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br clear=all>
                 <h2>Veuillez renseigner la commune de départ et le site Sopra d'arrivée de votre recherche</h2>
                 <div class="lable">
                     <div class="col_1_of_2 span_1_of_2"><h5> Veuillez renseigner le code postal de départ :</h5>
-                        <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
-                                    this.value = '';
-                                }" onblur="if (this.value == '') {
-                                            this.value = 'Code postal de départ';
-                                        }">
+
                     </div>
                     <div class="col_1_of_2 span_1_of_2"><h5> Veuillez choisir le site Sopra d'arrivée :</h5>
+
+                    </div>
+                </div>
+                <div class="lable">
+                    <div class="col_1_of_2 span_1_of_2">
+                        <input type="text" class="text" value="Code postal de départ" name="zipdepart" onfocus="if (this.value == 'Code postal de départ') {
+                                        this.value = '';
+                                    }" onblur="if (this.value == '') {
+                                                this.value = 'Code postal de départ';
+                                            }">
+                    </div>
+                    <div class="col_1_of_2 span_1_of_2">
                         <select name="sitearrivee" id="soflow">
                             <%
                                 ArrayList<String> listSites;
@@ -38,60 +63,64 @@
                             %>    
                             <option value="<%=site%>"><%=site%></option>
                             <%}
-                        }%>
+                                    }%>
                         </select>
                     </div>
-                    <span class="erreur">${erreurs['zipdepart']}</span>
-                    <div class="cher"><input type="submit" name="search" onclick="myFunction()" value="Chercher"></div>
-            
+                </div>
+                        
+                        <br clear=all><span class="erreur"> ${erreurs['zipdepart']}</span>
+                         <br clear=all> <br clear=all>
+                         
+                <div class="cher"><input type="submit" name="search" onclick="myFunction()" value="Chercher"></div>
 
-            <br CLEAR="all">
-            <h2>Résultats de votre recherche :</h2>
-            <table class="responstable">
-                <tr>
-                    <th>Conducteur</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>N° Tél</th>
-                    <th>Départ à</th>               
-                </tr>
-                <%
-                    ArrayList<Model.User> list;
-                    list = (ArrayList<Model.User>) request.getAttribute("listUsers");
-                    int cond;
-                    String conduc, nom, pre, eml, tel, dep = null;
-                    if (list != null) {
-                        for (int i = 0; i < list.size(); i++) {
-                            User user = (User) list.get(i);
-                            cond = (int) user.getDriver();
-                            if (cond == 1) {
-                                conduc = "Oui";
-                            } else {
-                                conduc = "Non";
-                            }
-                            nom = (String) user.getLastname();
-                            pre = (String) user.getFirstname();
-                            eml = (String) user.getEmail();
-                            tel = (String) user.getPhone();
-                            dep = (String) user.getMorning_time();
-                %>
-                <tr>
-                    <td><%=conduc%></td>
-                    <td><%=nom%></td>
-                    <td><%=pre%></td>
-                    <td><%=eml%></td>
-                    <td><%=tel%></td>
-                    <td><%=dep%></td>
-                </tr>
 
-                <%}
-                    }%>
-            </table>
+                <br CLEAR="all">
+                <h2>Résultats de votre recherche :</h2>
+                <table class="responstable">
+                    <tr>
+                        <th>Conducteur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>N° Tél</th>
+                        <th>Départ à</th>               
+                    </tr>
+                    <%
+                        ArrayList<Model.User> list;
+                        list = (ArrayList<Model.User>) request.getAttribute("listUsers");
+                        int cond;
+                        String conduc, nom, pre, eml, tel, dep = null;
+                        if (list != null) {
+                            for (int i = 0; i < list.size(); i++) {
+                                User user = (User) list.get(i);
+                                cond = (int) user.getDriver();
+                                if (cond == 1) {
+                                    conduc = "Oui";
+                                } else {
+                                    conduc = "Non";
+                                }
+                                nom = (String) user.getLastname();
+                                pre = (String) user.getFirstname();
+                                eml = (String) user.getEmail();
+                                tel = (String) user.getPhone();
+                                dep = (String) user.getMorning_time();
+                    %>
+                    <tr>
+                        <td><%=conduc%></td>
+                        <td><%=nom%></td>
+                        <td><%=pre%></td>
+                        <td><%=eml%></td>
+                        <td><%=tel%></td>
+                        <td><%=dep%></td>
+                    </tr>
 
-            <div class="clear"></div>
-            
+                    <%}
+                                }%>
+                </table>
+
+                <div class="clear"></div>
+
         </div>
-            </form>
-    </body>
+    </form>
+</body>
 </html>
