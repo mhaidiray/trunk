@@ -128,6 +128,12 @@ If you like this solution, you might also want to check out the 1.0 version:
     color:#fff;
 }
 
+#boutontab{
+    padding: 5px 12px;
+    font-size: 16px;
+    float: center;
+}
+
 .submit{
 	padding:5px 4px;
 	text-align: center;
@@ -151,26 +157,6 @@ input[type=submit] {
   outline:none;
   width: 100%;
   -webkit-appearance: none;
-}
-
-input[type=submit2] {
-  text-align: center;
-	padding: 6px 12px;
-	color: #fff;
-	float: right;
-	font-family: 'Oxygen', sans-serif;
-	background: #DD3333/*#40A46F*/;
-	border: 1px solid #DD3333;
-	cursor: pointer;
-	font-size: 14px;
-	transition: all 0.5s ease-out;
-	-webkit-transition: all 0.5s ease-out;
-	-moz-transition: all 0.5s ease-out;
-	-ms-transition: all 0.5s ease-out;
-	-o-transition: all 0.5s ease-out;
-	outline:none;
-	width: 100%;
-	-webkit-appearance: none;
 }
 
 .submit input[type=submit]:hover {
