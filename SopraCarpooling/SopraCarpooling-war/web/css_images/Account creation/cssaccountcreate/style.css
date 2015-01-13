@@ -32,11 +32,13 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-	background:url(../imagesaccountcreate/bg.png)  no-repeat fixed;
-	background-position:right top;
-        background-size: 230px;
-	font-family: 'Oxygen', sans-serif;
-        
+	background:url(../imagesaccountcreate/bg.png)  no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+ 	position:relative;
+ 	font-family: 'Open Sans', sans-serif;
 }
 .main{
 	background: #333333;
