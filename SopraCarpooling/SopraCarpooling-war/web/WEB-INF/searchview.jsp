@@ -76,13 +76,13 @@
                 <h2>Résultats de votre recherche :</h2>
                 <table class="responstable">
                     <tr>
-                        <th>Conducteur</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>N° Tél</th>
-                        <th>Départ</th>
-                        <th>Retour</th>
+                        <th><center>Conducteur</center></th>
+                        <th><center>Nom</center></th>
+                        <th><center>Prénom</center></th>
+                        <th><center>Email</center></th>
+                        <th><center>N° Tél</center></th>
+                        <th><center>Départ</center></th>
+                        <th><center>Retour</center></th>
                     </tr>
                     <%
                         ArrayList<Model.User> list;
@@ -106,13 +106,13 @@
                                 ret = (String) user.getAfternoon_time();
                     %>
                     <tr>
-                        <td><%=conduc%></td>
-                        <td><%=nom%></td>
-                        <td><%=pre%></td>
-                        <td><%=eml%></td>
-                        <td><%=tel%></td>
-                        <td><%=dep%></td>
-                        <td><%=ret%></td>
+                        <td><center><%=conduc%></center></td>
+                        <td><center><%=nom%></center></td>
+                        <td><center><%=pre%></center></td>
+                        <td><center><%=eml%></center></td>
+                        <td><center><%=tel%></center></td>
+                        <td><center><%=dep%></center></td>
+                        <td><center><%=ret%></center></td>
                     </tr>
 
                     <%}
