@@ -14,10 +14,18 @@
     </head>
     <body>
         <div class="main">
-            <h1>Bienvenue sur votre interface personnelle, ${prenom} ${nom}</h1>
             <form>
-            <div class="deco"><input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter"></div>
-
+                <div class="lable">
+                    <div class="col_1_of_2 span_1_of_2">
+                        <h1>Bienvenue, ${prenom} ${nom}</h1>
+                    </div>
+                    <div class="col_1_of_2 span_1_of_2">
+                        <div class="deco">
+                            <input type="submit" name="deco" onclick="myFunction()" value="Se déconnecter">
+                        </div>
+                    </div>
+                </div>
+                <br clear=all>
                 <h2>Que souhaitez-vous faire aujourd'hui ?</h2>
                 <div class="lable-2">
                     <div class="col_1_of_2 span_1_of_2">
@@ -52,12 +60,14 @@
                         ArrayList<User> listUsers = new ArrayList<User>();
 
                         int cond;
-                        String nom, pre, eml, tel, dep = null, conduc="Non";
+                        String nom, pre, eml, tel, dep = null, conduc = "Non";
                         if (list != null) {
                             for (int i = 0; i < list.size(); i++) {
                                 User user = (User) list.get(i);
                                 cond = user.getDriver();
-                                if(cond==1){conduc="Oui";}
+                                if (cond == 1) {
+                                    conduc = "Oui";
+                                }
                                 nom = (String) user.getLastname();
                                 pre = (String) user.getFirstname();
                                 eml = (String) user.getEmail();
@@ -71,7 +81,7 @@
                         <td><%=tel%></td>
                     </tr>
                     <%}
-                        }%>
+                    }%>
 
 
                 </table>
