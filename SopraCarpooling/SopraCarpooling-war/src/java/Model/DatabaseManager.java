@@ -457,7 +457,7 @@ public class DatabaseManager {
             Statement smt = con.createStatement() ;
             ResultSet resultset =smt.executeQuery("SELECT * FROM nbConn");
             resultset.next();
-            nbConn = resultset.getInt("workplace");
+            nbConn = resultset.getInt("nb");
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -471,7 +471,7 @@ public class DatabaseManager {
         
         try {
             Statement smt = con.createStatement() ;
-            smt.executeUpdate("UPDATE nbConn SET nb="+nbConn);
+            smt.executeUpdate("UPDATE nbconn SET nb="+nbConn);
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -484,6 +484,8 @@ public class DatabaseManager {
         try {
             
             Connection c1 = DatabaseManager.connectionDatabase() ;
+            setNbConn(c1);
+            //getNbConn();
             /**
             System.out.println(DatabaseManager.verifConnection(c1,"mhaidir@gmail.com", "aaa"));
             System.out.println(DatabaseManager.verifConnection(c1,"mhaidir@gmail.com", "azp"));
@@ -516,10 +518,10 @@ public class DatabaseManager {
             createUser(c1,user7);
             /*/
             
-            ArrayList<Route> allRoutes = getRoutes(c1);
+            /*ArrayList<Route> allRoutes = getRoutes(c1);
             for (Route u : allRoutes){
                 System.out.println(u.getWorkplace() +""+u.getZipcode());
-            }
+            }*/
             
             /**
             ArrayList<User> allDrivers = driversSameJourney(c1,31400,1);
