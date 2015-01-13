@@ -109,16 +109,19 @@
                 <INPUT type="checkbox" name="samedi" > <FONT COLOR=#ffffff >Samedi</FONT>
                 <INPUT type="checkbox" name="dimanche" > <FONT COLOR=#ffffff >Dimanche</FONT>
                 <br>
+                <br>
 
                 <h5> Êtes-vous conducteur ?</h5>
 
                 <INPUT type="radio" name="conducteur" value="Oui"> <FONT COLOR=#ffffff >Oui</FONT>
                 <INPUT type="radio" name="conducteur" value="Non"> <FONT COLOR=#ffffff >Non</FONT>
                 <br>
+                <br>
 
                 <h5> Souhaitez-vous être notifié lors de l'ajout d'un trajet pouvant vous intéresser ?</h5>
                 <INPUT type="radio" name="notif" value="Oui"> <FONT COLOR=#ffffff >Oui</FONT> 
                 <INPUT type="radio" name="notif" value="Non"> <FONT COLOR=#ffffff >Non</FONT> 				   
+                <br>
                 <br>
                 <div class="submit">
                     <input type="submit" value="Créer un compte" >
