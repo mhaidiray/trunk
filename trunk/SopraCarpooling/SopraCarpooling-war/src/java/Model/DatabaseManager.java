@@ -450,6 +450,34 @@ public class DatabaseManager {
         
     }
     
+    /** Retourne le nombre actuel de connexions */
+    public static int getNbConn(Connection con){
+        int nbConn = 0 ;
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM nbConn");
+            resultset.next();
+            nbConn = resultset.getInt("workplace");
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nbConn ;
+    }
+    
+        /** Incrémente la valeur du nombre de connexion dans la base de données */
+    public static void setNbConn(Connection con){
+        int nbConn = getNbConn(con);
+        nbConn++;
+        
+        try {
+            Statement smt = con.createStatement() ;
+            smt.executeUpdate("UPDATE nbConn SET nb="+nbConn);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
     
     /** Ce main sert uniquement de test, s'y référer pour voir comment appeler les fonctions */
     public static void main(String[] args){
