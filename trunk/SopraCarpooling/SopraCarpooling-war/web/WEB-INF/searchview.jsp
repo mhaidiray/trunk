@@ -81,13 +81,14 @@
                         <th>Prénom</th>
                         <th>Email</th>
                         <th>N° Tél</th>
-                        <th>Départ à</th>               
+                        <th>Départ</th>
+                        <th>Retour</th>
                     </tr>
                     <%
                         ArrayList<Model.User> list;
                         list = (ArrayList<Model.User>) request.getAttribute("listUsers");
                         int cond;
-                        String conduc, nom, pre, eml, tel, dep = null;
+                        String conduc, nom, pre, eml, tel, dep,ret = null;
                         if (list != null) {
                             for (int i = 0; i < list.size(); i++) {
                                 User user = (User) list.get(i);
@@ -102,6 +103,7 @@
                                 eml = (String) user.getEmail();
                                 tel = (String) user.getPhone();
                                 dep = (String) user.getMorning_time();
+                                ret = (String) user.getAfternoon_time();
                     %>
                     <tr>
                         <td><%=conduc%></td>
@@ -110,6 +112,7 @@
                         <td><%=eml%></td>
                         <td><%=tel%></td>
                         <td><%=dep%></td>
+                        <td><%=ret%></td>
                     </tr>
 
                     <%}
