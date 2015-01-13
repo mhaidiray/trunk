@@ -167,6 +167,8 @@ public class SearchManager extends HttpServlet {
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
+        } else if (request.getParameter("accu") != null) {        
+            response.sendRedirect("/SopraCarpooling-war/homeuser");
         }
     }
 

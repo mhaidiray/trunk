@@ -15,6 +15,10 @@ If you like this solution, you might also want to check out the 1.0 version:
   background: #DD3333;
 }
 
+form .erreur {
+	color: #F00;
+}
+
 .responstable {
   margin: 1em 0;
   width: 100%;
@@ -207,9 +211,8 @@ span.term a:hover{
 .lable input[type="text"] {
     padding: 15px;
     font-size: 1.1em;
-    margin: 18px 0px;
     color: #666666;
-    width:87%;
+    width:70%;
     cursor: pointer;
     font-family: 'Oxygen', sans-serif;
     outline: none;
@@ -399,6 +402,7 @@ width:70%;
 }
 
 select#soflow {
+    padding: 15px;
    -webkit-appearance: button;
    -webkit-border-radius: 2px;
    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -412,7 +416,6 @@ select#soflow {
    color: #555;
    font-size: inherit;
    overflow: hidden;
-   padding: 16px 10px;
    text-overflow: ellipsis;
    white-space: nowrap;
    width: 300px;
