@@ -1,4 +1,7 @@
 /*--
+
+--- WORKPLACE LIST ---
+
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -322,7 +325,7 @@ select#soflow {
     margin-bottom: 2%;
     margin-left: 0.5%;
     overflow: hidden;
-    padding: 5px 10px;
+    padding: 16px 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 300px;
