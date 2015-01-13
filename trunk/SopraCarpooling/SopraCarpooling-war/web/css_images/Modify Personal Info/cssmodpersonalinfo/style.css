@@ -33,11 +33,16 @@ img{max-width:100%;}
 /****-----start-body----****/
 body{
 	background:url(../imagesmodpersonalinfo/bg.png)  no-repeat fixed;
-	background-position:right top;
-        background-size: 230px;
-	font-family: 'Oxygen', sans-serif;
-        
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+ 	position:relative;
+ 	font-family: 'Open Sans', sans-serif;   
 }
+
+
+
 
 .deco{
 	float: right;

@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css_images/Admin Home page/cssadminhome/style.css" media="screen" type="text/css" />
 
     </head>
-    <body>
+    <body background="../imagesadminhome/bg.png">
 
         <div class="main">
             <form>

@@ -10,6 +10,16 @@ If you like this solution, you might also want to check out the 1.0 version:
 
 */
 
+body{
+	background:url(../imagesuserhome/bg.png)  no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+ 	position:relative;
+ 	font-family: 'Open Sans', sans-serif;
+}
+
 .deco{
   float: right;
   background: #DD3333;

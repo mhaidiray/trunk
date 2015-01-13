@@ -9,6 +9,14 @@ If you like this solution, you might also want to check out the 1.0 version:
   https://gist.github.com/jordyvanraaij/9069194
 
 */
+body{
+	background:url(../imagesadminhome/bg.png)  no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+        font-family: 'Open Sans', sans-serif;
+}
 
 .deco{
 	float: right;
