@@ -48,7 +48,7 @@ public class HomeAdminManager extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
-        if (request.getParameter("disconnect") != null) {
+        if (request.getParameter("deco") != null) {
             Cookie monCookie = new Cookie("user", null);
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
