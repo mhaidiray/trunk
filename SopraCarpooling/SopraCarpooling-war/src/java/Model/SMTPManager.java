@@ -21,6 +21,9 @@ import javax.mail.internet.MimeMessage;
  
 public class SMTPManager {
     
+    public static String mailUtil="noreply.carpooling.sopra@gmail.com";
+    public static String passUtil="c@rpoolings0pra";
+    
         public static void sendDeleteConfirmation(String address){
             SMTPManager.sendMail(address,"Bonjour,\n"+ "Votre compte sur l'application Sopra Covoiturage a été supprimé avec succès.\n\n\n"
                     +"Pour toute réclamation, veuillez contactez l'administrateur à l'adresse mail : XXXXXX"
@@ -62,7 +65,7 @@ public class SMTPManager {
 		Session session = Session.getInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("noreply.carpooling.sopra@gmail.com","c@rpoolings0pra");
+					return new PasswordAuthentication(mailUtil,passUtil);
 				}
 			});
  
