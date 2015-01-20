@@ -62,7 +62,7 @@ public class SMTPManager {
 		Session session = Session.getInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("noreply.carpooling.sopra@gmail.com","carpoolingsopra");
+					return new PasswordAuthentication("noreply.carpooling.sopra@gmail.com","c@rpoolings0pra");
 				}
 			});
  
