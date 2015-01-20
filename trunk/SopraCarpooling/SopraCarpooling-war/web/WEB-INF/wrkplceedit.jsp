@@ -11,6 +11,9 @@
         <!--//webfonts-->
     </head>
     <body>
+        <center>
+            <IMG SRC="css_images/LogoHorizontal.png">
+        </center>
         <div class="main">
             <form>
         <div class="lable">

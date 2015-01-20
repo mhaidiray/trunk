@@ -59,7 +59,7 @@ public class HomeAdminManager extends HttpServlet {
          else if (request.getParameter("generateGeneralReport")!=null){
          response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
          } */ else if (request.getParameter("generate") != null) {
-            response.sendRedirect("/SopraCarpooling-war/gestroutes");
+            response.sendRedirect("/SopraCarpooling-war/report");
         } else {
              boolean tek=true;
             for (int j = 0; j < i; j++) {

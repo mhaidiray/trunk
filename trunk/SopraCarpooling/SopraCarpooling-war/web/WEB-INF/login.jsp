@@ -20,7 +20,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--//webfonts-->
     </head>
     <body>
-
+    <center>
+            <IMG SRC="css_images/LogoApp.png">
+        </center>
         <!-----start-main---->
         <div class="login-form">
             <h1>Connexion</h1>
