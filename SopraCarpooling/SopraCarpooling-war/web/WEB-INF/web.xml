@@ -45,8 +45,8 @@
         <servlet-class>Controller.PlaceEditManager</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GestroutesManager</servlet-name>
-        <servlet-class>Controller.GestroutesManager</servlet-class>
+        <servlet-name>ReportManager</servlet-name>
+        <servlet-class>Controller.ReportManager</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnectManager</servlet-name>
@@ -93,7 +93,7 @@
         <url-pattern>/placeedit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GestroutesManager</servlet-name>
-        <url-pattern>/gestroutes</url-pattern>
+        <servlet-name>ReportManager</servlet-name>
+        <url-pattern>/report</url-pattern>
     </servlet-mapping>
 </web-app>

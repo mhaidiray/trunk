@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Salah
  */
-public class GestroutesManager extends HttpServlet {
+public class ReportManager extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -70,7 +70,7 @@ public class GestroutesManager extends HttpServlet {
         }else if (request.getParameter("acc")!=null){           
             response.sendRedirect("/SopraCarpooling-war/adminhome");
         }else {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/gestroutes.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/genrapport.jsp").forward(request, response);
         }
     }
 
@@ -104,7 +104,7 @@ public class GestroutesManager extends HttpServlet {
                 genList(request, response);
            
             } catch (SQLException ex) {
-                Logger.getLogger(GestroutesManager.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReportManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

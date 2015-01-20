@@ -12,6 +12,9 @@
         <!--//webfonts-->
     </head>
     <body>
+        <center>
+            <IMG SRC="css_images/LogoHorizontal.png">
+        </center>
         <div class="main">
             <form>
                 <div class="lable">
@@ -38,6 +41,7 @@
                             for (int i = 0; i < listSites.size(); i++) {
                                 String site = (String) listSites.get(i);
                     %>    
+                    <a href="login.jsp"></a>
                     <option value="<%=site%>"><%=site%></option>
                     <%}
                         }%>
