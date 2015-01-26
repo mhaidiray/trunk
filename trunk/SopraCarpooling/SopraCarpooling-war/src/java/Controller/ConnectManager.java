@@ -18,23 +18,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Cette classe traite les requêtes liées à la connexion d'un utilisateur ou d'un administrateur. Elle affiche l'écran de connexion de l'application.
  * @author Samih
  */
 @WebServlet(urlPatterns = {"/ConnectManager"})
 public class ConnectManager extends HttpServlet {
 
+    
+    
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    * HashMap stockant les erreurs de saisie. Elle permet de notifier l'utilisateur lorsqu'il saisit une information incorrecte.
+    */
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
+    /**
+     * Fonction de vérification de l'email rentré dans l'écran de connexion.
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException 
+     */
     public String checkMail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("mail");
         System.out.println(email);
@@ -52,6 +56,14 @@ public class ConnectManager extends HttpServlet {
         return email;
     }
 
+    /**
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,7 +74,7 @@ public class ConnectManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Fonction gérant les requêtes GET adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response
@@ -76,8 +88,8 @@ public class ConnectManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
      *
+     * Fonction gérant les requêtes POST adressées au serveur.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -125,7 +137,7 @@ public class ConnectManager extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Renvoie une description du servlet.
      *
      * @return a String containing servlet description
      */
