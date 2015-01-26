@@ -20,14 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Cette classe gère tous les éléments liés à la page d'accueil de l'utilisateur.
  * @author Samih
  */
 public class HomeUserManager extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
      *
      * @param request servlet request
      * @param response servlet response
@@ -66,8 +65,8 @@ public class HomeUserManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
      *
+     * Fonction gérant les requêtes GET adressées au serveur.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -102,8 +101,8 @@ public class HomeUserManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
      *
+     * Fonction gérant les requêtes POST adressées au serveur.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

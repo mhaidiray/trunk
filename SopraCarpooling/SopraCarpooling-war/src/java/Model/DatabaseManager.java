@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Cette classe a pour but d'intéragir avec la base de données; pour la configuration de celle-ci, veuillez vous reporter au fichier README au sein des livrables du projet.
  * @author mohamedsqualli
  */
 public class DatabaseManager {

@@ -22,21 +22,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe permet à un administrateur de visualiser un certain nombre d'informations  et de statistiques concernant le système.
  * @author Salah
  */
 public class ReportManager extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
+    
+    
+     /**
+      * Foncton permettant de générer la liste de tous les utilisateurs enregistrés dans le système.
+      * @param request
+      * @param response
+      * @throws ServletException
+      * @throws IOException
+      * @throws SQLException 
+      */
       public void genList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Connection con;
         con = DatabaseManager.connectionDatabase();
@@ -58,6 +59,14 @@ public class ReportManager extends HttpServlet {
         processRequest(request, response);
     }
       
+      /**
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -76,7 +85,7 @@ public class ReportManager extends HttpServlet {
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Gère les requêtes GET adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response
@@ -110,8 +119,7 @@ public class ReportManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * Gère les requêtes POST adressées au serveur.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -124,7 +132,7 @@ public class ReportManager extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Renvoie une description du servlet.
      *
      * @return a String containing servlet description
      */

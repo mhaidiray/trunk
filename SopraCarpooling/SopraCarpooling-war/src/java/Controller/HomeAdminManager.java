@@ -23,14 +23,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Cette classe gère tous les éléments liés à l'écran d'accueil de
+ * l'administrateur, à savoir la liste de tous les utilisateurs existants et
+ * toutes les opérations associés.
  *
  * @author Samih
  */
 public class HomeAdminManager extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe
+     * laquelle.
+     *
      *
      * @param request servlet request
      * @param response servlet response
@@ -45,40 +49,40 @@ public class HomeAdminManager extends HttpServlet {
             con = DatabaseManager.connectionDatabase();
             ArrayList<Model.User> listUsers = DatabaseManager.getAllUsers(con);
             i = listUsers.size();
-        
-        response.setContentType("text/html;charset=UTF-8");
-        /* TODO output your page here. You may use following sample code. */
-        if (request.getParameter("deco") != null) {
-            Cookie monCookie = new Cookie("user", null);
-            monCookie.setMaxAge(0);
-            response.addCookie(monCookie);
-            response.sendRedirect("/SopraCarpooling-war/login");
-        } else if (request.getParameter("handlePath") != null) {
-            response.sendRedirect("/SopraCarpooling-war/wrkplcelist");
-        } /*API de création de PDF
-         else if (request.getParameter("generateGeneralReport")!=null){
-         response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
-         } */ else if (request.getParameter("generate") != null) {
-            response.sendRedirect("/SopraCarpooling-war/report");
-        } else {
-             boolean tek=true;
-            for (int j = 0; j < i; j++) {
-                if (request.getParameter("mod" + j) != null) {
-                    Cookie monCookie = new Cookie("modifuser", listUsers.get(j).getEmail());
-                    response.addCookie(monCookie);
-                    tek=false;
-                    response.sendRedirect("/SopraCarpooling-war/useredit");
-                } else if (request.getParameter("sup" + j) != null) {
-                    DatabaseManager.deleteUsers(con, listUsers.get(j).getEmail());
-                    SMTPManager.sendDeleteConfirmation(listUsers.get(j).getEmail());
-                    tek=false;
-                    response.sendRedirect("/SopraCarpooling-war/adminhome");
+
+            response.setContentType("text/html;charset=UTF-8");
+            /* TODO output your page here. You may use following sample code. */
+            if (request.getParameter("deco") != null) {
+                Cookie monCookie = new Cookie("user", null);
+                monCookie.setMaxAge(0);
+                response.addCookie(monCookie);
+                response.sendRedirect("/SopraCarpooling-war/login");
+            } else if (request.getParameter("handlePath") != null) {
+                response.sendRedirect("/SopraCarpooling-war/wrkplcelist");
+            } /*API de création de PDF
+             else if (request.getParameter("generateGeneralReport")!=null){
+             response.sendRedirect("/SopraCarpooling-war/persinfo"); génération d"un pdf pas de servlet
+             } */ else if (request.getParameter("generate") != null) {
+                response.sendRedirect("/SopraCarpooling-war/report");
+            } else {
+                boolean tek = true;
+                for (int j = 0; j < i; j++) {
+                    if (request.getParameter("mod" + j) != null) {
+                        Cookie monCookie = new Cookie("modifuser", listUsers.get(j).getEmail());
+                        response.addCookie(monCookie);
+                        tek = false;
+                        response.sendRedirect("/SopraCarpooling-war/useredit");
+                    } else if (request.getParameter("sup" + j) != null) {
+                        DatabaseManager.deleteUsers(con, listUsers.get(j).getEmail());
+                        SMTPManager.sendDeleteConfirmation(listUsers.get(j).getEmail());
+                        tek = false;
+                        response.sendRedirect("/SopraCarpooling-war/adminhome");
+                    }
+                }
+                if (tek) {
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/adminhome.jsp").forward(request, response);
                 }
             }
-            if (tek){
-            this.getServletContext().getRequestDispatcher("/WEB-INF/adminhome.jsp").forward(request, response);
-            }
-        }
         } catch (SQLException ex) {
             Logger.getLogger(HomeAdminManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,7 +90,7 @@ public class HomeAdminManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Fonction gérant les requêtes GET adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response
@@ -132,8 +136,9 @@ public class HomeAdminManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
      *
+     * Fonction gérant les requêtes POST adressées au serveur.
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -146,7 +151,7 @@ public class HomeAdminManager extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Renvoie une description du servlet.
      *
      * @return a String containing servlet description
      */
