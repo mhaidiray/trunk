@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère l'édition de lieux de travail
  * @author Salah
  */
 @WebServlet(name = "WrkplaceeditManager", urlPatterns = {"/WrkplaceeditManager"})

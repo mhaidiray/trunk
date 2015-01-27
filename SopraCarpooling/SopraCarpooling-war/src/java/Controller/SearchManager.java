@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère la recherche manuelle de route
  * @author Salah
  */
 public class SearchManager extends HttpServlet {
@@ -36,7 +36,6 @@ public class SearchManager extends HttpServlet {
      *
      * @param request
      * @param response
-     * @return
      * @throws ServletException
      * @throws IOException
      */

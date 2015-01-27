@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère toutes les requêtes liées à la réinitialisation de mot de passe.
  * @author Samih
  */
 public class ResetPwdManager extends HttpServlet {

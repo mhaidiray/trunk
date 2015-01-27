@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère l'interface des données utilisateur personnelles.
  * @author Samih
  */
 public class PersonalDataManager extends HttpServlet {

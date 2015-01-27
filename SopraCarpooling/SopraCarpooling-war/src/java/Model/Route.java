@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Cette classe sert à modéliser les routes (départ+arrivée).
  * @author Machd
  */
 public class Route {
