@@ -30,13 +30,13 @@ public class AccountCreateManager extends HttpServlet {
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Fonction vérifiant toutes les informations rentrées par l'utilisateur. Elle remplit la hashmap des erreurs en fonction des erreurs trouvées.
+     * @param pass
+     * @param mail
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
      */
     public void checkInfos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nom = request.getParameter("nom");
@@ -158,6 +158,14 @@ public class AccountCreateManager extends HttpServlet {
 
     }
 
+    /**
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -165,9 +173,8 @@ public class AccountCreateManager extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/acccreate.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Gère les requêtes GET adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response
@@ -188,7 +195,7 @@ public class AccountCreateManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Gère les requêtes POST adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response

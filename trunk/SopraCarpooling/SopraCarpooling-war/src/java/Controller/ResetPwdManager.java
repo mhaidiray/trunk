@@ -31,8 +31,7 @@ public class ResetPwdManager extends HttpServlet {
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Fonction qui vérifie le mail entré par l'utilisateur
      *
      * @param request servlet request
      * @param response servlet response
@@ -53,6 +52,14 @@ public class ResetPwdManager extends HttpServlet {
         }
     }
     
+    /**
+     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,6 +67,12 @@ public class ResetPwdManager extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/resetpwd.jsp").forward(request, response);
     }
     
+    /**
+     * Retourne le mot de passe chiffré à l'aide de MD5.
+     * @param mdp
+     * @param email
+     * @return 
+     */
     public static String encode(String mdp, String email){
                     String password = mdp+"SopraCarpooling"+email;
                     byte[] uniqueKey = password.getBytes();
@@ -90,7 +103,7 @@ public class ResetPwdManager extends HttpServlet {
         }  
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Gère les requêtes GET adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response
@@ -104,7 +117,7 @@ public class ResetPwdManager extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Gère les requêtes POST adressées au serveur.
      *
      * @param request servlet request
      * @param response servlet response

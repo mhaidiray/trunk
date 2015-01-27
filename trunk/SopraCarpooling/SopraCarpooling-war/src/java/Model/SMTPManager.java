@@ -24,12 +24,14 @@ public class SMTPManager {
     public static String mailUtil="noreply.carpooling.sopra@gmail.com";
     public static String passUtil="c@rpoolings0pra";
     
+        /** Envoi d'une confirmation lors de la suppression d'un compte à l'adresse "address" */
         public static void sendDeleteConfirmation(String address){
             SMTPManager.sendMail(address,"Bonjour,\n"+ "Votre compte sur l'application Sopra Covoiturage a été supprimé avec succès.\n\n\n"
                     +"Pour toute réclamation, veuillez contactez l'administrateur à l'adresse mail : XXXXXX"
                     ,"Suppression de votre compte sur Sopra Covoiturage");
         }
         
+        /** Envoi d'une notification à l'adresse "address" lors d'un nouveau trajet disponible de la personne "newPrenom newNom" */
         public static void sendNotification(String address,String newPrenom,String newNom){
             SMTPManager.sendMail(address,"Bonjour,\n"+ "Une nouvelle personne : '"+newPrenom+" "+newNom+"' propose un trajet qui pourrait vous intérésser.\n\n\n"
                     +"Pour annuler les notifications par mail, veuillez vous rendre sur votre espace client.\n"
@@ -37,6 +39,7 @@ public class SMTPManager {
                     ,"Nouveau trajet disponible sur Sopra Covoiturage");
         }
         
+        /** Envoi d'un nouveau mot de passe newPasswd à l'adresse mail "address" */
         public static void sendNewPassword(String address, String newPasswd){
             SMTPManager.sendMail(address,"Bonjour,\n"+ "Votre mot de passe a été réinitialisé avec succès.\n\n"
                     +"Votre nouveau mot de passe est : "+newPasswd+"\n\n\n"
@@ -44,6 +47,7 @@ public class SMTPManager {
                     ,"Réinitialisation de votre mot de passe sur Sopra Covoiturage");
         }
         
+        /** Envoi d'une confirmation lors de la création d'un compte à l'adresse "address" avec le mot de passe "mdp" */
         public static void sendCreateConfirmation (String adresse, String mdp){
             String mess= "Bonjour,\n"+"Votre compte sur l'application Sopra Covoiturage a été crée avec succès.\n\n\n"+"Nom d'utilisateur: "+ adresse + "\n"+"Mot de passe: "+mdp+"\n\n\n"
                     +"Pour toute réclamation, veuillez contacter l'administrateur à l'adresse mail : XXXX";
@@ -51,7 +55,7 @@ public class SMTPManager {
             SMTPManager.sendMail(adresse,mess,subject);   
         }
 
-    
+        /** Fonction générique pour envoyez un mail à l'adresse "address" dont le contenu est "msg" et le sujet "subject" */
         public static void sendMail(String address,String msg,String subject){
             
 		Properties props = new Properties();
@@ -86,6 +90,8 @@ public class SMTPManager {
 			throw new RuntimeException(e);
 		}
 	}
+        
+        /** Fonction utile uniquement pour les tests, n'est absolument pas utilisée lors du déroulement de l'application */
 	public static void main(String[] args) {
             //SMTPManager.sendMail("squallih@etud.insa-toulouse.fr", "Voici mon message,"
             //        + "\n Hehe cocoo !", "Ca marche !");
