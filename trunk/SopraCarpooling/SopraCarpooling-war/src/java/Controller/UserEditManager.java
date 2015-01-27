@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère les requêtes en relation avec la modification d'un utilisateur, côté admin
  * @author Samih
  */
 public class UserEditManager extends HttpServlet {
@@ -368,7 +368,6 @@ public class UserEditManager extends HttpServlet {
     /**
      * Fonction vérifiant toutes les informations rentrées par l'utilisateur. Elle remplit la hashmap des erreurs en fonction des erreurs trouvées.
      * @param pass
-     * @param mail
      * @param request
      * @param response
      * @throws ServletException

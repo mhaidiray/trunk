@@ -7,7 +7,7 @@ package Model;
  */
 
 /**
- *
+ * Classe gérant l'envoi de mail à travers le serveur SMTP.
  * @author mohamedsqualli
  */
 import java.util.Properties;

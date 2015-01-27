@@ -7,9 +7,9 @@ package Model;
 
 /**
  *
- * @author Samih
  * Cette classe a pour utilité de faciliter les échanges d'informations entre les composants
  * du système, grâce à des sous-classes contenant toutes les informations des utilisateurs.
+ * @author Samih
  */
 public class Model {
     private static User user=null;

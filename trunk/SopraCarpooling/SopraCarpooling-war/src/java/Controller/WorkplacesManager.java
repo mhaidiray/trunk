@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère l'interface d'affichage des lieux de travail.
  * @author Salah
  */
 public class WorkplacesManager extends HttpServlet {

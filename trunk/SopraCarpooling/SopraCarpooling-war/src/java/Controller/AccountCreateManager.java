@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Cette classe gère l'interface de création de compte.
  * @author Samih
  */
 public class AccountCreateManager extends HttpServlet {
@@ -31,8 +31,6 @@ public class AccountCreateManager extends HttpServlet {
 
     /**
      * Fonction vérifiant toutes les informations rentrées par l'utilisateur. Elle remplit la hashmap des erreurs en fonction des erreurs trouvées.
-     * @param pass
-     * @param mail
      * @param request
      * @param response
      * @throws ServletException
