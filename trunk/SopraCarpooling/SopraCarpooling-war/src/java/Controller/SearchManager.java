@@ -30,13 +30,15 @@ public class SearchManager extends HttpServlet {
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Cette méthode vérifie que l'admin a saisi un code postale composé de 5 chiffre dans le champ
+     * resérvé. S'il ne l'a pas bien saisi et qu'il clique sur un bouton, une
+     * erreur est envoyé à la jsp pour lui demander de réessayer la saisie.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
      */
     public void checkZip(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -67,8 +69,11 @@ public class SearchManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
+     * Cette méthode est appelée lors du premier affiche de la jsp searchview (l'interface de recherche de trajet
+     * de l'utilisateur). Elle utilise les Cookies pour s'assurer que l'utilisateur s'est déja connecté, si oui
+     * elle invoque processRequest pour afficher la jsp searchview.
+     * 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -92,9 +97,6 @@ public class SearchManager extends HttpServlet {
             response.sendRedirect("/SopraCarpooling-war/login");
         } else {
             try {
-                int positionAt = Valeur.indexOf("@#**#@");
-                String email = Valeur.substring(0, positionAt);
-                String password = Valeur.substring(positionAt + 6);
                 Connection con = DatabaseManager.connectionDatabase();
                 ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(con);
                 request.setAttribute("listPlaces", listPlaces);
@@ -104,10 +106,12 @@ public class SearchManager extends HttpServlet {
             }
         }
     }
-
-    /**
+ /**
+     * Cette méthode est appelée lors de l'appuie sur un des boutons de la jsp searchview. 
+     * Elle effectue un traitemen différent selon le bouton sur lequel l'utilisateur a appuyé
+     * (chercher, se déconnecter ou retour à l'accueil)
+     * 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -127,9 +131,9 @@ public class SearchManager extends HttpServlet {
                     }
                 }
             }
-            if (Valeur==null){
+            if (Valeur == null) {
                 response.sendRedirect("/SopraCarpooling-war/login");
-            }else {
+            } else {
                 checkZip(request, response);
                 if (erreurs.isEmpty()) {
                     try {
@@ -141,7 +145,7 @@ public class SearchManager extends HttpServlet {
                         String sitesopra = request.getParameter("sitearrivee");
                         int i;
                         i = Integer.parseInt(zipcode);
-                        listUsers = usersSameJourney(c1, i, sitesopra,email);
+                        listUsers = usersSameJourney(c1, i, sitesopra, email);
                         request.setAttribute("listUsers", listUsers);
                         ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
                         request.setAttribute("listPlaces", listPlaces);
@@ -152,7 +156,7 @@ public class SearchManager extends HttpServlet {
 
                 } else {
                     try {
-                        Connection c1=DatabaseManager.connectionDatabase();
+                        Connection c1 = DatabaseManager.connectionDatabase();
                         ArrayList<String> listPlaces = DatabaseManager.getAllWorkplaces(c1);
                         request.setAttribute("listPlaces", listPlaces);
                         processRequest(request, response);
@@ -162,12 +166,12 @@ public class SearchManager extends HttpServlet {
                     }
                 }
             }
-        } else if (request.getParameter("deco") != null) {                    
-            Cookie monCookie = new Cookie("user",null) ;
+        } else if (request.getParameter("deco") != null) {
+            Cookie monCookie = new Cookie("user", null);
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
-        } else if (request.getParameter("accu") != null) {        
+        } else if (request.getParameter("accu") != null) {
             response.sendRedirect("/SopraCarpooling-war/homeuser");
         }
     }
