@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class WorkplacesManager extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Méthode appelée par doGet et doPost Processes requests for both HTTP
+     * <code>GET</code> and <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -38,13 +38,22 @@ public class WorkplacesManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
+        /**
+         * cas ou l'admin à appuyer sur le bouton de déconnexion
+         */
         if (request.getParameter("deco") != null) {
             Cookie monCookie = new Cookie("user", null);
             monCookie.setMaxAge(0);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/login");
+            /**
+             * cas ou l'admin à appuyer sur le bouton de retour à l'accueil
+             */
         } else if (request.getParameter("acc") != null) {
             response.sendRedirect("/SopraCarpooling-war/adminhome");
+            /**
+             * cas ou l'admin à appuyer sur le bouton de suppression
+             */
         } else if (request.getParameter("del") != null) {
             try {
                 Connection con = DatabaseManager.connectionDatabase();
@@ -54,15 +63,24 @@ public class WorkplacesManager extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(WorkplacesManager.class.getName()).log(Level.SEVERE, null, ex);
             }
+            /**
+             * cas ou l'admin à appuyer sur le bouton d'ajout
+             */
         } else if (request.getParameter("add") != null) {
             Cookie monCookie = new Cookie("modif", "none");
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
+            /**
+             * cas ou l'admin à appuyer sur le bouton de modification
+             */
         } else if (request.getParameter("modif") != null) {
             String nom = request.getParameter("sitesopra");
             Cookie monCookie = new Cookie("modif", nom);
             response.addCookie(monCookie);
             response.sendRedirect("/SopraCarpooling-war/wrkplceedit");
+            /**
+             * cas du premier affichage de la jsp wrkplcelist, aucun bouton n'a été activé
+             */
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/wrkplcelist.jsp").forward(request, response);
         }
@@ -70,7 +88,8 @@ public class WorkplacesManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Méthode appelé lors du premier affichage de la jsp "wrkplceedit" Handles
+     * the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -80,8 +99,15 @@ public class WorkplacesManager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /**
+         * On initialise les Cookies
+         */
         Cookie[] cookies = request.getCookies();
         String Valeur = null;
+        /**
+         * S'il n'est pas vide, on les parcourt pour savoir si la personne
+         * connéctée est un admin
+         */
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
                 Cookie MonCookie = cookies[i];
@@ -90,9 +116,18 @@ public class WorkplacesManager extends HttpServlet {
                 }
             }
         }
-
+        /**
+         * Si Valeur==null, il ne s'agit pas d'un admin, il ne pourra pas
+         * accéder à cette page et il est rediriger vers la page de connexion
+         */
         if (Valeur == null) {
             response.sendRedirect("/SopraCarpooling-war/login");
+            /**
+             * Si c'est bien un admin, on se connecte à la base de donner pour
+             * avoir la liste des workplaces à afficher dans la jsp, on l'envoie
+             * en attribut à la jsp et on appelle processRequest avec les mêmes
+             * paramètres plus la liste.
+             */
         } else {
             try {
                 int positionAt = Valeur.indexOf("@#**#@");
@@ -110,6 +145,9 @@ public class WorkplacesManager extends HttpServlet {
     }
 
     /**
+     * Méthode appelée lors de l'appuie sur un des boutons, elle invoque
+     * processRequest avec les mêmes paramètres de la requête.
+     *
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
