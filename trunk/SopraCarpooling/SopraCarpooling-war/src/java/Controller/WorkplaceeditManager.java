@@ -31,14 +31,16 @@ public class WorkplaceeditManager extends HttpServlet {
     HashMap<String, String> erreurs = new HashMap<String, String>();
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Cette méthode vérifie que l'admin a bien saisi un nom dans le champ resérvé au nom. S'il ne l'a pas saisi et 
+     * qu'il clique sur un bouton, une erreur est envoyé à la jsp pour lui demander de saisir un nom du site.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
      */
+
     public boolean checkSite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean erreurexist = false;
         String site = request.getParameter("nom");
@@ -50,6 +52,17 @@ public class WorkplaceeditManager extends HttpServlet {
         }
         return erreurexist;
     }
+
+    /**
+     * Cette méthode vérifie que l'admin a bien saisi une adresse dans le champ d'adresse. S'il ne l'a pas saisi et 
+     * qu'il clique sur un bouton, une erreur est envoyé à la jsp pour lui demander de saisir l'adresse.
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
 
     public boolean checkAdr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean erreurexist = false;
@@ -63,10 +76,20 @@ public class WorkplaceeditManager extends HttpServlet {
         return erreurexist;
     }
 
+    /**
+     * Cette méthode est appelée par doGet ou doPost. Quand elle est appelée par
+     * doGet elle effectue le traitement pour pouvoir afficher le nom et
+     * l'adresse du site Sopra à modifier si l'admin avait précedemment cliqué
+     * sur modifier. Si l'admin avait cliqué sur ajouter, c'est dans la JSP
+     * qu'on contrôle l'affichage de champ non préremplis. Quand elle est
+     * appelée par doPost, elle effectue un traitement différent selon le bouton
+     * qui a été activé.
+     *
+     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /* TODO output your page here. You may use following sample code. */
         if (request.getParameter("deco") != null) {
             Cookie monCookie = new Cookie("user", null);
             monCookie.setMaxAge(0);
@@ -115,6 +138,13 @@ public class WorkplaceeditManager extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
+     * Cette méthode est appelée lors du premier affichage de la jsp wrkplceedit
+     * Dans le cas où l'admin veut modifier une route, le nom de la route à
+     * modifier ainsi que son adresse sont envoyés à la jsp. Le nom est extrait
+     * des Cookies, et l'adresse est extraite à partir d'une requête à la base
+     * de données. ProcessRequest est ensuite appelé avec les mêmes paramètres
+     * plus le nom et l'adresse du site à modifier.
+     *
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -163,6 +193,9 @@ public class WorkplaceeditManager extends HttpServlet {
     }
 
     /**
+     * Cette méthode est appelée lors de l'appui sur l'un des boutons, elle
+     * invoque peocessRequest avec les mêmes paramétres.
+     *
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
