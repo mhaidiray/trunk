@@ -29,13 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserEditManager extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Hashmap stockant les erreurs de saisie
      */
     
     HashMap<String, String> erreurs = new HashMap<String, String>();
@@ -105,7 +99,7 @@ public class UserEditManager extends HttpServlet {
     }
     
     /**
-     * Fonction appelée lorsqu'une requête est adressée au sereur, n'importe laquelle.
+     * Fonction appelée lorsqu'une requête est adressée au serveur, n'importe laquelle.
      *
      * @param request servlet request
      * @param response servlet response
